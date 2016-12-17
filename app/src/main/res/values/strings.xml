@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Academy Review And Rating</string>
+    <string name="Login">User Login</string>
+    <string name="username">User name</string>
+    <string name="password">Password</string>
+    <string name="titleReg">Registarion</string>
+    <string name="Email">Email</string>
+    <string name="title_activity_navigation_start">NavigationStartActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+</resources>

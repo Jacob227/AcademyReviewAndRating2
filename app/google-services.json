@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "719835424887",
+    "firebase_url": "https://academy-review-and-rating.firebaseio.com",
+    "project_id": "academy-review-and-rating",
+    "storage_bucket": "academy-review-and-rating.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719835424887:android:6e2743c2e30395d1",
+        "android_client_info": {
+          "package_name": "com.example.academyreviewandrating"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719835424887-ucmr90bv5gqdsqv01kc1u48m5n4h5i1b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3tkmmS8MhbMvwiPR3au2D1ryCoYaRcQA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
