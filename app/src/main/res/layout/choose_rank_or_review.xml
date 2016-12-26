@@ -20,41 +20,4 @@
         android:autoText="true"
         android:layout_centerHorizontal="true" />
 
-    <RadioGroup
-        android:id="@+id/RadioRadioChoose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="80dp"
-        >
-        <RadioButton
-            android:id="@+id/RadioButtCourse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rank/Review the lecturer and course"
-            android:checked="true" />
-        <RadioButton
-            android:id="@+id/RadioButtFaculty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Rank/Review the faculty"/>
-    </RadioGroup>
-
-    <Button
-        android:text="Rank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="40dp"
-        android:id="@+id/buttonRank" />
-    <Button
-        android:text="Review"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="15dp"
-        android:id="@+id/buttonReview" />
-
 </LinearLayout>

@@ -49,8 +49,6 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this,"Please enter password",Toast.LENGTH_SHORT).show();
             return;
         }
-        String ff = email.getText().toString().trim();
-        String ee = password.getText().toString().trim();
 
         firebaseAuth.signInWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
