@@ -5,7 +5,9 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/my_color_bg</item>
+        <item name="android:colorBackground">@color/toolbar_color</item>
+        <item name="android:windowBackground">@color/drawer_down</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -16,5 +18,10 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="my_theme" parent="Theme.AppCompat.NoActionBar" >
+        <item name="android:colorBackground">@color/common_google_signin_btn_text_dark_disabled
+        </item>
+    </style>
 
 </resources>
