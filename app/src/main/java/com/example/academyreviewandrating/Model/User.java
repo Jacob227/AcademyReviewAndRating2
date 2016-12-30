@@ -20,6 +20,11 @@ public class User {
         this.fullName = fullName;
         this.privilage = privilage;
     }
+    //copy constractor
+    public User (User user) {
+        this(user.getUserName(),user.getInstitution(),user.getFaculty(),
+                user.getEmail(),user.getPhone(),user.getFullName(),user.isPrivilage());
+    }
 
     public String getUserName() {
         return userName;

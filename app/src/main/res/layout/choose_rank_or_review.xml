@@ -1,23 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/choose_rank_review">
+>
 
-    <TextView
-        android:text="Choose what to rank/review"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize= "@dimen/font_size24"
-        android:textColor= "@color/colorPrimary"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:id="@+id/textViewReviewRank"
-        android:autoText="true"
-        android:layout_centerHorizontal="true" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="Choose Academy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewChooseAcd"
+                android:textSize="17dp"
+                android:layout_marginLeft="10dp"
+                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                android:textColor="@android:color/background_light"
+                android:textStyle="normal|bold|italic" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/spinner_academy"
+                android:background="@android:drawable/btn_dropdown"
+
+                android:dropDownWidth="250dp"
+                android:textDirection="ltr"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="25dp"
+                android:popupBackground="@android:drawable/spinner_background" />
+
+            <TextView
+                android:text="Choose Faculty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="normal|bold|italic"
+                android:textSize="17dp"
+                android:layout_marginLeft="10dp"
+                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                android:textColor="@android:color/background_light"
+                android:id="@+id/textView_chooseFac"
+                android:layout_marginTop="15dp" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_faculty"
+                android:background="@android:drawable/btn_dropdown"
+                android:minWidth="10dp"
+                android:dropDownWidth="250dp"
+                android:textDirection="ltr"
+
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="25dp"
+                android:popupBackground="@android:drawable/spinner_background" />
+
+            <RelativeLayout
+                android:id="@+id/activity_main11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="Faculty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_fac"
+
+                    android:textStyle="normal|bold|italic"
+                    android:textSize="17dp"
+                    android:textColor="@android:color/background_light"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="18dp" />
+
+                <Button
+                    android:text="Rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button_Rank_Faculty"
+                    android:background="@drawable/button_shape"
+                    android:textSize="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/textView_fac"
+                    android:layout_toEndOf="@+id/textView_fac"
+                    android:layout_marginTop="10dp" />
+
+                <Button
+                    android:text="View"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button_Fac_View"
+                    android:background="@drawable/button_shape"
+                    android:textSize="@dimen/activity_vertical_margin"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/button_Rank_Faculty"
+                    android:layout_toEndOf="@+id/button_Rank_Faculty"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:text="Choose Course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="normal|bold|italic"
+                android:textSize="17dp"
+                android:layout_marginLeft="10dp"
+                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                android:textColor="@android:color/background_light"
+                android:id="@+id/textView_Choose_Course"
+                android:layout_marginTop="15dp"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_choose_course"
+                android:background="@android:drawable/btn_dropdown"
+                android:minWidth="10dp"
+                android:dropDownWidth="250dp"
+                android:textDirection="ltr"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="25dp"
+                android:popupBackground="@android:drawable/spinner_background" />
+
+            <TextView
+                android:text="Choose Teacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="normal|bold|italic"
+                android:textSize="17dp"
+                android:layout_marginLeft="10dp"
+                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                android:textColor="@android:color/background_light"
+                android:id="@+id/textView_choose_teac"
+                android:layout_marginTop="15dp" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_choose_teacher"
+                android:background="@android:drawable/btn_dropdown"
+                android:minWidth="10dp"
+                android:dropDownWidth="250dp"
+                android:textDirection="ltr"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="25dp"
+                android:popupBackground="@android:drawable/spinner_background" />
+
+            <RelativeLayout
+                android:id="@+id/activity_main22"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="Course/\nTeacher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_course_teacher"
+
+                    android:textStyle="normal|bold|italic"
+                    android:textSize="17dp"
+                    android:textColor="@android:color/background_light"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp" />
+
+                <Button
+                    android:text="Rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button_view_teacher"
+                    android:background="@drawable/button_shape"
+                    android:textSize="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/textView_course_teacher"
+                    android:layout_toEndOf="@+id/textView_course_teacher"
+                    android:layout_marginTop="10dp" />
+
+                <Button
+                    android:text="View"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button_rank_teacher"
+                    android:background="@drawable/button_shape"
+                    android:textSize="@dimen/activity_vertical_margin"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/button_view_teacher"
+                    android:layout_toEndOf="@+id/button_view_teacher"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

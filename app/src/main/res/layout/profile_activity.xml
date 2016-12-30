@@ -10,7 +10,7 @@
         android:textSize="@dimen/font_size24"
         android:layout_marginTop="20dp"
         android:id="@+id/textView2"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

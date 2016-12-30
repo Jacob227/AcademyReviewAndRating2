@@ -92,6 +92,8 @@ public class RegisterActivity extends AppCompatActivity {
                     final FirebaseUser firebaseuser = firebaseAuth.getCurrentUser();  //need for uid
                     mDatabase = FirebaseDatabase.getInstance().getReference("Users");
                     mDatabase.child(firebaseuser.getUid()).setValue(userRef);
+                    LoginActivity.user_ref = new User(userRef);
+                    LoginActivity.user_created = true;
                     Toast.makeText(RegisterActivity.this,"Registrered Successfully",Toast.LENGTH_SHORT).show();
                     finish();
                     startActivity(new Intent(getApplicationContext(),NavigationStartActivity.class));

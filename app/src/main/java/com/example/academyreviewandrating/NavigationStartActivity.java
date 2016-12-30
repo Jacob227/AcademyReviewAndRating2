@@ -24,11 +24,13 @@ public class NavigationStartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth firebaseAuth;
+    private android.app.FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_start);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("      Academy R & R");
         setSupportActionBar(toolbar);
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -40,6 +42,8 @@ public class NavigationStartActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame,new NavigationFregmentRankAndReview()).commit();
     }
 
     @Override
@@ -80,7 +84,7 @@ public class NavigationStartActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Log.d("NavigationItemSelected ","NavigationStartActivity class");
-        android.app.FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager = getFragmentManager();
         if (id == R.id.nav_Rank_and_Review) {
             Log.d("NavigationItemSelected ","going to open Rank and review Fregment");
             fragmentManager.beginTransaction().replace(R.id.content_frame,new NavigationFregmentRankAndReview()).commit();
