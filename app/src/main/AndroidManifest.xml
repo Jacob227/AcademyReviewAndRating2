@@ -25,7 +25,8 @@
             android:label="@string/title_activity_navigation_start"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Faculty_rank" />
-        <activity android:name=".Faculty_view"></activity>
+        <activity android:name=".Faculty_view" />
+        <activity android:name=".Course_Lacturer_rank"></activity>
     </application>
 
 </manifest>

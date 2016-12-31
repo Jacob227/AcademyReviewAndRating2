@@ -6,9 +6,17 @@
     <string name="titleReg">Registarion</string>
     <string name="Email">Email</string>
     <string name="title_activity_navigation_start">NavigationStartActivity</string>
-
+    <string name="Rating_Lecturer_ability_to_teach">There are many lecturers who do not invest properly in teaching and not ready to come to the lecture.
+        This parameter indicates on the ability of the lecturer to transfer educational material clearly.  </string>
+    <string name="Rating_lecturer_interesting" >What is the interest level in lectures?
+        Does the lecturer transfer the educational material in an interesting or boring way?</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="In_few_words">What do you think about the lecturer in general?... </string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="academy_rank"></string>
+    <string name="faculty_rank"></string>
+    <string name="course_rank"></string>
+    <string name="Lecturer_rank"></string>
 
     <string name="action_settings">Settings</string>
 </resources>
