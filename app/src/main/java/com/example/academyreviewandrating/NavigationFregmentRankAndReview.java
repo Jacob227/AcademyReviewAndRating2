@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -40,7 +42,10 @@ public class NavigationFregmentRankAndReview extends Fragment {
     private List<String> List_spinner;
     private Activity ref_activity;
     private Handler handler;
+    private Boolean faculty_chosen;
+    private Boolean course_chosen;
     private boolean flag_user_ref = false;
+    private AlphaAnimation buttonClick = new AlphaAnimation(Animation.ZORDER_BOTTOM,Animation.ZORDER_NORMAL);
     View myView;
 
     public enum spinnerEnum {
@@ -64,8 +69,8 @@ public class NavigationFregmentRankAndReview extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         handler = new Handler();
         setAllListener();
-        //fillAllDetails();
-       // while (LoginActivity.user_created == false);
+        faculty_chosen = false;
+        course_chosen = false;
 
         fillSpinnerData(R.id.spinner_academy,"Academy", spinnerEnum.ACADEMY);
         Log.d("In onViewCreated", "after fillSpinnerData Academy");
@@ -77,14 +82,25 @@ public class NavigationFregmentRankAndReview extends Fragment {
                     academy_selected = LoginActivity.user_ref.getInstitution();
                     fillSpinnerData(R.id.spinner_faculty,
                             "Academy/" + academy_selected + "/Faculty", spinnerEnum.FACULTY);
-                    faculty_selected = LoginActivity.user_ref.getFaculty();
+                    //faculty_selected = LoginActivity.user_ref.getFaculty();
+                                        /*
+                    while (!faculty_chosen);
+                    Log.d("In run","Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course");
+                    fillSpinnerData(R.id.spinner_choose_course,
+                            "Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course" , spinnerEnum.COURSE);
+
+                    while (course_selected == "");
+                    Log.d("In run after Course", "Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course/" + course_selected
+                            + "/Lecturer");
+                    fillSpinnerData(R.id.spinner_choose_teacher,
+                            "Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course/" + course_selected
+                                    + "/Lecturer", spinnerEnum.TEACHER);*/
                 }
                 else {
                     Toast.makeText(getActivity(),"Timeout has accured",Toast.LENGTH_LONG).show();
                 }
             }
         }, 3500);
-
         //faculty_selected = LoginActivity.user_ref.getFaculty(); //user default faculty
     }
 
@@ -94,6 +110,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
         faculty_rank_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.startAnimation(buttonClick);
                 if (faculty_selected == ""){
                     Toast.makeText(getActivity(),"Please insert Faculty",Toast.LENGTH_LONG).show();
                 }
@@ -112,6 +129,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
         faculty_view_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.startAnimation(buttonClick);
                 if (faculty_selected == ""){
                     Toast.makeText(getActivity(),"Please insert Faculty",Toast.LENGTH_LONG).show();
                 }
@@ -130,6 +148,22 @@ public class NavigationFregmentRankAndReview extends Fragment {
         teacher_rank_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.startAnimation(buttonClick);
+                if (faculty_selected == ""){
+                    Toast.makeText(getActivity(),"Please insert Faculty",Toast.LENGTH_LONG).show();
+                }
+                else if(academy_selected == "")
+                    Toast.makeText(getActivity(),"Please insert academy",Toast.LENGTH_LONG).show();
+                else if(course_selected == "")
+                    Toast.makeText(getActivity(),"Please insert course",Toast.LENGTH_LONG).show();
+                else if (teacher_selected == "")
+                    Toast.makeText(getActivity(),"Please insert lecturer",Toast.LENGTH_LONG).show();
+                else{
+                    Intent intent = new Intent(my_activity,Course_Lacturer_rank.class);
+                    String[] data = {faculty_selected,academy_selected,course_selected,teacher_selected};
+                    intent.putExtra("values",data);
+                    startActivity(intent);
+                }
 
             }
         });
@@ -138,7 +172,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
         teacher_view_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                v.startAnimation(buttonClick);
             }
         });
 
@@ -161,6 +195,21 @@ public class NavigationFregmentRankAndReview extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 faculty_selected = parent.getSelectedItem().toString();
+                fillSpinnerData(R.id.spinner_choose_course,
+                        "Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course" , spinnerEnum.COURSE);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
+        });
+
+        course_spinner = (Spinner) getView().findViewById(R.id.spinner_choose_course);
+        course_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                course_selected = parent.getSelectedItem().toString();
+                fillSpinnerData(R.id.spinner_choose_teacher,
+                        "Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course/" + course_selected
+                                + "/Lecturer", spinnerEnum.TEACHER);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
@@ -176,16 +225,6 @@ public class NavigationFregmentRankAndReview extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) { }
         });
 
-        course_spinner = (Spinner) getView().findViewById(R.id.spinner_choose_course);
-        course_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                course_selected = parent.getSelectedItem().toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
-        });
-
     }
 
     public void fillSpinnerData( int id, String child_name, spinnerEnum defualt_spinner ){
@@ -193,6 +232,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
         final Spinner my_spinner = (Spinner) getView().findViewById(id);
         mDatebase = FirebaseDatabase.getInstance().getReference(child_name);
         ref_activity = this.getActivity();
+
         mDatebase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -203,35 +243,37 @@ public class NavigationFregmentRankAndReview extends Fragment {
                     def_value_of_spinner = LoginActivity.user_ref.getInstitution();
                     Log.d("spinnerEnum.ACADEMY","LoginActivity.user_ref != null");
                 }
-                else {
-                    if (index_spinn == spinnerEnum.FACULTY & LoginActivity.user_ref != null)
-                        def_value_of_spinner = LoginActivity.user_ref.getFaculty();
-                }
-                boolean flag = false;
+
                 for (DataSnapshot child: dataSnapshot.getChildren()){
                     if (!def_value_of_spinner.equals(child.getKey()))
                         List_spinner.add(child.getKey());
-                    else
-                        flag = true;
                 }
-                if (flag)
-                    List_spinner.add(0, def_value_of_spinner);
+
+                List_spinner.add(0, def_value_of_spinner);
                 String[] spinner_str = new String[List_spinner.size()];
                 spinner_str = List_spinner.toArray(spinner_str);
 
                 adapter = new ArrayAdapter<String>(ref_activity,
                         android.R.layout.simple_spinner_item, spinner_str);
                 my_spinner.setAdapter(adapter);
-                /*
+
                 if (index_spinn == spinnerEnum.ACADEMY)
-                    academy_spinner.setAdapter(adapter);
-                if (index_spinn == spinnerEnum.FACULTY)
-                    faculty_spinner.setAdapter(adapter);
-                if (index_spinn == spinnerEnum.COURSE)
-                    course_spinner.setAdapter(adapter);
-                if (index_spinn == spinnerEnum.TEACHER)
-                    teacher_spinner.setAdapter(adapter);
-                    */
+                    academy_selected = List_spinner.get(0);
+                else if (index_spinn == spinnerEnum.FACULTY) {
+                    faculty_selected = List_spinner.get(0);
+                    synchronized (faculty_chosen) {
+                        faculty_chosen = true;
+                    }
+                }
+                else if (index_spinn == spinnerEnum.COURSE) {
+                    Log.d("hii","hiiiiiiiiiiiiiiiiiiiiiiii7777777777777");
+                    course_selected = List_spinner.get(0);
+                    synchronized (course_chosen) {
+                        course_chosen = true;
+                    }
+                }
+                else if (index_spinn == spinnerEnum.TEACHER)
+                    teacher_selected = List_spinner.get(0);
             }
 
             @Override

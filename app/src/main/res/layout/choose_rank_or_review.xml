@@ -135,7 +135,7 @@
                 android:popupBackground="@android:drawable/spinner_background" />
 
             <TextView
-                android:text="Choose Teacher"
+                android:text="Choose Lecturer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="normal|bold|italic"
@@ -166,7 +166,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:text="Course/\nTeacher"
+                    android:text="Course/\nLecturer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_course_teacher"
@@ -181,7 +181,7 @@
                     android:text="Rank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button_view_teacher"
+                    android:id="@+id/button_rank_teacher"
                     android:background="@drawable/button_shape"
                     android:textSize="@dimen/activity_vertical_margin"
                     android:layout_marginLeft="40dp"
@@ -194,12 +194,12 @@
                     android:text="View"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button_rank_teacher"
+                    android:id="@+id/button_view_teacher"
                     android:background="@drawable/button_shape"
                     android:textSize="@dimen/activity_vertical_margin"
                     android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/button_view_teacher"
-                    android:layout_toEndOf="@+id/button_view_teacher"
+                    android:layout_toRightOf="@+id/button_rank_teacher"
+                    android:layout_toEndOf="@+id/button_rank_teacher"
                     android:layout_marginLeft="25dp"
                     android:layout_marginTop="10dp" />
             </RelativeLayout>
