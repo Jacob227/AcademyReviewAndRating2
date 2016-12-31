@@ -40,6 +40,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
     private List<String> List_spinner;
     private Activity ref_activity;
     private Handler handler;
+    private boolean flag_user_ref = false;
     View myView;
 
     public enum spinnerEnum {
@@ -54,18 +55,21 @@ public class NavigationFregmentRankAndReview extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.choose_rank_or_review,container,false);
+
         Log.d("onCreateView ","NavigationRankRev");
         return myView;
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        handler = new Handler();
         setAllListener();
         //fillAllDetails();
        // while (LoginActivity.user_created == false);
+
         fillSpinnerData(R.id.spinner_academy,"Academy", spinnerEnum.ACADEMY);
+        Log.d("In onViewCreated", "after fillSpinnerData Academy");
         //academy_selected = LoginActivity.user_ref.getInstitution(); //user defualt academic
-        handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -189,14 +193,16 @@ public class NavigationFregmentRankAndReview extends Fragment {
         final Spinner my_spinner = (Spinner) getView().findViewById(id);
         mDatebase = FirebaseDatabase.getInstance().getReference(child_name);
         ref_activity = this.getActivity();
-        mDatebase.addValueEventListener(new ValueEventListener() {
+        mDatebase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List_spinner = new ArrayList<String>();
                 Log.d("In onDataChange","top");
                 String def_value_of_spinner = "";
-                if (index_spinn == spinnerEnum.ACADEMY && LoginActivity.user_ref != null)
+                if (index_spinn == spinnerEnum.ACADEMY && LoginActivity.user_ref != null) {
                     def_value_of_spinner = LoginActivity.user_ref.getInstitution();
+                    Log.d("spinnerEnum.ACADEMY","LoginActivity.user_ref != null");
+                }
                 else {
                     if (index_spinn == spinnerEnum.FACULTY & LoginActivity.user_ref != null)
                         def_value_of_spinner = LoginActivity.user_ref.getFaculty();
@@ -238,5 +244,13 @@ public class NavigationFregmentRankAndReview extends Fragment {
     public void spinnerAcademyOnClick (View view){
         String itemSel = academy_spinner.getSelectedItem().toString();
         Log.d("hi", itemSel);
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        Log.d("In RankAndReview","onDestroy");
+        handler.removeCallbacksAndMessages(null);
+
     }
 }

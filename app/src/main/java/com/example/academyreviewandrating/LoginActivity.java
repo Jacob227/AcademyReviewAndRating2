@@ -40,11 +40,11 @@ public class LoginActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.editTextUser);
         password = (EditText) findViewById(R.id.editTextPass);
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
         Log.d("OnCreate LoginActivity","before firebase.getcurrentUser()");
-        if(firebaseAuth.getCurrentUser() != null){
+        if(firebaseUser != null){
             //User is already loged in
             Toast.makeText(LoginActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
-            firebaseUser = firebaseAuth.getCurrentUser();
             createUserInstance();
             finish();
             startActivity(new Intent(getApplicationContext(),NavigationStartActivity.class));
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     static void createUserInstance() {
         static_db_ref = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
         Log.d("In createUserInstance","before addValueEventListener");
-        static_db_ref.addValueEventListener(new ValueEventListener() {
+        static_db_ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("In createUser","hiiiiiiiiiiiiiiiiiiiiiiii2121");
@@ -95,6 +95,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(LoginActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
+                    firebaseAuth = FirebaseAuth.getInstance();
+                    firebaseUser = firebaseAuth.getCurrentUser();
                     createUserInstance();
                     finish();
                     startActivity(new Intent(getApplicationContext(),NavigationStartActivity.class));
