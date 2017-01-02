@@ -248,7 +248,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
                     if (!def_value_of_spinner.equals(child.getKey()))
                         List_spinner.add(child.getKey());
                 }
-
+                //test
                 List_spinner.add(0, def_value_of_spinner);
                 String[] spinner_str = new String[List_spinner.size()];
                 spinner_str = List_spinner.toArray(spinner_str);
