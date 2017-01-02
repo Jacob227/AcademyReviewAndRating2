@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -26,6 +28,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
@@ -37,19 +42,47 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         Log.d("OnCreate"," RegisterActivity before firebase.getInstance()");
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference("Academy");
         firebaseAuth = FirebaseAuth.getInstance();
+        final AutoCompleteTextView ACTextView;
+        final RegisterActivity ref_activity = this;
+
+        ACTextView = (AutoCompleteTextView) findViewById(R.id.editTextRegInst);
+        ACTextView.setDropDownBackgroundResource(R.color.my_color_butt);
+        ACTextView.setThreshold(1);
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<String> List_inst = new ArrayList<String>();
+                for (DataSnapshot child: dataSnapshot.getChildren()){
+                    List_inst.add(child.getKey());
+                    Log.d("In OnData Register", child.getKey().toString());
+                }
+                String[] inst_str = new String[List_inst.size()];
+                inst_str = List_inst.toArray(inst_str);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(ref_activity, android.R.layout.simple_list_item_1, inst_str );
+                ACTextView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
     public void RegisterClick(View view) {
+
         EditText editText;
+
         editText = (EditText) findViewById(R.id.editTextRegUserName);
         textUserName = editText.getText().toString().trim();
-        editText = (EditText) findViewById(R.id.editTextRegInst);
         textInstitution = editText.getText().toString().trim();
+
         editText = (EditText) findViewById(R.id.editTextRegFacl);
         textFaculty = editText.getText().toString().trim();
+
         editText = (EditText) findViewById(R.id.editTextRegEmail);
         textEmail = editText.getText().toString().trim();
         editText = (EditText) findViewById(R.id.editTextRegPhone);

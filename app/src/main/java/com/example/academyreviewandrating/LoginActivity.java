@@ -58,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         static_db_ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("In createUser","hiiiiiiiiiiiiiiiiiiiiiiii2121");
                 String[] temp_string = new String[7];
                 int i = 0;
                 for (DataSnapshot child: dataSnapshot.getChildren()){

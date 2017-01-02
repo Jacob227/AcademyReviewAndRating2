@@ -75,7 +75,7 @@
         android:padding="7dp"
         android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
         android:textColor="@color/common_google_signin_btn_text_light_pressed" />
-    <EditText
+    <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Institution"
