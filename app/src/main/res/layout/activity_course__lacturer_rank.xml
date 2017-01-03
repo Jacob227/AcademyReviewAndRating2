@@ -119,6 +119,30 @@
                 android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
                 android:textColor="@android:color/background_light"
                 android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:text="Semester:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView6"
+                android:textSize="17dp"
+                android:layout_marginLeft="10dp"
+                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                android:textColor="@color/my_color_rank_text"
+                android:textStyle="normal|bold|italic"
+                android:layout_below="@id/textView5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/course_rank"
+                android:textSize="17dp"
+                android:id="@+id/semester_rank_text"
+                android:layout_toRightOf="@+id/textView6"
+                android:layout_below="@+id/course_rank_text"
+                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                android:textColor="@android:color/background_light"
+                android:layout_marginLeft="15dp" />
         </RelativeLayout>
 
           <TextView

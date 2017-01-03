@@ -7,21 +7,31 @@ package com.example.academyreviewandrating.Model;
 public class rating_lecterer_model {
 
     private int Ability_to_teach,Attitude_lecturer_student, Course_level, Teacher_interesting;
-    private String Few_words, Date;
+    private String Few_words, Date; // Year_Semester;
 
     public rating_lecterer_model(){
 
     }
 
-    public rating_lecterer_model(int ability_to_teach, int attitude_lecturer_student, int course_level, int teacher_interesting, String few_words, String date) {
+    public rating_lecterer_model(int ability_to_teach, int attitude_lecturer_student, int course_level, int teacher_interesting, String few_words, String date) { //String semester) {
         Ability_to_teach = ability_to_teach;
         Attitude_lecturer_student = attitude_lecturer_student;
         Course_level = course_level;
         Teacher_interesting = teacher_interesting;
         Few_words = few_words;
         Date = date;
+        //Year_Semester = semester;
     }
 
+    /*
+    public String getSemester() {
+        return Year_Semester;
+    }
+
+    public void setSemester(String semester) {
+        Year_Semester = semester;
+    }
+*/
     public int getAbility_to_teach() {
         return Ability_to_teach;
     }

@@ -74,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        int x = 9;
     }
 
     public void LoginClick(View view){

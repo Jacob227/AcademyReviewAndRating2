@@ -35,10 +35,10 @@ public class NavigationFregmentRankAndReview extends Fragment {
 
     private DatabaseReference mDatebase;
     private Button faculty_rank_button, faculty_view_button, teacher_rank_button, teacher_view_button;
-    private Spinner academy_spinner,faculty_spinner,course_spinner,teacher_spinner;
+    private Spinner academy_spinner,faculty_spinner,course_spinner,teacher_spinner, semester_spinner;
     private String[] string_spinner_academy, string_spinner_faculty, strings_spinner_course, strings_spinner_teacher ;
     private ArrayAdapter<String> adapter;
-    private String academy_selected, faculty_selected, course_selected, teacher_selected;
+    private String academy_selected, faculty_selected, course_selected, teacher_selected, semester_selected;
     private List<String> List_spinner;
     private Activity ref_activity;
     private Handler handler;
@@ -49,7 +49,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
     View myView;
 
     public enum spinnerEnum {
-        ACADEMY, FACULTY, COURSE, TEACHER
+        ACADEMY, FACULTY, COURSE, TEACHER, SEMESTER
     }
 
     public NavigationFregmentRankAndReview() {
@@ -160,7 +160,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
                     Toast.makeText(getActivity(),"Please insert lecturer",Toast.LENGTH_LONG).show();
                 else{
                     Intent intent = new Intent(my_activity,Course_Lacturer_rank.class);
-                    String[] data = {faculty_selected,academy_selected,course_selected,teacher_selected};
+                    String[] data = {faculty_selected,academy_selected,course_selected,teacher_selected,semester_selected};
                     intent.putExtra("values",data);
                     startActivity(intent);
                 }
@@ -173,6 +173,21 @@ public class NavigationFregmentRankAndReview extends Fragment {
             @Override
             public void onClick(View v) {
                 v.startAnimation(buttonClick);
+                if (faculty_selected == ""){
+                    Toast.makeText(getActivity(),"Please insert Faculty",Toast.LENGTH_LONG).show();
+                }
+                else if(academy_selected == "")
+                    Toast.makeText(getActivity(),"Please insert academy",Toast.LENGTH_LONG).show();
+                else if(course_selected == "")
+                    Toast.makeText(getActivity(),"Please insert course",Toast.LENGTH_LONG).show();
+                else if (teacher_selected == "")
+                    Toast.makeText(getActivity(),"Please insert lecturer",Toast.LENGTH_LONG).show();
+                else{
+                    //Need to tranfer data
+                    Intent intent = new Intent(my_activity, ListViewCourseDetails.class);
+                    startActivity(intent);
+                }
+
             }
         });
 
@@ -207,9 +222,25 @@ public class NavigationFregmentRankAndReview extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 course_selected = parent.getSelectedItem().toString();
-                fillSpinnerData(R.id.spinner_choose_teacher,
-                        "Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course/" + course_selected
-                                + "/Lecturer", spinnerEnum.TEACHER);
+                fillSpinnerData(R.id.spinner_choose_semester,"Academy/" + academy_selected + "/Faculty/"
+                        + faculty_selected + "/Course/" + course_selected,spinnerEnum.SEMESTER);
+
+
+                       // fillSpinnerData(R.id.spinner_choose_semester,"Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course/" + course_selected
+                       //         + "/Lecturer", spinnerEnum.TEACHER);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
+        });
+
+        semester_spinner = (Spinner) getView().findViewById(R.id.spinner_choose_semester);
+        semester_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                semester_selected = parent.getSelectedItem().toString();
+
+                fillSpinnerData(R.id.spinner_choose_teacher,"Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course/" + course_selected
+                        + "/"  + semester_selected + "/Lecturer", spinnerEnum.TEACHER);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
@@ -266,7 +297,6 @@ public class NavigationFregmentRankAndReview extends Fragment {
                     }
                 }
                 else if (index_spinn == spinnerEnum.COURSE) {
-                    Log.d("hii","hiiiiiiiiiiiiiiiiiiiiiiii7777777777777");
                     course_selected = List_spinner.get(0);
                     synchronized (course_chosen) {
                         course_chosen = true;
