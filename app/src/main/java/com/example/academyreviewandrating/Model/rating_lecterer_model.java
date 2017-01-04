@@ -1,13 +1,15 @@
 package com.example.academyreviewandrating.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by יעקב on 31/12/2016.
  */
 
-public class rating_lecterer_model {
+public class rating_lecterer_model implements Serializable {
 
     private int Ability_to_teach,Attitude_lecturer_student, Course_level, Teacher_interesting;
-    private String Few_words, Date; // Year_Semester;
+    private String Few_words, Date, rank_name; // Year_Semester;
 
     public rating_lecterer_model(){
 
@@ -20,6 +22,7 @@ public class rating_lecterer_model {
         Teacher_interesting = teacher_interesting;
         Few_words = few_words;
         Date = date;
+        rank_name = "";
         //Year_Semester = semester;
     }
 
@@ -32,6 +35,14 @@ public class rating_lecterer_model {
         Year_Semester = semester;
     }
 */
+    public String get_rank_name(){
+        return rank_name;
+    }
+
+    public void set_rank_name(String rankName){
+        rank_name = rankName;
+    }
+
     public int getAbility_to_teach() {
         return Ability_to_teach;
     }

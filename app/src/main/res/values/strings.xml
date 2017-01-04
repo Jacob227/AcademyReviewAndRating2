@@ -13,6 +13,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="In_few_words">What do you think about the lecturer in general?... </string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="tool_bar_title">Academy R &amp; R</string>
     <string name="academy_rank"></string>
     <string name="faculty_rank"></string>
     <string name="course_rank"></string>

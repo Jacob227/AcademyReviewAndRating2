@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.academyreviewandrating.Model.rating_lecterer_model;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +26,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by יעקב on 04/12/2016.
@@ -45,6 +48,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
     private Boolean faculty_chosen;
     private Boolean course_chosen;
     private boolean flag_user_ref = false;
+    private HashMap<String, List<rating_lecterer_model>> map_lecrurer;
     private AlphaAnimation buttonClick = new AlphaAnimation(Animation.ZORDER_BOTTOM,Animation.ZORDER_NORMAL);
     View myView;
 
@@ -71,6 +75,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
         setAllListener();
         faculty_chosen = false;
         course_chosen = false;
+        map_lecrurer = new HashMap<String, List<rating_lecterer_model>>();
 
         fillSpinnerData(R.id.spinner_academy,"Academy", spinnerEnum.ACADEMY);
         Log.d("In onViewCreated", "after fillSpinnerData Academy");
@@ -120,6 +125,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
                     Intent intent = new Intent(my_activity,Faculty_rank.class);
                     String[] data = {faculty_selected,academy_selected};
                     intent.putExtra("values",data);
+
                     startActivity(intent);
                 }
             }
@@ -183,8 +189,10 @@ public class NavigationFregmentRankAndReview extends Fragment {
                 else if (teacher_selected == "")
                     Toast.makeText(getActivity(),"Please insert lecturer",Toast.LENGTH_LONG).show();
                 else{
-                    //Need to tranfer data
+                    String[] data = {faculty_selected,academy_selected,course_selected,teacher_selected,semester_selected};
                     Intent intent = new Intent(my_activity, ListViewCourseDetails.class);
+                    intent.putExtra("values",data);
+                    intent.putExtra("RatingMap",map_lecrurer);
                     startActivity(intent);
                 }
 
@@ -233,14 +241,66 @@ public class NavigationFregmentRankAndReview extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) { }
         });
 
+        ref_activity = this.getActivity();
         semester_spinner = (Spinner) getView().findViewById(R.id.spinner_choose_semester);
         semester_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 semester_selected = parent.getSelectedItem().toString();
+                map_lecrurer = new HashMap<String, List<rating_lecterer_model>>();
+                if (!semester_selected.equals("All")) {
+                    fillSpinnerData(R.id.spinner_choose_teacher, "Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course/"
+                            + course_selected + "/" + semester_selected + "/Lecturer", spinnerEnum.TEACHER);
+                }
+                else {
 
-                fillSpinnerData(R.id.spinner_choose_teacher,"Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course/" + course_selected
-                        + "/"  + semester_selected + "/Lecturer", spinnerEnum.TEACHER);
+                    mDatebase = FirebaseDatabase.getInstance().getReference("Academy/" + academy_selected + "/Faculty/" + faculty_selected +
+                            "/Course/" + course_selected);
+
+                    mDatebase.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            List_spinner = new ArrayList<String>();
+                            Log.d("In onItemSelected","All semester selected");
+
+                            for (DataSnapshot child: dataSnapshot.getChildren()){
+                                    DataSnapshot lecData = child.child("Lecturer");
+                                    for ( DataSnapshot childLec: lecData.getChildren() ){ //lecturer
+                                        Log.d("Lecterer",childLec.getKey());
+                                        DataSnapshot rating_data = childLec.child("Rating");
+                                        for ( DataSnapshot childRating: rating_data.getChildren() ){ //rating
+                                            Log.d("Rank",childRating.getKey());
+                                            if (map_lecrurer.get(childLec.getKey()) == null){
+                                                map_lecrurer.put(childLec.getKey(),new ArrayList<rating_lecterer_model>());
+                                            }
+                                            rating_lecterer_model user_rating_data = childRating.getValue(rating_lecterer_model.class);
+                                            user_rating_data.set_rank_name(childRating.getKey());
+                                            map_lecrurer.get(childLec.getKey()).add(user_rating_data);
+                                        }
+                                    }
+                            }
+                            //for (int i = 0; i < 5; i++)
+                            //    Log.d("All Data", map_lecrurer.get("Boris yerz").get(i).get_rank_name());
+
+                            String[] spinner_str = new String[map_lecrurer.size()];
+                            int i = 0;
+                            for( String key: map_lecrurer.keySet()){
+                                spinner_str[i] = key;
+                                i++;
+                            }
+
+                            adapter = new ArrayAdapter<String>(ref_activity,
+                                    android.R.layout.simple_spinner_item, spinner_str);
+                            teacher_spinner.setAdapter(adapter);
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
@@ -278,9 +338,27 @@ public class NavigationFregmentRankAndReview extends Fragment {
                 for (DataSnapshot child: dataSnapshot.getChildren()){
                     if (!def_value_of_spinner.equals(child.getKey()))
                         List_spinner.add(child.getKey());
+                    if (index_spinn == spinnerEnum.TEACHER){
+                        DataSnapshot child_rank = child.child("Rating");
+                        Log.d("RankLec",child.getKey());
+                        for ( DataSnapshot childRating: child_rank.getChildren() ){ //rating
+
+                            if (map_lecrurer.get(child.getKey()) == null){
+                                map_lecrurer.put(child.getKey(),new ArrayList<rating_lecterer_model>());
+                            }
+                            rating_lecterer_model user_rating_data = childRating.getValue(rating_lecterer_model.class);
+                            user_rating_data.set_rank_name(childRating.getKey());
+                            Log.d("RankRankName",user_rating_data.get_rank_name());
+                            map_lecrurer.get(child.getKey()).add(user_rating_data);
+                        }
+                    }
                 }
                 //test
-                List_spinner.add(0, def_value_of_spinner);
+                //if (index_spinn != spinnerEnum.TEACHER)
+                    List_spinner.add(0, def_value_of_spinner);
+                if (index_spinn == spinnerEnum.SEMESTER && LoginActivity.user_ref != null) {
+                    List_spinner.add(1, "All");
+                }
                 String[] spinner_str = new String[List_spinner.size()];
                 spinner_str = List_spinner.toArray(spinner_str);
 
