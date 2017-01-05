@@ -8,14 +8,14 @@
     tools:context="com.example.academyreviewandrating.WatchReviews">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/bar"
+        android:id="@+id/bar_review"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
         android:background="@color/toolbar_color">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar2"
+            android:id="@+id/toolbar_review"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/my_color_bg"
@@ -25,9 +25,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My title"
+                android:text="My"
                 android:layout_gravity="center"
-                android:id="@+id/title_text"
+                android:id="@+id/title_text_review"
                 android:textSize="20dp"
 
                 android:textStyle="normal|bold" />
@@ -39,15 +39,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_below="@+id/bar">
+        android:layout_below="@+id/bar_review">
 
 
     <TextView
-        android:text="Academy"
+        android:text="Lecturer Name:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:textSize="17dp"
+        android:id="@+id/lecurer_Name_text1"
+        android:textSize="19dp"
         android:layout_marginLeft="10dp"
         android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
         android:textColor="@color/my_color_rank_text"
@@ -58,111 +58,181 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/academy_rank"
-        android:textSize="17dp"
-        android:id="@+id/academy_rank_text"
-        android:layout_toRightOf="@+id/textView1"
+        android:textSize="19dp"
+        android:id="@+id/lecurer_Name_text2"
+        android:layout_toRightOf="@+id/lecurer_Name_text1"
         android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
         android:textColor="@android:color/background_light"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:text="Faculty:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:textSize="17dp"
+        android:id="@+id/Faculty_text1"
+        android:textSize="19dp"
         android:layout_marginLeft="10dp"
         android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
         android:textColor="@color/my_color_rank_text"
         android:textStyle="normal|bold|italic"
-        android:layout_below="@id/textView1"
+        android:layout_below="@id/lecurer_Name_text1"
         android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/faculty_rank"
-        android:textSize="17dp"
-        android:id="@+id/faculty_rank_text"
-        android:layout_toRightOf="@+id/textView3"
-        android:layout_below="@+id/academy_rank_text"
+        android:textSize="19dp"
+        android:id="@+id/Faculty_text2"
+        android:layout_toRightOf="@+id/Faculty_text1"
+        android:layout_below="@+id/lecurer_Name_text2"
         android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
         android:textColor="@android:color/background_light"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp" />
 
     <TextView
-        android:text="Lacturer:"
+        android:text="Reviewers Number:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:textSize="17dp"
+        android:id="@+id/Reviewers_Number_text1"
+        android:textSize="19dp"
         android:layout_marginLeft="10dp"
         android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
         android:textColor="@color/my_color_rank_text"
         android:textStyle="normal|bold|italic"
-        android:layout_below="@id/textView3"
+        android:layout_below="@id/Faculty_text1"
         android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Lecturer_rank"
-        android:textSize="17dp"
-        android:id="@+id/lecturer_rank_text"
-        android:layout_toRightOf="@+id/textView4"
-        android:layout_below="@+id/faculty_rank_text"
+        android:textSize="19dp"
+        android:id="@+id/Reviewers_Number_text2"
+        android:layout_toRightOf="@+id/Reviewers_Number_text1"
+        android:layout_below="@+id/Faculty_text2"
         android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
         android:textColor="@android:color/background_light"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp" />
 
     <TextView
-        android:text="Course:"
+        android:text="Course Level (Average):"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView5"
-        android:textSize="17dp"
+        android:id="@+id/Course_Level_text1"
+        android:textSize="19dp"
         android:layout_marginLeft="10dp"
         android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
         android:textColor="@color/my_color_rank_text"
         android:textStyle="normal|bold|italic"
-        android:layout_below="@id/textView4"
+        android:layout_below="@id/Reviewers_Number_text1"
         android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/course_rank"
-        android:textSize="17dp"
-        android:id="@+id/course_rank_text"
-        android:layout_toRightOf="@+id/textView5"
-        android:layout_below="@+id/lecturer_rank_text"
+        android:textSize="19dp"
+        android:id="@+id/Course_Level_text2"
+        android:layout_toRightOf="@+id/Course_Level_text1"
+        android:layout_below="@+id/Reviewers_Number_text2"
         android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
         android:textColor="@android:color/background_light"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp" />
 
     <TextView
-        android:text="Semester:"
+        android:text="Lecturer Atitude (Avg):"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView6"
-        android:textSize="17dp"
+        android:id="@+id/Lecturer_Atitude_text1"
+        android:textSize="19dp"
         android:layout_marginLeft="10dp"
         android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
         android:textColor="@color/my_color_rank_text"
         android:textStyle="normal|bold|italic"
-        android:layout_below="@id/textView5"
+        android:layout_below="@id/Course_Level_text1"
         android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/course_rank"
-        android:textSize="17dp"
-        android:id="@+id/semester_rank_text"
-        android:layout_toRightOf="@+id/textView6"
-        android:layout_below="@+id/course_rank_text"
+        android:textSize="19dp"
+        android:id="@+id/Lecturer_Atitude_text2"
+        android:layout_toRightOf="@+id/Lecturer_Atitude_text1"
+        android:layout_below="@+id/Course_Level_text2"
         android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
         android:textColor="@android:color/background_light"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp" />
+
+        <TextView
+            android:text="Motivation to teach (Avg):"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Ability_to_Teach_text1"
+            android:textSize="19dp"
+            android:layout_marginLeft="10dp"
+            android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+            android:textColor="@color/my_color_rank_text"
+            android:textStyle="normal|bold|italic"
+            android:layout_below="@id/Lecturer_Atitude_text1"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/course_rank"
+            android:textSize="19dp"
+            android:id="@+id/Ability_to_Teach_text2"
+            android:layout_toRightOf="@+id/Ability_to_Teach_text1"
+            android:layout_below="@+id/Lecturer_Atitude_text2"
+            android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+            android:textColor="@android:color/background_light"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:text="Does the lecturer interesting? (Avg):"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lecturer_interesting_text1"
+            android:textSize="19dp"
+            android:layout_marginLeft="10dp"
+            android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+            android:textColor="@color/my_color_rank_text"
+            android:textStyle="normal|bold|italic"
+            android:layout_below="@id/Ability_to_Teach_text1"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/course_rank"
+            android:textSize="19dp"
+            android:id="@+id/lecturer_interesting_text2"
+            android:layout_toRightOf="@+id/lecturer_interesting_text1"
+            android:layout_below="@+id/Ability_to_Teach_text2"
+            android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+            android:textColor="@android:color/background_light"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:text="Watch Reviewers Table"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_goTo_table"
+            android:background="@drawable/button_shape"
+            android:textSize="@dimen/activity_vertical_margin"
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/lecturer_interesting_text1"
+            android:onClick="OnClickWatchTable"
+            android:layout_centerHorizontal="true" />
+
     </RelativeLayout>
 </RelativeLayout>

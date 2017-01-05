@@ -78,6 +78,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         editText = (EditText) findViewById(R.id.editTextRegUserName);
         textUserName = editText.getText().toString().trim();
+
+        editText = (EditText) findViewById(R.id.editTextRegInst);
         textInstitution = editText.getText().toString().trim();
 
         editText = (EditText) findViewById(R.id.editTextRegFacl);
