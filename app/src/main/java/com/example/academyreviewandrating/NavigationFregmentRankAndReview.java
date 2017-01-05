@@ -164,6 +164,10 @@ public class NavigationFregmentRankAndReview extends Fragment {
                     Toast.makeText(getActivity(),"Please insert course",Toast.LENGTH_LONG).show();
                 else if (teacher_selected == "")
                     Toast.makeText(getActivity(),"Please insert lecturer",Toast.LENGTH_LONG).show();
+                else if (semester_selected == "")
+                    Toast.makeText(getActivity(),"Please insert some semester",Toast.LENGTH_LONG).show();
+                else if (semester_selected == "All")
+                    Toast.makeText(getActivity(),"Please choose specific semester",Toast.LENGTH_LONG).show();
                 else{
                     Intent intent = new Intent(my_activity,Course_Lacturer_rank.class);
                     String[] data = {faculty_selected,academy_selected,course_selected,teacher_selected,semester_selected};

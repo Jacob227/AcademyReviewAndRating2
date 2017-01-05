@@ -8,4 +8,5 @@
     <color name="drawer_down">#b2ebf2</color>
     <color name="my_color_butt">#FF5065DD</color>
     <color name="my_color_rank_text">#80CBC4</color>
+    <color name="my_color_table_rows">#FF62696D</color>
 </resources>
