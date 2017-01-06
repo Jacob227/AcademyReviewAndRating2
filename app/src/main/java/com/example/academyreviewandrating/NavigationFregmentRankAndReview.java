@@ -338,7 +338,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
                     def_value_of_spinner = LoginActivity.user_ref.getInstitution();
                     Log.d("spinnerEnum.ACADEMY","LoginActivity.user_ref != null");
                 }
-
+                //commit
                 for (DataSnapshot child: dataSnapshot.getChildren()){
                     if (!def_value_of_spinner.equals(child.getKey()))
                         List_spinner.add(child.getKey());
