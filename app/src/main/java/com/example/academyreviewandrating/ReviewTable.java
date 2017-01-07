@@ -3,7 +3,10 @@ package com.example.academyreviewandrating;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -20,17 +23,31 @@ public class ReviewTable extends AppCompatActivity {
     private TextView textViewCourseLevel, textViewLecAtt,textViewAbility, textViewLecInter;
     private TableLayout tableLayout;
     private TableRow tableRow;
+    private Toolbar myActionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_table);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         ratingDet = (ArrayList<rating_lecterer_model>)intent.getSerializableExtra("Rating");
         intendMes = intent.getStringArrayExtra("values");
 
         textViewTitle = (TextView) findViewById(R.id.title_text_review);
         textViewTitle.setText(intendMes[2] + ", " + intendMes[3]);
+
+        myActionBar = (Toolbar) findViewById(R.id.toolbar_table);
+        myActionBar.setNavigationIcon(getResources().getDrawable(R.drawable.back_arrow_icon));
+        myActionBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent backIntend = new Intent(getApplicationContext(),WatchReviews.class);
+                backIntend.putExtra("Rating",ratingDet);
+                backIntend.putExtra("values", intendMes);
+                startActivity(backIntend);
+                finish();
+            }
+        });
 
         tableLayout = (TableLayout) findViewById(R.id.table_layout);
         //tableRow = (TableRow) findViewById(R.id.tableRow1);

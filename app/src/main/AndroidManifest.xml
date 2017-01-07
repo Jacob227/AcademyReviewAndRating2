@@ -29,7 +29,8 @@
         <activity android:name=".Course_Lacturer_rank" />
         <activity android:name=".ListViewCourseDetails" />
         <activity android:name=".WatchReviews" />
-        <activity android:name=".ReviewTable"></activity>
+        <activity android:name=".ReviewTable" />
+        <activity android:name=".CorseDetails"></activity>
     </application>
 
 </manifest>

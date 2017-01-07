@@ -134,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(),NavigationStartActivity.class));
                 }
                 else{
-                    Toast.makeText(RegisterActivity.this,"Could register.. please try again.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this,"Could not register.. please try again.",Toast.LENGTH_LONG).show();
                 }
             }
         });

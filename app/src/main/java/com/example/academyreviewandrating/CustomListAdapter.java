@@ -16,15 +16,17 @@ import android.widget.TextView;
 public class CustomListAdapter extends ArrayAdapter<String> {
     private final Activity context;
     private final String[] itemname;
+    private final String[] itemDesc;
     private final Integer[] imgid;
 
-    public CustomListAdapter(Activity context, String[] itemname, Integer[] imgid) {
+    public CustomListAdapter(Activity context, String[] itemname, Integer[] imgid, String[] itemDesc) {
         super(context, R.layout.mlist_view_course, itemname);
         // TODO Auto-generated constructor stub
 
         this.context=context;
         this.itemname=itemname;
         this.imgid=imgid;
+        this.itemDesc = itemDesc;
     }
 
     @NonNull
@@ -39,7 +41,12 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
         txtTitle.setText(itemname[position]);
         imageView.setImageResource(imgid[position]);
-        extratxt.setText("Description "+itemname[position]);
+        extratxt.setText(itemDesc[position]);
         return rowView;
     }
+
+    public void SetCahngeInItemList(String newItem, int pos){
+        itemname[pos] = newItem;
+    }
+
 }

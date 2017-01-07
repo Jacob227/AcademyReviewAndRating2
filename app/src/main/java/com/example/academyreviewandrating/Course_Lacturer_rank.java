@@ -3,6 +3,7 @@ package com.example.academyreviewandrating;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -29,6 +30,7 @@ public class Course_Lacturer_rank extends AppCompatActivity {
     private EditText fewWords_et;
     private DatabaseReference mDB_ref;
     private String[] message;
+    private Toolbar myActionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,15 @@ public class Course_Lacturer_rank extends AppCompatActivity {
         Intent intent = getIntent();
         message = intent.getStringArrayExtra("values");
 
-        //mDB_ref = FirebaseDatabase.getInstance().getReference("Academy").;
+        myActionBar = (Toolbar) findViewById(R.id.toolbar_Rank);
+        myActionBar.setNavigationIcon(getResources().getDrawable(R.drawable.back_arrow_icon));
+        myActionBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         faculty_text = (TextView) findViewById(R.id.faculty_rank_text);
         academy_text  = (TextView) findViewById(R.id.academy_rank_text);
         course_text = (TextView) findViewById(R.id.course_rank_text);
@@ -62,9 +72,10 @@ public class Course_Lacturer_rank extends AppCompatActivity {
     public void sendFeedbackOnClick(View view) {
         view.startAnimation(buttonClick);
         //collect all the data and insert it to DB
-        final rating_lecterer_model rl_model = new rating_lecterer_model(Math.round(lecterer_ability_rb.getNumStars()),
-                Math.round(lecterer_atitude_rb.getNumStars()), Math.round(course_level_rb.getNumStars()),
-                Math.round(lecterer_intr_rb.getNumStars()), fewWords_et.getText().toString(),
+        //TODO: check if all starts are chosen!
+        final rating_lecterer_model rl_model = new rating_lecterer_model(Math.round(lecterer_ability_rb.getRating()),
+                Math.round(lecterer_atitude_rb.getRating()), Math.round(course_level_rb.getRating()),
+                Math.round(lecterer_intr_rb.getRating()), fewWords_et.getText().toString(),
                 new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
 
         mDB_ref = FirebaseDatabase.getInstance().getReference("Academy").child(academy_text.getText().toString()).child("Faculty").child(faculty_text.getText().toString()).
@@ -80,6 +91,7 @@ public class Course_Lacturer_rank extends AppCompatActivity {
                 else {
                     mDB_ref.child(LoginActivity.user_ref.getUserName()).setValue(rl_model);
                     Toast.makeText(Course_Lacturer_rank.this,"Thank you for rating",Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
             @Override
