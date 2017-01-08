@@ -2,12 +2,8 @@ package com.example.academyreviewandrating;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.design.widget.AppBarLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -15,10 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.academyreviewandrating.Model.CourseDetailsModel;
+import com.example.academyreviewandrating.Model.CourseParticipanceModel;
 import com.example.academyreviewandrating.Model.rating_lecterer_model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class ListViewCourseDetails extends Activity {
 
@@ -41,13 +36,14 @@ public class ListViewCourseDetails extends Activity {
     private CourseDetailsModel courseDetailsModel;
     private FirebaseUser firebaseUser;
     private boolean registeredToCourse;
+    private boolean lookingForPartner;
     private HashMap<String, ArrayList<rating_lecterer_model>> hashMap_rating;
-    String[] items= {"Watch Reviews", "Rank", "Course information", "SignUp to Course",
+    String[] items= {"Watch Reviews", "Rank", "Course information", "SignUp to Course","Looking for HW partner",
     "Course Participants"};
     String[] item_desc= {"Previous reviews on this course/lecturer", "Rank the Lecturer", "Syllabus, " +
-            "Class, Credits..", "Register as course participant", "View/chat all course participants"};
+            "Class, Credits..", "Register as course participant", "Mark as looking for HW partner","View/chat all course participants"};
 
-    Integer[] imageId = {R.drawable.rank_icon,R.drawable.star_icon, R.drawable.info_icon,R.drawable.sign_up_icon,
+    Integer[] imageId = {R.drawable.rank_icon,R.drawable.star_icon, R.drawable.info_icon,R.drawable.sign_up_icon,R.drawable.look_for_partner_icon,
     R.drawable.review_icon};
 
     @Override
@@ -120,23 +116,61 @@ public class ListViewCourseDetails extends Activity {
 
                         if (registeredToCourse) {
                             databaseReferenceDelAdd.child(createNewEmailKey(firebaseUser.getEmail().split("\\."))).removeValue();
-                            madapter.SetCahngeInItemList("SignUp to Course", 3);
+                            madapter.SetCahngeInItemList("SignUp to Course", 3, item_desc[3]);
+                            madapter.SetCahngeInItemList("Looking for HW partner", 4,
+                                    "Mark as looking for HW partner");
                             madapter.notifyDataSetChanged();
+                            lookingForPartner = false;
                             registeredToCourse = false;
+                            Toast.makeText(getApplicationContext(),"Canceling registration has been succeeded",
+                                    Toast.LENGTH_LONG).show();
+
                         } else {
                             String tmp = createNewEmailKey(firebaseUser.getEmail().split("\\."));
+                            CourseParticipanceModel courseParticipanceModel = new CourseParticipanceModel(false,firebaseUser.getEmail(),
+                                    LoginActivity.user_ref.getUserName());
                             databaseReferenceDelAdd.child(tmp).
-                                    setValue(LoginActivity.user_ref.getUserName());
-                            madapter.SetCahngeInItemList("Unsubscribe to course", 3);
+                                    setValue(courseParticipanceModel);
+                            madapter.SetCahngeInItemList("Unsubscribe to course", 3, "Cancel your registration");
                             madapter.notifyDataSetChanged();
                             registeredToCourse = true;
+                            Toast.makeText(getApplicationContext(),"Your registration has been succeeded",
+                                    Toast.LENGTH_LONG).show();
                         }
                     } else {
                         Toast.makeText(getApplicationContext(), "You must choose specific semester,\n" +
                                 "please go to previous screen",Toast.LENGTH_LONG).show();
                     }
-                } else if (position == 4){ //Course participants
+                } else if (position == 4){ //Looking for partner
+                    if( registeredToCourse) {
+                        databaseReferenceDelAdd = FirebaseDatabase.getInstance().
+                                getReference("Academy/" + intendMes[1] + "/Faculty/" + intendMes[0]
+                                        + "/Course/" + intendMes[2] + "/" + intendMes[4] +
+                                        "/Course Participants/" + createNewEmailKey(firebaseUser.getEmail().split("\\.")));
+                        if (!lookingForPartner) {
+                            databaseReferenceDelAdd.child("course_part").setValue(true);
+                            madapter.SetCahngeInItemList("No longer looking for a partner?", 4,
+                                    "If you find partner, cancel your registration");
+                            lookingForPartner = true;
+                            madapter.notifyDataSetChanged();
+                        }
+                        else {
+                            databaseReferenceDelAdd.child("course_part").setValue(false);
+                            madapter.SetCahngeInItemList("Looking for HW partner", 4,
+                                    "Mark as looking for HW partner");
+                            lookingForPartner = false;
+                            madapter.notifyDataSetChanged();
+                        }
 
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),"You must be registered to course",
+                                Toast.LENGTH_LONG).show();
+                    }
+                } else if (position == 5) { //Course participants
+                    Intent coursePartIntend = new Intent(myrefAct,Courseparticipants.class);
+                    coursePartIntend.putExtra("vlaues",intendMes);
+                    startActivity(coursePartIntend);
                 }
             }
         });
@@ -166,16 +200,24 @@ public class ListViewCourseDetails extends Activity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for (DataSnapshot mDataSnapshot: dataSnapshot.getChildren()){
                                 if (mDataSnapshot.getKey().equals(userEmail)){ //User already signed up
-                                    mAdapder.SetCahngeInItemList("Unsubscribe to course", 3);
-                                    mAdapder.notifyDataSetChanged();
+                                    mAdapder.SetCahngeInItemList("Unsubscribe to course", 3, "Cancel your registration");
                                     registeredToCourse = true;
+                                    CourseParticipanceModel courseParticipanceModel = mDataSnapshot.getValue(CourseParticipanceModel.class);
+                                    if (courseParticipanceModel.getCourse_part()){
+                                        mAdapder.SetCahngeInItemList("No longer looking for a partner?", 4,
+                                                "If you find partner, cancel your registration");
+                                        lookingForPartner = false;
+                                    }
+                                    else {
+                                        lookingForPartner = true;
+                                    }
                                 }
                                 else {  //not signedUp
-                                    mAdapder.SetCahngeInItemList("SignUp to Course", 3);
-                                    mAdapder.notifyDataSetChanged();
+                                    mAdapder.SetCahngeInItemList(items[3], 3, item_desc[3]);
                                     registeredToCourse = false;
                                 }
                             }
+                            mAdapder.notifyDataSetChanged();
                         }
                         @Override
                         public void onCancelled(DatabaseError databaseError) { }

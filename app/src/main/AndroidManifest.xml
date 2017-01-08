@@ -30,7 +30,8 @@
         <activity android:name=".ListViewCourseDetails" />
         <activity android:name=".WatchReviews" />
         <activity android:name=".ReviewTable" />
-        <activity android:name=".CorseDetails"></activity>
+        <activity android:name=".CorseDetails" />
+        <activity android:name=".Courseparticipants"></activity>
     </application>
 
 </manifest>

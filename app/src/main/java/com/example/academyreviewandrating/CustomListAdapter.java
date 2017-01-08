@@ -45,8 +45,9 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         return rowView;
     }
 
-    public void SetCahngeInItemList(String newItem, int pos){
-        itemname[pos] = newItem;
+    public void SetCahngeInItemList(String newItem, int pos1, String newDesc){
+        itemname[pos1] = newItem;
+        itemDesc[pos1] = newDesc;
     }
 
 }
