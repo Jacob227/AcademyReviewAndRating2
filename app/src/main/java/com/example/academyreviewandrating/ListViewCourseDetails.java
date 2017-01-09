@@ -39,7 +39,7 @@ public class ListViewCourseDetails extends Activity {
     private boolean lookingForPartner;
     private HashMap<String, ArrayList<rating_lecterer_model>> hashMap_rating;
     String[] items= {"Watch Reviews", "Rank", "Course information", "SignUp to Course","Looking for HW partner",
-    "Course Participants"};
+    "Course Participants chat"};
     String[] item_desc= {"Previous reviews on this course/lecturer", "Rank the Lecturer", "Syllabus, " +
             "Class, Credits..", "Register as course participant", "Mark as looking for HW partner","View/chat all course participants"};
 
@@ -169,7 +169,7 @@ public class ListViewCourseDetails extends Activity {
                     }
                 } else if (position == 5) { //Course participants
                     Intent coursePartIntend = new Intent(myrefAct,Courseparticipants.class);
-                    coursePartIntend.putExtra("vlaues",intendMes);
+                    coursePartIntend.putExtra("values",intendMes);
                     startActivity(coursePartIntend);
                 }
             }
