@@ -32,7 +32,6 @@
             android:id="@+id/send_message"
             android:text=""
             android:background="@mipmap/ic_launcher_send1"
-
             android:layout_width="51dp"
             android:layout_height="wrap_content"
             android:onClick="sendMessege"/>

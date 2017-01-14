@@ -1,10 +1,9 @@
 package com.example.academyreviewandrating;
 import android.app.Activity;
-import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,8 +14,8 @@ import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.academyreviewandrating.Model.CourseDetailsModel;
@@ -31,7 +30,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by יעקב on 04/12/2016.
@@ -114,12 +112,14 @@ public class NavigationFregmentRankAndReview extends Fragment {
                 }
             }
         }, 3500);
-/*
+
         mListenDatabase = FirebaseDatabase.getInstance().getReference("Messeges").child(mAuth.getCurrentUser().getUid());
         mListenDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Toast.makeText(ref_activity,"hiiiiiiii",Toast.LENGTH_LONG).show();
+                ImageView UnRead =(ImageView) getView().findViewById(R.id.unread);
+                UnRead.setVisibility(ImageView.VISIBLE);
             }
 
             @Override
@@ -127,7 +127,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
 
             }
         });
-*/
+
         //faculty_selected = LoginActivity.user_ref.getFaculty(); //user default faculty
     }
 

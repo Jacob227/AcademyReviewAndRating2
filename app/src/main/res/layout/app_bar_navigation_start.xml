@@ -18,7 +18,18 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/toolbar_color"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            />
+            android:weightSum="1">
+            <ImageView
+                android:id="@+id/unread"
+                android:layout_width="60dp"
+                android:visibility="invisible"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_unread_message"
+                android:layout_marginLeft="60dp" />
+
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
