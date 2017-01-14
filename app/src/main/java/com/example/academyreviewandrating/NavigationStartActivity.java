@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,11 +26,13 @@ public class NavigationStartActivity extends AppCompatActivity
     private DatabaseReference mDBref;
     private android.app.FragmentManager fragmentManager;
     public static TextView mTV = null;
+    public static ImageView unreadM = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_start);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        unreadM = (ImageView) findViewById(R.id.unread);
         toolbar.setTitle("      Academy R & R");
         setSupportActionBar(toolbar);
         firebaseAuth = FirebaseAuth.getInstance();
