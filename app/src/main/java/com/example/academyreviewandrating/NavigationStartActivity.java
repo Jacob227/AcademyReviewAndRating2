@@ -15,16 +15,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class NavigationStartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference mDBref;
     private android.app.FragmentManager fragmentManager;
+    public static TextView mTV = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +46,33 @@ public class NavigationStartActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View mView = navigationView.getHeaderView(0);
+        mTV = (TextView) mView.findViewById(R.id.nav_user_name);
+        mTV.setText("Academy Review and Rating");
+        if (LoginActivity.user_ref != null){
+            mTV.setText(LoginActivity.user_ref.getUserName() + "\n  " + LoginActivity.user_ref.getFaculty()
+                    + ", " + LoginActivity.user_ref.getInstitution());
+            Log.d("NavBar", "After mtv");
+        }
+
         navigationView.setNavigationItemSelectedListener(this);
         fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame,new NavigationFregmentRankAndReview()).commit();
     }
 
+    private Boolean setUser = false;
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (!setUser) {
+            if (LoginActivity.user_ref != null) {
+                Log.d("NavBar", "notNUll");
+                TextView mTV = (TextView) findViewById(R.id.nav_user_name);
+                mTV.setText(LoginActivity.user_ref.getUserName() + "\n  " + LoginActivity.user_ref.getFaculty()
+                        + ", " + LoginActivity.user_ref.getInstitution());
+                setUser = true;
+            }
+        }
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -85,6 +109,7 @@ public class NavigationStartActivity extends AppCompatActivity
         int id = item.getItemId();
         Log.d("NavigationItemSelected ","NavigationStartActivity class");
         fragmentManager = getFragmentManager();
+
         if (id == R.id.nav_Rank_and_Review) {
             Log.d("NavigationItemSelected ","going to open Rank and review Fregment");
             fragmentManager.beginTransaction().replace(R.id.content_frame,new NavigationFregmentRankAndReview()).commit();
@@ -93,7 +118,7 @@ public class NavigationStartActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_frame,new NavigationFregmentProfile()).commit();
         } else if (id == R.id.nav_Send_messege) {
             Log.d("NavigationItemSelected ","going to open NavigationFregmentChat");
-            fragmentManager.beginTransaction().replace(R.id.content_frame,new NavigationFregmentChat()).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame,new ChatRoom()).commit();
         } else if (id == R.id.nav_Logout) {
             //fragmentManager.beginTransaction().replace(R.id.content_frame,new NavigationFregmentLogout()).commit();
             Log.d("NavigationItemSelected ","Sign out and going to open LoginActivity");

@@ -10,18 +10,20 @@ public class rating_lecterer_model implements Serializable {
 
     private int Ability_to_teach,Attitude_lecturer_student, Course_level, Teacher_interesting;
     private String Few_words, Date, rank_name; // Year_Semester;
+    private Boolean Anonymous;
 
     public rating_lecterer_model(){
 
     }
 
-    public rating_lecterer_model(int ability_to_teach, int attitude_lecturer_student, int course_level, int teacher_interesting, String few_words, String date) { //String semester) {
+    public rating_lecterer_model(int ability_to_teach, int attitude_lecturer_student, int course_level, int teacher_interesting, String few_words, String date, Boolean anonymous) { //String semester) {
         Ability_to_teach = ability_to_teach;
         Attitude_lecturer_student = attitude_lecturer_student;
         Course_level = course_level;
         Teacher_interesting = teacher_interesting;
         Few_words = few_words;
         Date = date;
+        this.Anonymous = anonymous;
         rank_name = "";
         //Year_Semester = semester;
     }
@@ -35,6 +37,14 @@ public class rating_lecterer_model implements Serializable {
         Year_Semester = semester;
     }
 */
+
+    public Boolean getAnonymous() {
+        return Anonymous;
+    }
+
+    public void setAnonymous(Boolean anonymous) {
+        Anonymous = anonymous;
+    }
     public String get_rank_name(){
         return rank_name;
     }

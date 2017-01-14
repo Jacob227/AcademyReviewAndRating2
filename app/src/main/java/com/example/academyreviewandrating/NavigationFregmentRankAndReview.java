@@ -16,10 +16,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.academyreviewandrating.Model.CourseDetailsModel;
 import com.example.academyreviewandrating.Model.rating_lecterer_model;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +39,9 @@ import java.util.Map;
 
 public class NavigationFregmentRankAndReview extends Fragment {
 
+    private FirebaseAuth mAuth;
     private DatabaseReference mDatebase;
+    private DatabaseReference mListenDatabase;
     private Button faculty_rank_button, faculty_view_button, teacher_rank_button, teacher_view_button;
     private Spinner academy_spinner,faculty_spinner,course_spinner,teacher_spinner, semester_spinner;
     private String[] string_spinner_academy, string_spinner_faculty, strings_spinner_course, strings_spinner_teacher ;
@@ -78,6 +82,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
         faculty_chosen = false;
         course_chosen = false;
         courseDetailsModel = null;
+        mAuth = FirebaseAuth.getInstance();
         map_lecrurer = new HashMap<String, List<rating_lecterer_model>>();
 
         fillSpinnerData(R.id.spinner_academy,"Academy", spinnerEnum.ACADEMY);
@@ -109,6 +114,20 @@ public class NavigationFregmentRankAndReview extends Fragment {
                 }
             }
         }, 3500);
+/*
+        mListenDatabase = FirebaseDatabase.getInstance().getReference("Messeges").child(mAuth.getCurrentUser().getUid());
+        mListenDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Toast.makeText(ref_activity,"hiiiiiiii",Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+*/
         //faculty_selected = LoginActivity.user_ref.getFaculty(); //user default faculty
     }
 
@@ -312,8 +331,6 @@ public class NavigationFregmentRankAndReview extends Fragment {
                                         }
                                     }
                                 }
-                                //for (int i = 0; i < 5; i++)
-                                //    Log.d("All Data", map_lecrurer.get("Boris yerz").get(i).get_rank_name());
 
                                 String[] spinner_str = new String[map_lecrurer.size()];
                                 int i = 0;

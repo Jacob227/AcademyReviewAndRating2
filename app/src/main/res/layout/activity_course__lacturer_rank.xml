@@ -347,6 +347,15 @@
                 android:layout_marginTop="15dp"
                 android:textColor="?android:attr/textColorPrimaryInverseNoDisable" />
 
+            <CheckBox
+                android:text="Anonymous"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox_anonymous"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:checked="true"/>
+
             <Button
                 android:text="Send feedback"
                 android:layout_width="wrap_content"

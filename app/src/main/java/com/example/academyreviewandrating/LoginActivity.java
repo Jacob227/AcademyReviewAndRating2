@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.content.Intent;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.academyreviewandrating.Model.User;
@@ -37,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         email = (EditText) findViewById(R.id.editTextUser);
         password = (EditText) findViewById(R.id.editTextPass);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -52,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    static void createUserInstance() {
+    public void createUserInstance() {
         static_db_ref = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
         Log.d("In createUserInstance","before addValueEventListener");
         static_db_ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -67,6 +69,11 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 user_ref = new User(temp_string[6], temp_string[3],temp_string[1],temp_string[0],temp_string[4],temp_string[2],temp_string[5]);
                 user_created = true;
+                if (NavigationStartActivity.mTV != null){
+                    NavigationStartActivity.mTV.setText(user_ref.getUserName() + "\n  " + user_ref.getFaculty()
+                             + ", " + user_ref.getInstitution());
+                     Log.d("NavBar", "After mtv");
+                }
             }
 
             @Override

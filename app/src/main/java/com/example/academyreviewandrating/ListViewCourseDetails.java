@@ -28,6 +28,7 @@ public class ListViewCourseDetails extends Activity {
 
     private ListView listView;
     private DatabaseReference databaseReference;
+    private DatabaseReference databaseReferencePart;
     private DatabaseReference databaseReferenceDelAdd;
     private Toolbar myActionBar;
     private TextView textViewTitle;
@@ -168,9 +169,27 @@ public class ListViewCourseDetails extends Activity {
                                 Toast.LENGTH_LONG).show();
                     }
                 } else if (position == 5) { //Course participants
-                    Intent coursePartIntend = new Intent(myrefAct,Courseparticipants.class);
-                    coursePartIntend.putExtra("values",intendMes);
-                    startActivity(coursePartIntend);
+                    databaseReferencePart = FirebaseDatabase.getInstance().getReference();
+                    databaseReferencePart.child("Academy/" + intendMes[1] + "/Faculty/" + intendMes[0]
+                            + "/Course/" + intendMes[2] + "/" + intendMes[4] + "/Course Participants").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (!dataSnapshot.hasChildren()){
+                                Toast.makeText(getApplicationContext(),"There are no participants", Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                Intent coursePartIntend = new Intent(myrefAct,Courseparticipants.class);
+                                coursePartIntend.putExtra("values",intendMes);
+                                startActivity(coursePartIntend);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
                 }
             }
         });

@@ -4,14 +4,25 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.academyreviewandrating.Model.CourseDetailsModel;
 import com.example.academyreviewandrating.Model.rating_lecterer_model;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class WatchReviews extends AppCompatActivity {
@@ -19,6 +30,10 @@ public class WatchReviews extends AppCompatActivity {
     private ArrayList<rating_lecterer_model> ratingDet;
     private String[] intendMes;
     private Toolbar myActionBar;
+    private List<String> List_spinner;
+    private DatabaseReference mDatebase;
+    private HashMap<String, List<rating_lecterer_model>> map_lecrurer;
+    private CourseDetailsModel courseDetailsModel;
     private TextView textViewTitle,textViewFaculty, textViewLecturerName, textViewRevNumber;
     private TextView textViewCourseLevel, textViewLecAtt,textViewAbility, textViewLecInter;
     private AlphaAnimation buttonClick = new AlphaAnimation(Animation.ZORDER_BOTTOM,Animation.ZORDER_NORMAL);
@@ -30,6 +45,53 @@ public class WatchReviews extends AppCompatActivity {
         Intent intent = getIntent();
         ratingDet = (ArrayList<rating_lecterer_model>)intent.getSerializableExtra("Rating");
         intendMes = intent.getStringArrayExtra("values");
+/*
+        mDatebase = FirebaseDatabase.getInstance().getReference("Academy/" +
+                intendMes[1] + "/Faculty/" + intendMes[0] + "/Course/"
+                + intendMes[2]);
+
+        mDatebase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List_spinner = new ArrayList<String>();
+                Log.d("In onItemSelected", "All semester selected");
+                boolean first = false;
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    if(!first) { //take the first Course details onlt once
+                        DataSnapshot courseDet = child.child("Course Details");
+                        courseDetailsModel = courseDet.getValue(CourseDetailsModel.class);
+                        first = true;
+                    }
+
+                    DataSnapshot lecData = child.child("Lecturer");
+                    for (DataSnapshot childLec : lecData.getChildren()) { //lecturer
+                        Log.d("Lecterer", childLec.getKey());
+                        DataSnapshot rating_data = childLec.child("Rating");
+                        for (DataSnapshot childRating : rating_data.getChildren()) { //rating
+                            Log.d("Rank", childRating.getKey());
+                            if (map_lecrurer.get(childLec.getKey()) == null) {
+                                map_lecrurer.put(childLec.getKey(), new ArrayList<rating_lecterer_model>());
+                            }
+                            rating_lecterer_model user_rating_data = childRating.getValue(rating_lecterer_model.class);
+                            user_rating_data.set_rank_name(childRating.getKey());
+                            map_lecrurer.get(childLec.getKey()).add(user_rating_data);
+                        }
+                    }
+                }
+
+                String[] spinner_str = new String[map_lecrurer.size()];
+                int i = 0;
+                for (String key : map_lecrurer.keySet()) {
+                    spinner_str[i] = key;
+                    i++;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });  */
 
         myActionBar = (Toolbar) findViewById(R.id.toolbar_review);
         myActionBar.setNavigationIcon(getResources().getDrawable(R.drawable.back_arrow_icon));

@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class Course_Lacturer_rank extends AppCompatActivity {
     private DatabaseReference mDB_ref;
     private String[] message;
     private Toolbar myActionBar;
+    private CheckBox cb_anonymous;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class Course_Lacturer_rank extends AppCompatActivity {
             }
         });
 
+        cb_anonymous = (CheckBox) findViewById(R.id.checkBox_anonymous) ;
         faculty_text = (TextView) findViewById(R.id.faculty_rank_text);
         academy_text  = (TextView) findViewById(R.id.academy_rank_text);
         course_text = (TextView) findViewById(R.id.course_rank_text);
@@ -73,10 +76,14 @@ public class Course_Lacturer_rank extends AppCompatActivity {
         view.startAnimation(buttonClick);
         //collect all the data and insert it to DB
         //TODO: check if all starts are chosen!
+        Boolean cb_an = true;
+        if (!cb_anonymous.isChecked()){
+            cb_an = false;
+        }
         final rating_lecterer_model rl_model = new rating_lecterer_model(Math.round(lecterer_ability_rb.getRating()),
                 Math.round(lecterer_atitude_rb.getRating()), Math.round(course_level_rb.getRating()),
                 Math.round(lecterer_intr_rb.getRating()), fewWords_et.getText().toString(),
-                new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+                new SimpleDateFormat("dd-MM-yyyy").format(new Date()),cb_an);
 
         mDB_ref = FirebaseDatabase.getInstance().getReference("Academy").child(academy_text.getText().toString()).child("Faculty").child(faculty_text.getText().toString()).
                 child("Course").child(course_text.getText().toString()).child(semester_text.getText().toString()).child("Lecturer").child(lecturer_text.getText().toString()).

@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.academyreviewandrating.Model.CourseDetailsModel;
 import com.example.academyreviewandrating.Model.CourseParticipanceModel;
@@ -48,6 +49,7 @@ public class Courseparticipants extends AppCompatActivity {
     private ArrayList<String> userNamesOrig;
     private Boolean[] ParticipantsBool;
     private Activity mActRef = this;
+    private Activity refAct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class Courseparticipants extends AppCompatActivity {
         Intent intent = getIntent();
         mIntendData = intent.getStringArrayExtra("values");
         adapter = null;
+        refAct = this;
         inputSearch = (EditText) findViewById(R.id.EditTextViewFindUser);
         mCheckBox = (CheckBox) findViewById(R.id.checkBoxPartner);
         myActionBar = (Toolbar) findViewById(R.id.toolbar_coursePart);
@@ -127,6 +130,7 @@ public class Courseparticipants extends AppCompatActivity {
                     if (adapter != null){
                         //String[] tempPart = new String[userNames.length];
                         Boolean[] tempBool = new Boolean[userNames.size()];
+                        //adapter.setClicked_sort(true);
                         adapter.clear();
                         int k = 0;
                         for (int i = 0; i < ParticipantsBool.length; i++){
@@ -138,13 +142,16 @@ public class Courseparticipants extends AppCompatActivity {
                         }
                         tempBool = Arrays.copyOf(tempBool,k);
                         Log.d("hii", String.valueOf(adapter.getCount()));
+                        //adapter.setOrig();
                         adapter.setBool(tempBool);
                         adapter.notifyDataSetChanged();
                     }
                 }
                 else {
                     adapter.clear();
+                   // adapter.setClicked_sort(false);
                     adapter.addAll(userNamesOrig);
+                    //adapter.setOrig();
                     adapter.setBool(ParticipantsBool);
                     adapter.notifyDataSetChanged();
                 }

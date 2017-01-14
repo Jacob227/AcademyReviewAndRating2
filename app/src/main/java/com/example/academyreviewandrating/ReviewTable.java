@@ -55,7 +55,12 @@ public class ReviewTable extends AppCompatActivity {
         for (rating_lecterer_model rating: ratingDet) {
             tableRow = (TableRow) LayoutInflater.from(this).inflate(R.layout.attribute_row, null);
             ((TextView) tableRow.findViewById(R.id.Number_col1)).setText(String.valueOf(i));
-            ((TextView) tableRow.findViewById(R.id.Reviewer_col1)).setText(rating.get_rank_name());   //TODO: check if we can view this reviewer
+
+            if (rating.getAnonymous()) { //the user is anonymous
+                ((TextView) tableRow.findViewById(R.id.Reviewer_col1)).setText(" - ");   //TODO: check if we can view this reviewer
+            } else { //un-anonymous
+                ((TextView) tableRow.findViewById(R.id.Reviewer_col1)).setText(rating.get_rank_name());
+            }
             ((TextView) tableRow.findViewById(R.id.rank_date_col1)).setText(rating.getDate());
             ((TextView) tableRow.findViewById(R.id.Course_Level_col1)).setText(String.valueOf(rating.getCourse_level()));
             ((TextView) tableRow.findViewById(R.id.Lecturer_Atti_cols1)).setText(String.valueOf(rating.getAttitude_lecturer_student()));

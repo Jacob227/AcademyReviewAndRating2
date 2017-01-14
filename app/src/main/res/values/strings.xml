@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">Academy Review And Rating</string>
     <string name="Login">User Login</string>
+    <string name="Login_title">Academy R &amp; R</string>
     <string name="username">User name</string>
     <string name="password">Password</string>
     <string name="titleReg">Registarion</string>
     <string name="Email">Email</string>
+    <string name="nav_header">Academy Review and Rating</string>
     <string name="title_activity_navigation_start">NavigationStartActivity</string>
     <string name="Rating_Lecturer_ability_to_teach">There are many lecturers who do not invest properly in teaching and not ready to come to the lecture.
         This parameter indicates on the ability of the lecturer to transfer educational material clearly.  </string>
