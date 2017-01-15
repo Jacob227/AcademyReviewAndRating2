@@ -337,15 +337,15 @@
                 />
 
             <EditText
-                android:layout_width="290dp"
-                android:layout_height="70dp"
                 android:inputType="textMultiLine"
                 android:ems="10"
                 android:id="@+id/editText_few_words"
                 android:background="@android:drawable/editbox_dropdown_light_frame"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
-                android:textColor="?android:attr/textColorPrimaryInverseNoDisable" />
+                android:textColor="?android:attr/textColorPrimaryInverseNoDisable"
+                android:layout_height="95dp"
+                android:layout_width="320dp" />
 
             <CheckBox
                 android:text="Anonymous"

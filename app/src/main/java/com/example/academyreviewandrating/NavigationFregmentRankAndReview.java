@@ -52,6 +52,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
     private Boolean faculty_chosen;
     private Boolean course_chosen;
     private boolean flag_user_ref = false;
+    private NavigationFregmentRankAndReview data;
     private HashMap<String, List<rating_lecterer_model>> map_lecrurer;
     private AlphaAnimation buttonClick = new AlphaAnimation(Animation.ZORDER_BOTTOM,Animation.ZORDER_NORMAL);
     View myView;
@@ -76,15 +77,18 @@ public class NavigationFregmentRankAndReview extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         handler = new Handler();
+
         setAllListener();
         faculty_chosen = false;
         course_chosen = false;
         courseDetailsModel = null;
         mAuth = FirebaseAuth.getInstance();
+
         map_lecrurer = new HashMap<String, List<rating_lecterer_model>>();
 
         fillSpinnerData(R.id.spinner_academy,"Academy", spinnerEnum.ACADEMY);
         Log.d("In onViewCreated", "after fillSpinnerData Academy");
+
         //academy_selected = LoginActivity.user_ref.getInstitution(); //user defualt academic
         handler.postDelayed(new Runnable() {
             @Override
@@ -93,19 +97,6 @@ public class NavigationFregmentRankAndReview extends Fragment {
                     academy_selected = LoginActivity.user_ref.getInstitution();
                     fillSpinnerData(R.id.spinner_faculty,
                             "Academy/" + academy_selected + "/Faculty", spinnerEnum.FACULTY);
-                    //faculty_selected = LoginActivity.user_ref.getFaculty();
-                                        /*
-                    while (!faculty_chosen);
-                    Log.d("In run","Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course");
-                    fillSpinnerData(R.id.spinner_choose_course,
-                            "Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course" , spinnerEnum.COURSE);
-
-                    while (course_selected == "");
-                    Log.d("In run after Course", "Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course/" + course_selected
-                            + "/Lecturer");
-                    fillSpinnerData(R.id.spinner_choose_teacher,
-                            "Academy/" + academy_selected + "/Faculty/" + faculty_selected + "/Course/" + course_selected
-                                    + "/Lecturer", spinnerEnum.TEACHER);*/
                 }
                 else {
                     Toast.makeText(getActivity(),"Timeout has accured",Toast.LENGTH_LONG).show();
@@ -129,8 +120,27 @@ public class NavigationFregmentRankAndReview extends Fragment {
         });
 
         //faculty_selected = LoginActivity.user_ref.getFaculty(); //user default faculty
+        ///111
     }
 
+    /*
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+       // outState.put("mAuth", mAuth);
+        //handler.removeCallbacksAndMessages(null);
+        super.onSaveInstanceState(outState);
+
+    }
+
+    public void setData(NavigationFregmentRankAndReview data) {
+        this.data = data;
+    }
+
+    public NavigationFregmentRankAndReview getData() {
+        return data;
+    }
+*/
     public void setAllListener(){
         final Activity my_activity = getActivity();
         faculty_rank_button = (Button) getView().findViewById(R.id.button_Rank_Faculty);
@@ -452,7 +462,12 @@ public class NavigationFregmentRankAndReview extends Fragment {
     public void onDestroy(){
         super.onDestroy();
         Log.d("In RankAndReview","onDestroy");
+        //FirebaseAuth firebaseAuth;
+        //firebaseAuth = FirebaseAuth.getInstance();
+        //firebaseAuth.signOut();
         handler.removeCallbacksAndMessages(null);
+        //Intent intent = new Intent(getActivity(),LoginActivity.class);
+        //startActivity(intent);
 
     }
 }

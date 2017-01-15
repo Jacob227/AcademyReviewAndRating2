@@ -20,6 +20,17 @@
     <string name="faculty_rank"></string>
     <string name="course_rank"></string>
     <string name="Lecturer_rank"></string>
-
+    <string name="academic_difficulty">How difficult in your academic?
+        There are faculties which sit on the lawn all day long, while other places have to "sweat" to get the degree.</string>
+    <string name="students_character">In some faculties there is a competition between students,
+        lack of assistance to the photographs, works, exercises, etc.,
+        compared to other faculties where everyone helps each other, How is it with you?</string>
+    <string name="secretary_attitude">Secretary and Faculty management should give you the students a kind and professional service.
+        But between theory and action may be a long gap.</string>
+    <string name="students_union">We all know that there are many students unions that working hard for students,
+        and there are those who do nothing, how your students union?</string>
+    <string name="social_life">Are you socially fun in academy? (Parties, social evenings, Cafeteria, breaks on the lawn).
+        Because those are beautiful years, we would also like to enjoy!</string>
+    <string name="few_words_academy">Here you can express yourself freely on your rating.</string>
     <string name="action_settings">Settings</string>
 </resources>

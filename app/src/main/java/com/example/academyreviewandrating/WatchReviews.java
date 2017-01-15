@@ -32,7 +32,7 @@ public class WatchReviews extends AppCompatActivity {
     private Toolbar myActionBar;
     private List<String> List_spinner;
     private DatabaseReference mDatebase;
-    private HashMap<String, List<rating_lecterer_model>> map_lecrurer;
+    private HashMap<String, ArrayList<rating_lecterer_model>> map_lecrurer;
     private CourseDetailsModel courseDetailsModel;
     private TextView textViewTitle,textViewFaculty, textViewLecturerName, textViewRevNumber;
     private TextView textViewCourseLevel, textViewLecAtt,textViewAbility, textViewLecInter;
@@ -45,7 +45,9 @@ public class WatchReviews extends AppCompatActivity {
         Intent intent = getIntent();
         ratingDet = (ArrayList<rating_lecterer_model>)intent.getSerializableExtra("Rating");
         intendMes = intent.getStringArrayExtra("values");
-/*
+
+        map_lecrurer = new HashMap<String, ArrayList<rating_lecterer_model>>();
+
         mDatebase = FirebaseDatabase.getInstance().getReference("Academy/" +
                 intendMes[1] + "/Faculty/" + intendMes[0] + "/Course/"
                 + intendMes[2]);
@@ -79,19 +81,13 @@ public class WatchReviews extends AppCompatActivity {
                     }
                 }
 
-                String[] spinner_str = new String[map_lecrurer.size()];
-                int i = 0;
-                for (String key : map_lecrurer.keySet()) {
-                    spinner_str[i] = key;
-                    i++;
-                }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });  */
+        });
 
         myActionBar = (Toolbar) findViewById(R.id.toolbar_review);
         myActionBar.setNavigationIcon(getResources().getDrawable(R.drawable.back_arrow_icon));
@@ -147,7 +143,13 @@ public class WatchReviews extends AppCompatActivity {
     public void OnClickWatchTable(View view){
         view.startAnimation(buttonClick);
         Intent intentTableRev = new Intent(this, ReviewTable.class);
-        intentTableRev.putExtra("Rating",ratingDet);
+        if (map_lecrurer.isEmpty())
+            intentTableRev.putExtra("Rating",ratingDet);
+        else {
+            Log.d("In OnClickWatchTable","After");
+            ArrayList<rating_lecterer_model> rating = map_lecrurer.get(intendMes[3]);
+            intentTableRev.putExtra("Rating", rating);
+        }
         intentTableRev.putExtra("values", intendMes);
         startActivity(intentTableRev);
         finish();
