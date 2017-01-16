@@ -34,7 +34,8 @@
         <activity android:name=".ReviewTable" />
         <activity android:name=".CorseDetails" />
         <activity android:name=".ChatMain" />
-        <activity android:name=".Courseparticipants"></activity>
+        <activity android:name=".Courseparticipants" />
+        <activity android:name=".ReviewTableFaculty"></activity>
     </application>
 
 </manifest>

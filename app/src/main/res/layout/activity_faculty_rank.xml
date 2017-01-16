@@ -160,7 +160,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Students character:"
+                android:text="Students Characteristics:"
                 android:textColor="@color/my_color_rank_text"
                 android:textSize="17dp"
                 android:textStyle="bold"

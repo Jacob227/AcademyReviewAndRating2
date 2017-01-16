@@ -2,11 +2,13 @@ package com.example.academyreviewandrating.Model;
 
 import android.widget.RatingBar;
 
+import java.io.Serializable;
+
 /**
  * Created by יעקב on 15/01/2017.
  */
 
-public class rating_academy_model {
+public class rating_academy_model implements Serializable {
 
     private int academy_difficulty, students_char, social_life, faculty_secretary, student_union;
     private String few_words, date, rank_name;
