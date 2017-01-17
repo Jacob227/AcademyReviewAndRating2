@@ -123,6 +123,8 @@ public class NavigationStartActivity extends AppCompatActivity
             firebaseAuth.signOut();
             finish();
             startActivity(new Intent(this,LoginActivity.class));
+        } else if (id == R.id.nav_my_courses) {
+            fragmentManager.beginTransaction().replace(R.id.content_frame,new ChooseScheduleFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

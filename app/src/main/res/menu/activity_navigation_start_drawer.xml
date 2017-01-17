@@ -13,6 +13,10 @@
         <item
             android:id="@+id/nav_Class_servey"
             android:icon="@drawable/ic_menu_slideshow"
+            android:title="Class Servey" />
+        <item
+            android:id="@+id/nav_my_courses"
+            android:icon="@drawable/ic_menu_slideshow"
             android:title="My Courses" />
         <item
             android:id="@+id/nav_add_course"

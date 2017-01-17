@@ -35,6 +35,7 @@
         <activity android:name=".CorseDetails" />
         <activity android:name=".ChatMain" />
         <activity android:name=".Courseparticipants" />
+        <activity android:name=".ScheduleTable" />
         <activity android:name=".ReviewTableFaculty"></activity>
     </application>
 

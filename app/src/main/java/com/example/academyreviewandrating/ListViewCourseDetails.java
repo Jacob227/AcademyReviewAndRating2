@@ -28,6 +28,8 @@ public class ListViewCourseDetails extends Activity {
 
     private ListView listView;
     private DatabaseReference databaseReference;
+    private DatabaseReference databaseReferenceCoursePart;
+    private DatabaseReference databaseReferenceUserCourse;
     private DatabaseReference databaseReferencePart;
     private DatabaseReference databaseReferenceDelAdd;
     private Toolbar myActionBar;
@@ -40,12 +42,12 @@ public class ListViewCourseDetails extends Activity {
     private boolean lookingForPartner;
     private HashMap<String, ArrayList<rating_lecterer_model>> hashMap_rating;
     String[] items= {"Watch Reviews", "Rank", "Course information", "SignUp to Course","Looking for HW partner",
-    "Course Participants chat"};
+            "Course Participants chat"};
     String[] item_desc= {"Previous reviews on this course/lecturer", "Rank the Lecturer", "Syllabus, " +
             "Class, Credits..", "Register as course participant", "Mark as looking for HW partner","View/chat all course participants"};
 
     Integer[] imageId = {R.drawable.rank_icon,R.drawable.star_icon, R.drawable.info_icon,R.drawable.sign_up_icon,R.drawable.look_for_partner_icon,
-    R.drawable.review_icon};
+            R.drawable.review_icon};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,12 +113,19 @@ public class ListViewCourseDetails extends Activity {
                     }
                 } else if (position == 3) { //signUp to course
                     if (firebaseUser != null && (!intendMes[4].equals("All"))) {
+                        databaseReferenceUserCourse = FirebaseDatabase.getInstance().getReference(
+                                "Academy/" + intendMes[1] + "/Faculty/" + intendMes[0] + "/User_course/"
+                                        + intendMes[4]);
                         databaseReferenceDelAdd = FirebaseDatabase.getInstance().
                                 getReference("Academy/" + intendMes[1] + "/Faculty/" + intendMes[0]
-                                + "/Course/" + intendMes[2] + "/" + intendMes[4] + "/Course Participants");
+                                        + "/Course/" + intendMes[2] + "/" + intendMes[4] + "/Course Participants");
+                        databaseReferenceCoursePart = FirebaseDatabase.getInstance().
+                                getReference("Academy/" + intendMes[1] + "/Faculty/" + intendMes[0]
+                                        + "/Course/" + intendMes[2] + "/" + intendMes[4] );
 
                         if (registeredToCourse) {
                             databaseReferenceDelAdd.child(createNewEmailKey(firebaseUser.getEmail().split("\\."))).removeValue();
+                            databaseReferenceUserCourse.child(firebaseUser.getUid()).child(intendMes[2]).removeValue();
                             madapter.SetCahngeInItemList("SignUp to Course", 3, item_desc[3]);
                             madapter.SetCahngeInItemList("Looking for HW partner", 4,
                                     "Mark as looking for HW partner");
@@ -137,6 +146,21 @@ public class ListViewCourseDetails extends Activity {
                             registeredToCourse = true;
                             Toast.makeText(getApplicationContext(),"Your registration has been succeeded",
                                     Toast.LENGTH_LONG).show();
+
+                            databaseReferenceCoursePart.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    DataSnapshot courseDet = dataSnapshot.child("Course Details");
+                                    courseDetailsModel = courseDet.getValue(CourseDetailsModel.class);
+                                    databaseReferenceUserCourse.child(firebaseUser.getUid()).setValue(intendMes[2]);
+                                    databaseReferenceUserCourse.child(firebaseUser.getUid()).child(intendMes[2]).setValue(courseDetailsModel);
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
                         }
                     } else {
                         Toast.makeText(getApplicationContext(), "You must choose specific semester,\n" +
@@ -199,7 +223,7 @@ public class ListViewCourseDetails extends Activity {
     {
         String newEmail = "";
         for (int i = 0; i < emailSplit.length; i++ )
-                newEmail += emailSplit[i];
+            newEmail += emailSplit[i];
         return  newEmail;
     }
 
@@ -213,7 +237,7 @@ public class ListViewCourseDetails extends Activity {
         if (firebaseUser != null && (!intendMes[4].equals("All"))){ //cannot sign up with all selected
             databaseReference = FirebaseDatabase.getInstance().getReference();
             databaseReference.child("Academy/" + intendMes[1] + "/Faculty/" + intendMes[0]
-            + "/Course/" + intendMes[2] + "/" + intendMes[4] + "/Course Participants").
+                    + "/Course/" + intendMes[2] + "/" + intendMes[4] + "/Course Participants").
                     addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
