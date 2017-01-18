@@ -47,6 +47,7 @@ public class ChooseScheduleFragment extends Fragment {
     private View myView;
     private Activity myAct;
     private Button table_butt;
+    private Button list_butt;
     private TextView faculty_text, academy_text;
 
     private AlphaAnimation buttonClick = new AlphaAnimation(Animation.ZORDER_BOTTOM,Animation.ZORDER_NORMAL);
@@ -130,7 +131,29 @@ public class ChooseScheduleFragment extends Fragment {
                     Intent mIntend = new Intent(myAct,ScheduleTable.class);
                     mIntend.putExtra("values",mSelected);
                     ArrayList<CourseDetailsModel> toIntend = mapCourseDet.get(mSelected);
-                    if (toIntend.isEmpty()){
+                    if (toIntend == null){
+                        Toast.makeText(myAct,"You are not signed to any course on this semester",Toast.LENGTH_LONG).show();
+                    } else {
+                        mIntend.putExtra("arraylistCourse", toIntend);
+                        startActivity(mIntend);
+                    }
+                }
+            }
+        });
+
+        list_butt = (Button)getView().findViewById(R.id.choose_semster_but_list);
+        list_butt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setAnimation(buttonClick);
+                String mSelected = spinner_semester.getSelectedItem().toString();
+                if ( TextUtils.isEmpty(mSelected))
+                    Toast.makeText(myAct,"You must choose some semster",Toast.LENGTH_LONG).show();
+                else {
+                    Intent mIntend = new Intent(myAct,listViewCourseList.class);
+                    mIntend.putExtra("values",mSelected);
+                    ArrayList<CourseDetailsModel> toIntend = mapCourseDet.get(mSelected);
+                    if (toIntend == null){
                         Toast.makeText(myAct,"You are not signed to any course on this semester",Toast.LENGTH_LONG).show();
                     } else {
                         mIntend.putExtra("arraylistCourse", toIntend);

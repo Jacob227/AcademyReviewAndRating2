@@ -36,7 +36,8 @@
         <activity android:name=".ChatMain" />
         <activity android:name=".Courseparticipants" />
         <activity android:name=".ScheduleTable" />
-        <activity android:name=".ReviewTableFaculty"></activity>
+        <activity android:name=".ReviewTableFaculty" />
+        <activity android:name=".listViewCourseList"></activity>
     </application>
 
 </manifest>

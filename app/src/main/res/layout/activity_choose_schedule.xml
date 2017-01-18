@@ -20,8 +20,7 @@
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.67">
+        android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -92,32 +91,84 @@
                     android:layout_below="@+id/Faculty_text2"
                     android:layout_marginTop="18dp"/>
 
-                <Spinner
-                    android:layout_height="wrap_content"
-                    android:id="@+id/spinner_choose_semester"
-                    android:background="@android:drawable/btn_dropdown"
-                    android:minWidth="10dp"
-                    android:dropDownWidth="250dp"
-                    android:textDirection="ltr"
-                    android:popupBackground="@android:drawable/spinner_background"
-                    android:layout_width="200dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_alignTop="@+id/textView_Choose_semester"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="5dp" />
+
+            <TextView
+                android:text="Timetable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal|bold|italic"
+                android:textSize="19dp"
+                android:layout_marginLeft="0dp"
+                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                android:textColor="@color/my_color_rank_text"
+                android:id="@+id/textView_Timetable"
+                android:layout_below="@+id/textView_Choose_semester"
+                android:layout_marginTop="150dp" />
 
             <Button
-                android:text="Next"
-                android:layout_width="wrap_content"
+                android:text="Table"
                 android:layout_height="wrap_content"
                 android:id="@+id/choose_semster_but"
                 android:background="@drawable/button_shape"
                 android:textSize="@dimen/activity_vertical_margin"
-                android:layout_below="@+id/spinner_choose_semester"
-                android:layout_alignRight="@+id/spinner_choose_semester"
-                android:layout_alignEnd="@+id/spinner_choose_semester"
-                android:layout_marginTop="100dp" />
+
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/choose_semster_but_list"
+                android:layout_toEndOf="@+id/choose_semster_but_list"
+                android:layout_marginStart="19dp" />
+
+            <Button
+                android:text="List"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/choose_semster_but_list"
+                android:background="@drawable/button_shape"
+                android:textSize="@dimen/activity_vertical_margin"
+
+                android:layout_alignBaseline="@+id/textView_Timetable"
+                android:layout_alignBottom="@+id/textView_Timetable"
+                android:layout_alignLeft="@+id/Academy_text2"
+                android:layout_alignStart="@+id/Academy_text2"
+                android:layout_marginLeft="10dp" />
+
+            <RelativeLayout
+                android:layout_weight=".28"
+                android:background="@drawable/spinner_shape"
+                android:orientation="horizontal"
+                android:layout_alignBottom="@+id/textView_Choose_semester"
+                android:layout_marginRight="10dp"
+                android:layout_alignLeft="@+id/choose_semster_but_list"
+                android:layout_alignStart="@+id/choose_semster_but_list"
+                android:layout_width="200dp"
+                android:layout_height="35dp">
+
+                <Spinner
+                    android:id="@+id/spinner_choose_semester"
+                    android:layout_width="200dp"
+                    android:minWidth="10dp"
+                    android:dropDownWidth="wrap_content"
+                    android:textDirection="ltr"
+                    android:popupBackground="@android:drawable/spinner_background"
+
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown"
+                    android:layout_height="35dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/spinner_icon_2" />
+
+            </RelativeLayout>
 
 
         </RelativeLayout>

@@ -152,7 +152,7 @@ public class ListViewCourseDetails extends Activity {
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     DataSnapshot courseDet = dataSnapshot.child("Course Details");
                                     courseDetailsModel = courseDet.getValue(CourseDetailsModel.class);
-                                    databaseReferenceUserCourse.child(firebaseUser.getUid()).setValue(intendMes[2]);
+                                    //databaseReferenceUserCourse.child(firebaseUser.getUid()).setValue(intendMes[2]);
                                     databaseReferenceUserCourse.child(firebaseUser.getUid()).child(intendMes[2]).setValue(courseDetailsModel);
                                 }
 
