@@ -109,7 +109,6 @@ public class NavigationFregmentRankAndReview extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Toast.makeText(ref_activity,"hiiiiiiii",Toast.LENGTH_LONG).show();
-
                 NavigationStartActivity.unreadM.setVisibility(ImageView.VISIBLE);
             }
 

@@ -7,6 +7,7 @@ package com.example.academyreviewandrating.Model;
 public class User {
     private String userName,Institution,Faculty,Email,Phone,fullName,privilage;
 
+
     public User(){
 
     }
@@ -82,5 +83,6 @@ public class User {
     public void setPrivilage(String privilage) {
         this.privilage = privilage;
     }
+
 
 }

@@ -9,4 +9,5 @@
     <color name="my_color_butt">#5065dd</color>
     <color name="my_color_rank_text">#80cbc4</color>
     <color name="my_color_table_rows">#FF62696D</color>
+    <color name="light">#FFEEEEEE</color>
 </resources>
