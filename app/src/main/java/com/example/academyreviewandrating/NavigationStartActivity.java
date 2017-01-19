@@ -134,7 +134,9 @@ public class NavigationStartActivity extends AppCompatActivity
                     fragmentManager.beginTransaction().replace(R.id.content_frame,new AddCourse()).commit();
                 }
             }
-         }
+         } else if (id == R.id.nav_AffiliateToSystem) {
+            fragmentManager.beginTransaction().replace(R.id.content_frame,new AffiliateToSystem()).commit();
+        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

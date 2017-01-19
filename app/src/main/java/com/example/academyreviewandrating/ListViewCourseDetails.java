@@ -88,10 +88,16 @@ public class ListViewCourseDetails extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0){ //Watch reviews
                     ArrayList<rating_lecterer_model> rating = hashMap_rating.get(intendMes[3]);
-                    Intent intentWatchRev = new Intent(myrefAct,WatchReviews.class);
-                    intentWatchRev.putExtra("Rating",rating);
-                    intentWatchRev.putExtra("values", intendMes);
-                    startActivity(intentWatchRev);
+                    if (rating == null) {
+                        Toast.makeText(getApplicationContext(),"No one rank this course/lecturer, be the first one",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Intent intentWatchRev = new Intent(myrefAct, WatchReviews.class);
+                        intentWatchRev.putExtra("Rating", rating);
+                        intentWatchRev.putExtra("values", intendMes);
+                        startActivity(intentWatchRev);
+                    }
                     //finish();   //  TODO: decide if to finish or if we have the options to pull back
                 } else if (position == 1){// Rank
                     if (intendMes[4].equals("All"))

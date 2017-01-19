@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     static FirebaseUser firebaseUser = null;
     static User user_ref = null;
     static boolean user_created = false;
+    static String current_semester = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +62,9 @@ public class LoginActivity extends AppCompatActivity {
         static_db_ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String[] temp_string = new String[8];
+                String[] temp_string = new String[20];
                 int i = 0;
-
+                current_semester = "2016_a";
                 for (DataSnapshot child: dataSnapshot.getChildren()){
                     temp_string[i] = child.getValue().toString();
                     i++;

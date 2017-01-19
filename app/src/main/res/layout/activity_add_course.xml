@@ -26,7 +26,7 @@
             android:textSize="24sp"
 
             android:gravity="center"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="70dp"
             android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
             android:textColor="@color/my_color_rank_text"
             android:id="@+id/textView_Timetable"
@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Select\nSemester"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="6dp"
                     android:textSize="17dp"
                     android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
@@ -54,10 +54,10 @@
                     android:layout_width="214dp"
                     android:layout_height="35dp"
                     android:layout_marginLeft="100dp"
-                    android:layout_marginTop="30dp">
+                    android:layout_marginTop="15dp">
 
                     <Spinner
-                        android:id="@+id/spinner_faculty"
+                        android:id="@+id/spinner_semester"
                         android:layout_width="214dp"
                         android:minWidth="10dp"
                         android:dropDownWidth="wrap_content"
@@ -81,165 +81,245 @@
 
                 </RelativeLayout>
             </RelativeLayout>
-    <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/academy_rank"
-            android:textSize="19dp"
-            android:id="@+id/Code_course_Name_text2"
-            android:layout_toRightOf="@+id/Code_course_Name_text1"
-            android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
-            android:textColor="@android:color/background_light"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp" />
+            <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:text="Course Name:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/Code_course_Name_text1"
-            android:textSize="19dp"
-            android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
-            android:textColor="@color/my_color_rank_text"
-            android:textStyle="normal|bold|italic"
-            android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/Code_course_text1"
-            android:layout_alignStart="@+id/Code_course_text1" />
+                <TextView
+                    android:text="Course Name:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Code_course_Name_text1"
+                    android:textSize="19dp"
+                    android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textColor="@color/my_color_rank_text"
+                    android:textStyle="normal|bold|italic"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignLeft="@+id/Code_course_text1"
+                    android:layout_alignStart="@+id/Code_course_text1"
+                    android:layout_marginTop="15dp" />
 
-        <TextView
-                android:text="Code course:"
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Algebra1"
+                    android:ems="10"
+                    android:id="@+id/Code_course_Name_text2"
+                    android:layout_marginLeft="10dp"
+                    android:background="@android:drawable/editbox_background"
+                    android:padding="7dp"
+                    android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
+                    android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                    android:layout_alignBaseline="@+id/Code_course_Name_text1"
+                    android:layout_alignBottom="@+id/Code_course_Name_text1"
+                    android:layout_toRightOf="@+id/Code_course_Name_text1"
+                    android:layout_toEndOf="@+id/Code_course_Name_text1"
+                    android:layout_marginStart="28dp" />
+
+                <TextView
+                        android:text="Code course:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Code_course_text1"
+                        android:textSize="19dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                        android:textColor="@color/my_color_rank_text"
+                        android:textStyle="normal|bold|italic"
+                        android:layout_marginTop="60dp" />
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="123456"
+                    android:ems="10"
+                    android:id="@+id/Code_course_text2"
+                    android:background="@android:drawable/editbox_background"
+                    android:padding="7dp"
+                    android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
+                    android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                    android:layout_alignBaseline="@+id/Code_course_text1"
+                    android:layout_alignBottom="@+id/Code_course_text1"
+                    android:layout_alignRight="@+id/Code_course_Name_text2"
+                    android:layout_alignEnd="@+id/Code_course_Name_text2"
+                    android:layout_alignLeft="@+id/Code_course_Name_text2"
+                    android:layout_alignStart="@+id/Code_course_Name_text2"
+                    android:inputType="number" />
+
+
+                <TextView
+                        android:text="Credits:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Credits_text1"
+                        android:textSize="19dp"
+                    android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                        android:textColor="@color/my_color_rank_text"
+                        android:textStyle="normal|bold|italic"
+                    android:layout_weight="0.29"
+                        android:layout_marginTop="15dp"
+                    android:layout_below="@+id/Code_course_text2"
+                    android:layout_alignLeft="@+id/Code_course_text1"
+                    android:layout_alignStart="@+id/Code_course_text1"
+                    android:paddingTop="5dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="3.5"
+                    android:ems="10"
+                    android:id="@+id/Credits_text2"
+                    android:background="@android:drawable/editbox_background"
+                    android:padding="7dp"
+                    android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
+                    android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                    android:layout_alignTop="@+id/Credits_text1"
+                    android:layout_alignRight="@+id/Code_course_text2"
+                    android:layout_alignEnd="@+id/Code_course_text2"
+                    android:layout_alignLeft="@+id/Code_course_text2"
+                    android:layout_alignStart="@+id/Code_course_text2"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                        android:text="Time:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Time_text1"
+                        android:textSize="19dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                        android:textColor="@color/my_color_rank_text"
+                        android:textStyle="normal|bold|italic"
+                        android:layout_below="@id/Credits_text1"
+                        android:layout_marginTop="20dp"
+                    android:paddingTop="6dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Sunday, 16:00 - 17:50"
+                    android:ems="10"
+                    android:id="@+id/Time_text2"
+                    android:background="@android:drawable/editbox_background"
+                    android:padding="7dp"
+                    android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
+                    android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                    android:layout_alignTop="@+id/Time_text1"
+                    android:layout_alignRight="@+id/Credits_text2"
+                    android:layout_alignEnd="@+id/Credits_text2"
+                    android:layout_alignLeft="@+id/Credits_text2"
+                    android:layout_alignStart="@+id/Credits_text2" />
+
+
+                    <TextView
+                        android:text="Room:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Room_text1"
+                        android:textSize="19dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                        android:textColor="@color/my_color_rank_text"
+                        android:textStyle="normal|bold|italic"
+                        android:layout_below="@id/Time_text1"
+                        android:layout_marginTop="20dp"
+                        android:paddingTop="6dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="M-305"
+                    android:ems="10"
+                    android:id="@+id/Room_text2"
+                    android:background="@android:drawable/editbox_background"
+                    android:padding="7dp"
+                    android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
+                    android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                    android:layout_alignTop="@+id/Room_text1"
+                    android:layout_alignRight="@+id/Time_text2"
+                    android:layout_alignEnd="@+id/Time_text2"
+                    android:layout_alignLeft="@+id/Time_text2"
+                    android:layout_alignStart="@+id/Time_text2" />
+
+
+                <TextView
+                    android:text="Lecurer name:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Lec_name_text1"
+                    android:textSize="19dp"
+                    android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textColor="@color/my_color_rank_text"
+                    android:textStyle="normal|bold|italic"
+                    android:paddingBottom="28dp"
+                    android:layout_below="@+id/Room_text2"
+                    android:layout_alignLeft="@+id/Syllabus_text1"
+                    android:layout_alignStart="@+id/Syllabus_text1"
+                    android:layout_marginTop="20dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:hint="Me as default"
+                    android:ems="10"
+                    android:id="@+id/Lec_name_text2"
+                    android:background="@android:drawable/editbox_background"
+                    android:padding="7dp"
+                    android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
+                    android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/Room_text2"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignLeft="@+id/Room_text2"
+                    android:layout_alignStart="@+id/Room_text2"
+                    android:layout_marginTop="16dp" />
+
+                <TextView
+                    android:text="Syllabus:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Syllabus_text1"
+                    android:textSize="19dp"
+                    android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textColor="@color/my_color_rank_text"
+                    android:textStyle="normal|bold|italic"
+                    android:layout_below="@+id/Lec_name_text1"
+                    android:layout_alignLeft="@+id/Room_text1"
+                    android:layout_alignStart="@+id/Room_text1"
+                    android:paddingTop="20dp" />
+
+                <EditText
+                    android:layout_width="320dp"
+                    android:hint="Syllabus of course"
+                    android:ems="10"
+                    android:id="@+id/Syllabus_text2"
+                    android:background="@android:drawable/editbox_background"
+                    android:padding="7dp"
+                    android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
+                    android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                    android:layout_alignTop="@+id/Syllabus_text1"
+                    android:layout_alignRight="@+id/Room_text2"
+                    android:layout_alignEnd="@+id/Room_text2"
+                    android:layout_alignLeft="@+id/Room_text2"
+                    android:layout_alignStart="@+id/Room_text2"
+                    android:layout_height="70dp" />
+
+
+            </RelativeLayout>
+
+            <Button
+                android:text="Add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/Code_course_text1"
-                android:textSize="19dp"
-                android:layout_marginLeft="10dp"
-                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
-                android:textColor="@color/my_color_rank_text"
-                android:textStyle="normal|bold|italic"
-                android:layout_marginTop="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/academy_rank"
-                android:textSize="19dp"
-                android:id="@+id/Code_course_text2"
-                android:layout_toRightOf="@+id/Code_course_text1"
-                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
-                android:textColor="@android:color/background_light"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp" />
-
-            <TextView
-                android:text="Credits:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Credits_text1"
-                android:textSize="19dp"
-                android:layout_marginLeft="10dp"
-                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
-                android:textColor="@color/my_color_rank_text"
-                android:textStyle="normal|bold|italic"
-                android:layout_below="@id/Code_course_text1"
-                android:layout_weight="0.29"
+                android:id="@+id/button_add"
+                android:background="@drawable/button_shape"
+                android:textSize="@dimen/activity_vertical_margin"
+                android:layout_gravity="end"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/faculty_rank"
-                android:textSize="19dp"
-                android:id="@+id/Credits_text2"
-                android:layout_toRightOf="@+id/Credits_text1"
-                android:layout_below="@+id/Code_course_text2"
-                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
-                android:textColor="@android:color/background_light"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:text="Time:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Time_text1"
-                android:textSize="19dp"
-                android:layout_marginLeft="10dp"
-                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
-                android:textColor="@color/my_color_rank_text"
-                android:textStyle="normal|bold|italic"
-                android:layout_below="@id/Credits_text1"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Lecturer_rank"
-                android:textSize="19dp"
-                android:id="@+id/Time_text2"
-                android:layout_toRightOf="@+id/Time_text1"
-                android:layout_below="@+id/Credits_text2"
-                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
-                android:textColor="@android:color/background_light"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:text="Room:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Room_text1"
-                android:textSize="19dp"
-                android:layout_marginLeft="10dp"
-                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
-                android:textColor="@color/my_color_rank_text"
-                android:textStyle="normal|bold|italic"
-                android:layout_below="@id/Time_text1"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/course_rank"
-                android:textSize="19dp"
-                android:id="@+id/Room_text2"
-                android:layout_toRightOf="@+id/Room_text1"
-                android:layout_below="@+id/Time_text2"
-                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
-                android:textColor="@android:color/background_light"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:text="Syllabus:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Syllabus_text1"
-                android:textSize="19dp"
-                android:layout_marginLeft="10dp"
-                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
-                android:textColor="@color/my_color_rank_text"
-                android:textStyle="normal|bold|italic"
-                android:layout_below="@id/Room_text1"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/course_rank"
-                android:textSize="19dp"
-                android:id="@+id/Syllabus_text2"
-                android:layout_toRightOf="@+id/Syllabus_text1"
-                android:layout_below="@+id/Room_text2"
-                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
-                android:textColor="@android:color/background_light"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp" />
-
-    </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

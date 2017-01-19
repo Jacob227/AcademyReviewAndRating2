@@ -5,7 +5,15 @@ package com.example.academyreviewandrating.Model;
  */
 
 public class User {
-    private String userName,Institution,Faculty,Email,Phone,fullName,privilage;
+    private String userName;
+    private String Institution;
+    private String Faculty;
+    private String Email;
+    private String Phone;
+    private String fullName;
+    private String privilage;
+    private Boolean lec_in_system;
+    private String started_semester;
     private boolean image_exist;
 
 
@@ -22,11 +30,30 @@ public class User {
         this.fullName = fullName;
         this.privilage = privilage;
         this.image_exist = false;
+        this.started_semester = "";
+        this.lec_in_system = false;
     }
     //copy constractor
     public User (User user) {
         this(user.getUserName(),user.getInstitution(),user.getFaculty(),
                 user.getEmail(),user.getPhone(),user.getFullName(),user.isPrivilage());
+    }
+
+
+    public Boolean getLec_in_system() {
+        return lec_in_system;
+    }
+
+    public void setLec_in_system(Boolean lec_in_system) {
+        this.lec_in_system = lec_in_system;
+    }
+
+    public String getStarted_semester() {
+        return started_semester;
+    }
+
+    public void setStarted_semester(String started_semester) {
+        this.started_semester = started_semester;
     }
 
     public String getUserName() {

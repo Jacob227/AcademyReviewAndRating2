@@ -4,6 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
     <TextView
@@ -197,6 +205,59 @@
     </RelativeLayout>
     </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Started\nSemester"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="17dp"
+                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                android:textColor="@color/my_color_rank_text"
+                android:textStyle="normal|bold|italic"/>
+            <RelativeLayout
+                android:layout_weight="0.1"
+                android:background="@drawable/spinner_shape"
+                android:orientation="horizontal"
+                android:layout_alignBottom="@+id/textView_Choose_semester"
+                android:layout_marginRight="10dp"
+                android:layout_alignLeft="@+id/choose_semster_but_list"
+                android:layout_alignStart="@+id/choose_semster_but_list"
+                android:layout_width="205dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="120dp">
+
+                <Spinner
+                    android:id="@+id/editTextSemester"
+                    android:layout_width="205dp"
+                    android:minWidth="10dp"
+                    android:dropDownWidth="wrap_content"
+                    android:textDirection="ltr"
+                    android:popupBackground="@android:drawable/spinner_background"
+
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown"
+                    android:layout_height="35dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/spinner_icon_2" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
     <RadioGroup
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -224,6 +285,69 @@
             android:layout_marginLeft="30dp" />
     </RadioGroup>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Affiliate to System (for Teachers only)"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="19dp"
+            android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+            android:textColor="@color/my_color_rank_text"
+            android:textStyle="normal|bold|italic"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Find your \n    name"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="17dp"
+                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                android:textColor="@color/my_color_rank_text"
+                android:textStyle="normal|bold|italic"/>
+            <RelativeLayout
+                android:layout_weight="0.1"
+                android:background="@drawable/spinner_shape"
+                android:orientation="horizontal"
+                android:layout_alignBottom="@+id/textView_Choose_semester"
+                android:layout_marginRight="10dp"
+                android:layout_alignLeft="@+id/choose_semster_but_list"
+                android:layout_alignStart="@+id/choose_semster_but_list"
+                android:layout_width="205dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="120dp">
+
+                <Spinner
+                    android:id="@+id/editTextLecName"
+                    android:layout_width="205dp"
+                    android:minWidth="10dp"
+                    android:dropDownWidth="wrap_content"
+                    android:textDirection="ltr"
+                    android:popupBackground="@android:drawable/spinner_background"
+
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown"
+                    android:layout_height="35dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/spinner_icon_2" />
+
+            </RelativeLayout>
+        </RelativeLayout>
     <Button
         android:text="Sign up"
         android:layout_width="match_parent"
@@ -237,8 +361,10 @@
         style="@style/Base.TextAppearance.AppCompat.Widget.Button"
         android:textSize="18sp"
         android:alpha="80"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:onClick="RegisterClick"/>
 
+    </LinearLayout>
+</ScrollView>
 
 </LinearLayout>

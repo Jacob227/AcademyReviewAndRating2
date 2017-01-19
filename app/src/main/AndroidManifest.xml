@@ -41,7 +41,8 @@
         <activity android:name=".ReviewTableFaculty" />
         <activity android:name=".listViewCourseList" />
         <activity android:name=".AddLecturer" />
-        <activity android:name=".AddCourse"></activity>
+        <activity android:name=".AddCourse" />
+        <activity android:name=".AffiliateToSystem"></activity>
     </application>
 
 </manifest>

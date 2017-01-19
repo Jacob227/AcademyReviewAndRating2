@@ -37,8 +37,10 @@ import java.util.List;
 public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private DatabaseReference mDatabaseFac;
+    private DatabaseReference mDatabaseLec;
     private String textUserName,textInstitution,textFaculty,textEmail,textPhone,textFullName,textPassword;
-    private Spinner faculty_spinner, academy_spinner;
+    private Spinner faculty_spinner, academy_spinner,semester_spinner,lec_spinner;
+    private EditText et_userName;
     private Boolean textPrivilage;    //TODO
     private FirebaseAuth firebaseAuth;
     private boolean flag_academy,flag_faculty;
@@ -53,8 +55,12 @@ public class RegisterActivity extends AppCompatActivity {
         final RegisterActivity ref_activity = this;
         flag_academy = flag_faculty = false;
 
+        et_userName = (EditText) findViewById(R.id.editTextRegUserName) ;
         faculty_spinner = (Spinner) findViewById(R.id.editTextRegFacl);
         academy_spinner = (Spinner) findViewById(R.id.editTextRegInst);
+        semester_spinner = (Spinner) findViewById(R.id.editTextSemester);
+        lec_spinner = (Spinner) findViewById(R.id.editTextLecName);
+
         //ACTextView = (AutoCompleteTextView) findViewById(R.id.editTextRegInst);
         //ACTextView.setDropDownBackgroundResource(R.color.my_color_butt);
         //ACTextView.setThreshold(1);
@@ -82,15 +88,28 @@ public class RegisterActivity extends AppCompatActivity {
         academy_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mDatabaseFac = FirebaseDatabase.getInstance().getReference("Academy/" + parent.getSelectedItem().toString()
-                + "/Faculty");
+                final AdapterView<?> mparent = parent;
+                mDatabaseFac = FirebaseDatabase.getInstance().getReference("Academy");//+ parent.getSelectedItem().toString() + "/Faculty");
                 mDatabaseFac.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        //mparent.getSelectedItem().toString();
                         List<String> List_inst = new ArrayList<String>();
-                        for (DataSnapshot child: dataSnapshot.getChildren()){
+                        List<String> List_Semester = new ArrayList<String>();
+                        DataSnapshot mDataSnap = dataSnapshot.child(mparent.getSelectedItem().toString()).child("/Faculty");
+                        for (DataSnapshot child: mDataSnap.getChildren()){
                             List_inst.add(child.getKey());
                         }
+
+                        DataSnapshot mDataSnapSemester = dataSnapshot.child(mparent.getSelectedItem().toString()).child("/Semeters");
+                        for (DataSnapshot child: mDataSnapSemester.getChildren()){
+                            List_Semester.add(child.getKey());
+                        }
+                        String[] semester_str = new String[List_Semester.size()];
+                        semester_str = List_Semester.toArray(semester_str);
+                        ArrayAdapter<String> adapterSem = new ArrayAdapter<String>(ref_activity, R.layout.my_spinner_item, semester_str );
+                        semester_spinner.setAdapter(adapterSem);
+
                         String[] inst_str = new String[List_inst.size()];
                         inst_str = List_inst.toArray(inst_str);
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ref_activity, R.layout.my_spinner_item, inst_str );
@@ -111,6 +130,57 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        faculty_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mDatabaseLec = FirebaseDatabase.getInstance().getReference("Academy/" + academy_spinner.getSelectedItem().toString()
+                        + "/Faculty/" + adapterView.getSelectedItem().toString() + "/Lecturer_faculty");
+                mDatabaseLec.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        List<String> List_Semester = new ArrayList<String>();
+                        List_Semester.add("");
+                        for (DataSnapshot child: dataSnapshot.getChildren()){
+                            List_Semester.add(child.getKey());
+                        }
+                        String[] semester_str = new String[List_Semester.size()];
+                        semester_str = List_Semester.toArray(semester_str);
+                        ArrayAdapter<String> adapterSem = new ArrayAdapter<String>(ref_activity, R.layout.my_spinner_item, semester_str );
+                        lec_spinner.setAdapter(adapterSem);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        lec_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                RadioGroup radioclick = (RadioGroup)findViewById(R.id.RadioGroupRegStudTeac);
+                int idPriv = radioclick.getCheckedRadioButtonId();
+                RadioButton TempRadio = (RadioButton) findViewById(idPriv);
+                String textRadio = TempRadio.getText().toString();
+
+                if (!adapterView.getSelectedItem().toString().equals("") && (textRadio.equals("Teacher")))
+                    et_userName.setText(adapterView.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
     }
 
@@ -118,8 +188,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         EditText editText;
 
-        editText = (EditText) findViewById(R.id.editTextRegUserName);
-        textUserName = editText.getText().toString().trim();
+        textUserName = et_userName.getText().toString().trim();
 
         if (flag_academy && flag_faculty) {
             textInstitution = academy_spinner.getSelectedItem().toString();
@@ -144,10 +213,16 @@ public class RegisterActivity extends AppCompatActivity {
         String textRadio = TempRadio.getText().toString();
         if (textRadio.equals("Student")) {
             User user = new User(textUserName, textInstitution, textFaculty, textEmail, textPhone, textFullName, textRadio);
+            user.setStarted_semester(semester_spinner.getSelectedItem().toString());
             boolean res = checkAllRegisterDetails(user);
         }
         else { //teacher
             LecturerUser user = new LecturerUser(textUserName, textInstitution, textFaculty, textEmail, textPhone, textFullName, textRadio);
+            user.setStarted_semester(semester_spinner.getSelectedItem().toString());
+            if (!lec_spinner.getSelectedItem().toString().equals("")){ // found
+                user.setUserName(lec_spinner.getSelectedItem().toString());
+                user.setLec_in_system(true);
+            }
             boolean res = checkAllRegisterDetails(user);
         }
 

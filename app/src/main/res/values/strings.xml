@@ -33,4 +33,7 @@
         Because those are beautiful years, we would also like to enjoy!</string>
     <string name="few_words_academy">Here you can express yourself freely on your rating.</string>
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

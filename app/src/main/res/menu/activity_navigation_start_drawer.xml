@@ -23,6 +23,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Add course" />
         <item
+            android:id="@+id/nav_AffiliateToSystem"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Affiliate To System (Lecturer)" />
+        <item
             android:id="@+id/nav_add_lecturer"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Add lecturer" />
@@ -39,10 +43,7 @@
                 android:id="@+id/nav_Send_messege"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Chat" />
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+
         </menu>
     </item>
 
