@@ -142,8 +142,14 @@ public class RegisterActivity extends AppCompatActivity {
         int idPriv = radioclick.getCheckedRadioButtonId();
         RadioButton TempRadio = (RadioButton) findViewById(idPriv);
         String textRadio = TempRadio.getText().toString();
-        User user = new User(textUserName,textInstitution,textFaculty,textEmail,textPhone,textFullName,textRadio);
-        boolean res = checkAllRegisterDetails(user);
+        if (textRadio.equals("Student")) {
+            User user = new User(textUserName, textInstitution, textFaculty, textEmail, textPhone, textFullName, textRadio);
+            boolean res = checkAllRegisterDetails(user);
+        }
+        else { //teacher
+            LecturerUser user = new LecturerUser(textUserName, textInstitution, textFaculty, textEmail, textPhone, textFullName, textRadio);
+            boolean res = checkAllRegisterDetails(user);
+        }
 
     }
 

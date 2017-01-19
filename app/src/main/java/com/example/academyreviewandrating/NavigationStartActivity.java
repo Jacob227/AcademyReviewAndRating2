@@ -27,6 +27,7 @@ public class NavigationStartActivity extends AppCompatActivity
     private android.app.FragmentManager fragmentManager;
     public static TextView mTV = null;
     public static ImageView unreadM = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,6 @@ public class NavigationStartActivity extends AppCompatActivity
         toolbar.setTitle("      Academy R & R");
         setSupportActionBar(toolbar);
         firebaseAuth = FirebaseAuth.getInstance();
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -125,7 +125,17 @@ public class NavigationStartActivity extends AppCompatActivity
             startActivity(new Intent(this,LoginActivity.class));
         } else if (id == R.id.nav_my_courses) {
             fragmentManager.beginTransaction().replace(R.id.content_frame,new ChooseScheduleFragment()).commit();
-        }
+        } else if (id == R.id.nav_add_course) {
+            if (LoginActivity.user_ref != null){
+                if (LoginActivity.user_ref.isPrivilage().equals("Student")){
+                    Toast.makeText(this,"You are not allowed to insert new course",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    fragmentManager.beginTransaction().replace(R.id.content_frame,new AddCourse()).commit();
+                }
+            }
+         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

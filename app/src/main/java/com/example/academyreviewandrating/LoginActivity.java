@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.academyreviewandrating.Model.LecturerUser;
 import com.example.academyreviewandrating.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -60,14 +61,21 @@ public class LoginActivity extends AppCompatActivity {
         static_db_ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String[] temp_string = new String[7];
+                String[] temp_string = new String[8];
                 int i = 0;
+
                 for (DataSnapshot child: dataSnapshot.getChildren()){
                     temp_string[i] = child.getValue().toString();
                     i++;
                     //user_ref = (User)child.getValue();
                 }
-                user_ref = new User(temp_string[6], temp_string[3],temp_string[1],temp_string[0],temp_string[4],temp_string[2],temp_string[5]);
+               // user_ref = new User(temp_string[6], temp_string[3],temp_string[1],temp_string[0],temp_string[4],temp_string[2],temp_string[5]);
+                if (temp_string[6].equals("Student")) {
+                    user_ref = dataSnapshot.getValue(User.class);
+                }
+                else {
+                    user_ref = dataSnapshot.getValue(LecturerUser.class);
+                }
                 user_created = true;
                 if (NavigationStartActivity.mTV != null){
                     NavigationStartActivity.mTV.setText(user_ref.getUserName() + "\n  " + user_ref.getFaculty()
