@@ -7,8 +7,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher2"
         android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher2"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/Theme.Design.NoActionBar">
@@ -39,7 +39,9 @@
         <activity android:name=".Courseparticipants" />
         <activity android:name=".ScheduleTable" />
         <activity android:name=".ReviewTableFaculty" />
-        <activity android:name=".listViewCourseList"></activity>
+        <activity android:name=".listViewCourseList" />
+        <activity android:name=".AddLecturer" />
+        <activity android:name=".AddCourse"></activity>
     </application>
 
 </manifest>

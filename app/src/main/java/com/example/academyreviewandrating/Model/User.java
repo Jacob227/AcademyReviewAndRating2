@@ -6,13 +6,14 @@ package com.example.academyreviewandrating.Model;
 
 public class User {
     private String userName,Institution,Faculty,Email,Phone,fullName,privilage;
+    private boolean image_exist;
 
 
     public User(){
 
     }
 
-    public User(String userName,String Institution,String Faculty,String Email,String Phone,String fullName,String privilage){
+    public User(String userName,String Institution,String Faculty,String Email,String Phone,String fullName,String privilage ){
         this.userName = userName;
         this.Institution = Institution;
         this.Faculty = Faculty;
@@ -20,6 +21,7 @@ public class User {
         this.Phone = Phone;
         this.fullName = fullName;
         this.privilage = privilage;
+        this.image_exist = false;
     }
     //copy constractor
     public User (User user) {
@@ -75,7 +77,13 @@ public class User {
         this.fullName = fullName;
     }
 
+    public boolean getImage_exist() {
+        return image_exist;
+    }
 
+    public void setImage_exist(boolean image_exist) {
+        this.image_exist = image_exist;
+    }
     public String isPrivilage() {
         return privilage;
     }
