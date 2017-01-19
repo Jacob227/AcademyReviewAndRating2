@@ -22,8 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_below="@+id/bar_course_details">
 
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="normal|bold|italic"
                 android:textSize="19dp"
-                android:layout_marginLeft="0dp"
+                android:layout_marginLeft="15dp"
                 android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
                 android:textColor="@color/my_color_rank_text"
                 android:id="@+id/textView_Timetable"
@@ -131,7 +131,7 @@
                 android:layout_alignBottom="@+id/textView_Timetable"
                 android:layout_alignLeft="@+id/Academy_text2"
                 android:layout_alignStart="@+id/Academy_text2"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="20dp" />
 
             <RelativeLayout
                 android:layout_weight=".28"
