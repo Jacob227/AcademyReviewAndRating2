@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -13,7 +11,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.academyreviewandrating.Model.ChatMessage;
-import com.example.academyreviewandrating.Model.User;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -26,13 +23,14 @@ import com.google.firebase.database.ValueEventListener;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private DatabaseReference mDatabaseuser;
+    private DatabaseReference mDatabaReadMesseges;
     private EditText messegeText;
     private FirebaseListAdapter<ChatMessage> adapter;
     //private FirebaseUser senderID;
     private String ReciverName;
     private String ReciverID;
     private String SenderName;
-
+    private  String CurrentUID ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,42 +40,55 @@ import com.google.firebase.database.ValueEventListener;
         messegeText = (EditText) findViewById(R.id.new_message);
         Intent intentChatRoom = getIntent();
         Bundle bd = intentChatRoom.getExtras();
+        CurrentUID = mAuth.getCurrentUser().getUid();
         if(bd != null)
         {
             ReciverID = (String)bd.get("ReciveID");
             ReciverName = (String)bd.get("ReciveName");
         }
+        SenderName = LoginActivity.user_ref.getUserName();
 
-        mDatabaseuser =  FirebaseDatabase.getInstance().getReference();
-        mDatabaseuser.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabaReadMesseges = FirebaseDatabase.getInstance().getReference();
+        mDatabaseuser =  FirebaseDatabase.getInstance().getReference().child("Messeges").child(CurrentUID).child(ReciverID);
+        mDatabaseuser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot mDataSnapshot: dataSnapshot.getChildren()){
-                    String KeyUid = mDataSnapshot.getKey();
-                    if (KeyUid.equals(mAuth.getCurrentUser().getUid())){
-                        SenderName =  mDataSnapshot.getValue(User.class).getUserName();
-                    }
-            }}
+                displayChatMessage();
+                for (DataSnapshot mDataSnapshot : dataSnapshot.getChildren()) {
+                        ChatMessage messages = mDataSnapshot.getValue(ChatMessage.class);
+                        String keyMessege = mDataSnapshot.getKey();
+                        if (messages.getMessageUser().equals(SenderName) == false) {
+                            if (messages.getread() == false) {
+                                mDatabaReadMesseges.child("Messeges").child(CurrentUID)
+                                        .child(ReciverID)
+                                        .child(keyMessege)
+                                        .child("read").setValue(true);
+                            }
+
+                        }
+
+                }
+            }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
             }
         });
-            displayChatMessage();
+
     }
 
     public void sendMessege(View view){
         final String st1 = messegeText.getText().toString();
-        String CurrentUID  = mAuth.getCurrentUser().getUid();
-        mDatabase = FirebaseDatabase.getInstance().getReference("Messeges" );
-        mDatabase.child(CurrentUID).child(ReciverID).push().setValue(new ChatMessage(st1,SenderName));
 
         mDatabase = FirebaseDatabase.getInstance().getReference("Messeges" );
-        mDatabase.child(ReciverID).child(CurrentUID).push().setValue(new ChatMessage(st1,SenderName));
+        mDatabase.child(CurrentUID).child(ReciverID).push().setValue(new ChatMessage(st1,SenderName,true));
 
+        mDatabase = FirebaseDatabase.getInstance().getReference("Messeges" );
+        mDatabase.child(ReciverID).child(CurrentUID).push().setValue(new ChatMessage(st1,SenderName,false));
 
         messegeText.setText("");
         messegeText.requestFocus();
-        displayChatMessage();
+    //    displayChatMessage();
     }
 
 
@@ -95,8 +106,7 @@ import com.google.firebase.database.ValueEventListener;
              //Get references to the views of list_item.xml
              TextView messageText, messageUser, messageTime;
              messageText = (TextView) v.findViewById(R.id.comment);
-            // messageUser = (TextView) v.findViewById(R.id.usernmae);
-           //  messageTime = (TextView) v.findViewById(R.id.message_time);
+
 
              if(model.getMessageUser().equals(ReciverName)) {
                  wrapper.setGravity(Gravity.RIGHT);
@@ -106,8 +116,9 @@ import com.google.firebase.database.ValueEventListener;
              else {
                  wrapper.setGravity(Gravity.LEFT);
                  messageText.setBackgroundResource(R.drawable.bubble_yellow);
-
              }
+
+
 
              messageText.setText(model.getMessageText());
             // messageUser.setText(model.getMessageUser());

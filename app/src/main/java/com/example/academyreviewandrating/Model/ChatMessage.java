@@ -9,10 +9,12 @@ public class ChatMessage {
     private String messageText;
     private String messageUser;
     private long messageTime;
+    private Boolean read = true;
 
-    public ChatMessage(String messageText, String messageUser) {
+    public ChatMessage(String messageText, String messageUser,Boolean R) {
         this.messageText = messageText;
         this.messageUser = messageUser;
+        this.read = R;
 
         messageTime = new Date().getTime();
     }
@@ -43,5 +45,16 @@ public class ChatMessage {
     public void setMessageTime(long messageTime) {
         this.messageTime = messageTime;
     }
+
+    public void setUnread(Boolean R)
+    {
+        read = R;
+    }
+    public Boolean getread()
+    {
+        return read;
+    }
+
+
 }
 

@@ -14,7 +14,6 @@ import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -104,19 +103,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
             }
         }, 3500);
 
-        mListenDatabase = FirebaseDatabase.getInstance().getReference("Messeges").child(mAuth.getCurrentUser().getUid());
-        mListenDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Toast.makeText(ref_activity,"hiiiiiiii",Toast.LENGTH_LONG).show();
-                NavigationStartActivity.unreadM.setVisibility(ImageView.VISIBLE);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         //faculty_selected = LoginActivity.user_ref.getFaculty(); //user default faculty
         ///111

@@ -4,117 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="0dp"
-    android:paddingBottom="0dp"
-    android:paddingEnd="0dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingStart="0dp"
-    android:paddingTop="0dp">
+    android:orientation="vertical">
 
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="400dp"
-            android:layout_height="120dp"
-            android:background="@drawable/bg1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <com.example.academyreviewandrating.CircleImageView
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:src="@drawable/no_avatar"
-        app:civ_border_width="2dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-            android:onClick="loadimage"
-            android:id="@+id/imageprof" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Liran Schwartz"
-            android:textSize="30dp"
-            android:id="@+id/username"
-            tools:fontFamily="casual"
-            android:layout_below="@+id/imageprof"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="18dp"
-            android:textColor="@color/light" />
-
-        <TextView
-            android:text="Faculty: Industrial Engennerr"
-            android:layout_width="wrap_content"
-            android:textSize="17dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/userdetail"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="13dp"
-            android:textColor="@color/light"
-            android:id="@+id/userdetail1" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/userdetail1"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="30dp"
-            android:id="@+id/RElemail"
-            android:layout_alignParentBottom="true">
-
+            android:layout_height="218dp">
             <ImageView
-                android:id="@+id/emailcont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_email_black"
-                android:paddingStart="33dp"
-                android:paddingLeft="33dp"
-                android:layout_alignTop="@+id/userdetail3" />
-
-            <ImageView
-                android:id="@+id/phonecont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_phone_black"
-                android:layout_below="@id/emailcont"
-                android:paddingStart="33dp"
-                android:paddingLeft="33dp"
-                android:layout_alignTop="@+id/userdetail3"
-                android:paddingTop="70dp" />
-            <TextView
-                android:text="054-8011623"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22dp"
-                android:id="@+id/userdetail4"
-                android:textColor="@color/light"
-                android:paddingTop="70dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp" />
-
-            <TextView
-                android:text="Pitry123@gmail.com"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22dp"
-                android:id="@+id/userdetail3"
-                android:textColor="@color/light"
-                android:layout_alignTop="@+id/userdetail4"
-                android:layout_toRightOf="@+id/emailcont"
-                android:layout_toEndOf="@+id/emailcont"
-                android:layout_marginLeft="46dp"
-                android:layout_marginStart="46dp" />
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg1"/>
+                <com.example.academyreviewandrating.CircleImageView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:src="@drawable/no_avatar"
+                    app:civ_border_width="2dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="22dp"
+                        android:onClick="loadimage"
+                        android:id="@+id/unreadDetail"
+                    android:layout_marginStart="110dp"
+                    android:layout_marginLeft="110dp" />
         </RelativeLayout>
 
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Liran Schwartz"
+                android:textSize="30dp"
+                android:id="@+id/username"
+                tools:fontFamily="casual"
+                android:layout_below="@+id/unreadDetail"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="18dp"
+                android:textColor="@color/light" />
         <TextView
             android:text="User Name: Pitry123"
             android:layout_width="wrap_content"
@@ -127,7 +62,6 @@
             android:layout_alignParentStart="true"
             android:paddingStart="15dp"
             android:paddingLeft="15dp" />
-
         <TextView
             android:text="Student in Braude college"
             android:layout_width="wrap_content"
@@ -138,7 +72,79 @@
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+            <TextView
+                android:text="Faculty: Industrial Engennerr"
+                android:layout_width="wrap_content"
+                android:textSize="17dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userdetail"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="13dp"
+                android:textColor="@color/light"
+                android:id="@+id/userdetail1" />
 
 
-    </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/userdetail1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="30dp"
+                android:id="@+id/RElemail"
+                android:layout_alignParentBottom="true">
+
+                <ImageView
+                    android:id="@+id/emailcont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_email_black"
+                    android:paddingStart="33dp"
+                    android:paddingLeft="33dp"
+                    android:layout_alignTop="@+id/userdetail3" />
+
+                <ImageView
+                    android:id="@+id/phonecont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_phone_black"
+                    android:layout_below="@id/emailcont"
+                    android:paddingStart="33dp"
+                    android:paddingLeft="33dp"
+                    android:layout_alignTop="@+id/userdetail3"
+                    android:paddingTop="70dp" />
+                <TextView
+                    android:text="054-8011623"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22dp"
+                    android:id="@+id/userdetail4"
+                    android:textColor="@color/light"
+                    android:paddingTop="70dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="25dp" />
+
+                <TextView
+                    android:text="Pitry123@gmail.com"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22dp"
+                    android:id="@+id/userdetail3"
+                    android:textColor="@color/light"
+                    android:layout_alignTop="@+id/userdetail4"
+                    android:layout_toRightOf="@+id/emailcont"
+                    android:layout_toEndOf="@+id/emailcont"
+                    android:layout_marginLeft="46dp"
+                    android:layout_marginStart="46dp" />
+            </RelativeLayout>
+
+
+
+
+
+
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -5,13 +5,10 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -119,7 +116,7 @@ public class ChatRoom extends Fragment {
         String CurrUID =  mAuth.getCurrentUser().getUid();
         Set set = mMap.entrySet();
         Iterator i = set.iterator();
-        ArrayAdapter<String> mArrayAdapter;
+        UserChatArrayAdapter mArrayAdapter;
         ArrayList<String> ListFilter = new ArrayList<String>();
         // Display elements
         while(i.hasNext()) {
@@ -127,7 +124,9 @@ public class ChatRoom extends Fragment {
             String preFix = (String)me.getKey();
             if(Suser.isEmpty()==true)
             {
-                ListFilter.add(preFix);
+                if( CurrUID.equals(mMap.get(preFix)) == false) {
+                    ListFilter.add(preFix);
+                }
             }
             else if(preFix.startsWith(Suser) == true){
                 if ( CurrUID.equals(mMap.get(preFix)) == false)
@@ -135,7 +134,8 @@ public class ChatRoom extends Fragment {
             }
 
         }
-        mArrayAdapter = new ArrayAdapter<String>(my_activity,R.layout.user_list_item,R.id.user_item,ListFilter);
+       // mArrayAdapter = new ArrayAdapter<String>(my_activity,R.layout.user_list_item,R.id.user_item,ListFilter);
+        mArrayAdapter = new UserChatArrayAdapter(my_activity,ListFilter,NavigationStartActivity.UsernamesListUnRead);
         listOfUsers.setAdapter(mArrayAdapter);
         adapter = mArrayAdapter;
     }

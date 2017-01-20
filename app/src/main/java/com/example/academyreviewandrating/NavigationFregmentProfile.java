@@ -70,7 +70,7 @@ public class NavigationFregmentProfile extends Fragment {
         mStorage = FirebaseStorage.getInstance();
         imagesRef = mStorage.getReference();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Iprofile =  (ImageView)getActivity().findViewById(R.id.imageprof);
+        Iprofile =  (ImageView)getActivity().findViewById(R.id.unreadDetail);
         UserName = (TextView)getActivity().findViewById(R.id.username) ;
         UserDetail = (TextView)getView().findViewById(R.id.userdetail) ;
         Iprofile.setOnClickListener(new View.OnClickListener(){
@@ -98,35 +98,6 @@ if (LoginActivity.user_created == true){
                 }
                 ShowDetail();
 
-           //    mDatabase.child("Images").child(UID).addListenerForSingleValueEvent(new ValueEventListener(){
-           //        @Override
-           //        public void onDataChange(DataSnapshot dataSnapshot) {
-           //            for(DataSnapshot mDataSnapshot: dataSnapshot.getChildren()){
-           //                String imagespath =  mDataSnapshot.getValue(String.class);
-           //                String KeyUid = mDataSnapshot.getKey();
-           //                if(imagespath.isEmpty() == false) {
-           //                    mStorage.getReference().child("UserImage").child(UID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-           //                        @Override
-           //                        public void onSuccess(Uri uri) {
-           //                           // insertImageRotation(uri);
-           //                            Iprofile.setImageURI(uri);
-           //                        }
-           //                    });
-           //                }
-
-           //            }
-           //        }
-
-           //        @Override
-           //        public void onCancelled(DatabaseError databaseError) {
-
-           //        }
-           //    });
-
-
-
-
-
             }
 
 
@@ -150,9 +121,11 @@ if (LoginActivity.user_created == true){
         UserDetail.setText(curruser.getEmail());
         UserDetail = (TextView)getView().findViewById(R.id.userdetail4) ;
         UserDetail.setText(curruser.getPhone());
-        StorageReference ref = mStorage.getReference().child("UserImage").child(UID);
-        Glide.with(this).using(new FirebaseImageLoader()).load(ref).into(Iprofile);
-    }
+        if(curruser.getImage_exist()==true) {
+            StorageReference ref = mStorage.getReference().child("UserImage").child(UID);
+            Glide.with(this).using(new FirebaseImageLoader()).load(ref).into(Iprofile);
+        }
+        }
 
 
 public static int getOrientation(int orient){

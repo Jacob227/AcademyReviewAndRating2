@@ -16,17 +16,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.academyreviewandrating.Model.ChatMessage;
+import com.example.academyreviewandrating.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class NavigationStartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private FirebaseAuth mAuth;
+    private DatabaseReference mListenDatabase;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDBref;
     private android.app.FragmentManager fragmentManager;
     public static TextView mTV = null;
     public static ImageView unreadM = null;
+    public static ArrayList<String> UsernamesListUnRead =new ArrayList<String>();
+    public static ArrayList<User> userList =new ArrayList<User>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +68,47 @@ public class NavigationStartActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame,new NavigationFregmentRankAndReview()).commit();
+
+    mAuth = FirebaseAuth.getInstance();
+    mListenDatabase = FirebaseDatabase.getInstance().getReference("Messeges").child(mAuth.getCurrentUser().getUid());
+    mListenDatabase.addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            Toast.makeText(NavigationStartActivity.this,"hiiiiiiii",Toast.LENGTH_LONG).show();
+            for(DataSnapshot mDataSnapshot: dataSnapshot.getChildren()){
+                for(DataSnapshot mDataSnapshot1: mDataSnapshot.getChildren()){
+                    ChatMessage unreadMessege = mDataSnapshot1.getValue(ChatMessage.class);
+                    if (unreadMessege.getread() == false){
+                        unreadM.setVisibility(ImageView.VISIBLE);
+                        UsernamesListUnRead.add(unreadMessege.getMessageUser());
+                    }
+                }
+            }
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    });
+        mListenDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        mListenDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot mDataSnapshot: dataSnapshot.getChildren()){
+                        User UserS1 = mDataSnapshot.getValue(User.class);
+                        if (userList.contains(UserS1) == false){
+                            userList.add(UserS1);
+                        }
+                    }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private Boolean setUser = false;
