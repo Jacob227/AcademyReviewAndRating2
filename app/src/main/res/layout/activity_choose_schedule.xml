@@ -20,10 +20,12 @@
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingTop="10dp"
+        android:paddingLeft="16dp">
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_below="@+id/bar_course_details">
 
@@ -63,7 +65,7 @@
                 android:textColor="@color/my_color_rank_text"
                 android:textStyle="normal|bold|italic"
                 android:layout_below="@id/Academy_text1"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="25dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -76,7 +78,7 @@
                 android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
                 android:textColor="@android:color/background_light"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="25dp" />
 
                 <TextView
                     android:text="year/\nsemester"
@@ -89,7 +91,7 @@
                     android:textColor="@color/my_color_rank_text"
                     android:id="@+id/textView_Choose_semester"
                     android:layout_below="@+id/Faculty_text2"
-                    android:layout_marginTop="18dp"/>
+                    android:layout_marginTop="35dp"/>
 
 
             <TextView

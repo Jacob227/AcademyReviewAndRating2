@@ -31,6 +31,7 @@ public class Course_Lacturer_rank extends AppCompatActivity {
     private EditText fewWords_et;
     private DatabaseReference mDB_ref;
     private String[] message;
+    private String QuerySurvey = null;
     private Toolbar myActionBar;
     private CheckBox cb_anonymous;
 
@@ -41,6 +42,7 @@ public class Course_Lacturer_rank extends AppCompatActivity {
 
         Intent intent = getIntent();
         message = intent.getStringArrayExtra("values");
+        QuerySurvey = intent.getStringExtra("QuerySurvey");
 
         myActionBar = (Toolbar) findViewById(R.id.toolbar_Rank);
         myActionBar.setNavigationIcon(getResources().getDrawable(R.drawable.back_arrow_icon));
@@ -64,12 +66,11 @@ public class Course_Lacturer_rank extends AppCompatActivity {
         lecterer_ability_rb = (RatingBar) findViewById(R.id.RatingBar_ability_to_study) ;
 
         fewWords_et = (EditText) findViewById(R.id.editText_few_words) ;
-
-        faculty_text.setText(message[0]);
-        academy_text.setText(message[1]);
-        course_text.setText(message[2]);
-        lecturer_text.setText(message[3]);
-        semester_text.setText(message[4]);
+            faculty_text.setText(message[0]);
+            academy_text.setText(message[1]);
+            course_text.setText(message[2]);
+            lecturer_text.setText(message[3]);
+            semester_text.setText(message[4]);
     }
 
     public void sendFeedbackOnClick(View view) {
@@ -85,10 +86,13 @@ public class Course_Lacturer_rank extends AppCompatActivity {
                 Math.round(lecterer_intr_rb.getRating()), fewWords_et.getText().toString(),
                 new SimpleDateFormat("dd-MM-yyyy").format(new Date()),cb_an);
 
-        mDB_ref = FirebaseDatabase.getInstance().getReference("Academy").child(academy_text.getText().toString()).child("Faculty").child(faculty_text.getText().toString()).
-                child("Course").child(course_text.getText().toString()).child(semester_text.getText().toString()).child("Lecturer").child(lecturer_text.getText().toString()).
-                child("Rating");
-//
+        if (QuerySurvey != null){
+            mDB_ref = FirebaseDatabase.getInstance().getReference(QuerySurvey);
+        } else { //not survey
+            mDB_ref = FirebaseDatabase.getInstance().getReference("Academy").child(academy_text.getText().toString()).child("Faculty").child(faculty_text.getText().toString()).
+                    child("Course").child(course_text.getText().toString()).child(semester_text.getText().toString()).child("Lecturer").child(lecturer_text.getText().toString()).
+                    child("Rating");
+        }
         mDB_ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

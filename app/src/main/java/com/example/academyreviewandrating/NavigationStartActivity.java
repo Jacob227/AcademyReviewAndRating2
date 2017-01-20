@@ -187,8 +187,14 @@ public class NavigationStartActivity extends AppCompatActivity
                     fragmentManager.beginTransaction().replace(R.id.content_frame,new AddCourse()).commit();
                 }
             }
-         } else if (id == R.id.nav_AffiliateToSystem) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame,new AffiliateToSystem()).commit();
+         } else if (id == R.id.nav_Class_servey){
+            if (LoginActivity.user_ref != null) {
+                if (LoginActivity.user_ref.isPrivilage().equals("Teacher")) {
+                    fragmentManager.beginTransaction().replace(R.id.content_frame, new ClassServeyLec()).commit();
+                } else {
+                    fragmentManager.beginTransaction().replace(R.id.content_frame, new ClassServeyStud()).commit();
+                }
+            }
         }
 
 

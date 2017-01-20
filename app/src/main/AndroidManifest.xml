@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SET_DEBUG_APP"/>
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
 
     <application
         android:allowBackup="true"
@@ -41,9 +41,7 @@
         <activity android:name=".ScheduleTable" />
         <activity android:name=".ReviewTableFaculty" />
         <activity android:name=".listViewCourseList" />
-        <activity android:name=".AddLecturer" />
-        <activity android:name=".AddCourse" />
-        <activity android:name=".AffiliateToSystem"></activity>
+        <activity android:name=".AddLecturer"></activity>
     </application>
 
 </manifest>

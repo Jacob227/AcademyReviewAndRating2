@@ -14,7 +14,9 @@
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"
         android:dividerHeight="4px"
-        android:divider="@color/my_color_rank_text"/>
+        android:divider="@color/my_color_rank_text"
+        android:paddingLeft="16dp"
+        android:paddingTop="10dp" />
 
     <LinearLayout
         android:orientation="horizontal"

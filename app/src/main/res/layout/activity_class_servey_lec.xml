@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_watch_reviews"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.academyreviewandrating.WatchReviews"
+    android:weightSum="1">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/bar_course_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="@color/toolbar_color">
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:orientation="vertical"
+            android:layout_below="@+id/bar_course_details">
+
+
+            <TextView
+                android:text="Start Servey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Academy_text1"
+                android:textSize="24dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                android:textColor="@color/my_color_rank_text"
+                android:textStyle="normal|bold|italic"
+                android:layout_marginTop="20dp" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Courses"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="17dp"
+                    android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textColor="@color/my_color_rank_text"
+                    android:textStyle="normal|bold|italic"
+                    android:paddingBottom="8dp" />
+
+                <RelativeLayout
+                    android:layout_weight="0.1"
+                    android:background="@drawable/spinner_shape"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="21dp"
+
+                    android:layout_width="205dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="21dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:src="@drawable/spinner_icon_2" />
+
+                    <Spinner
+                        android:id="@+id/spinner_course"
+                        android:layout_width="205dp"
+                        android:minWidth="10dp"
+                        android:dropDownWidth="wrap_content"
+                        android:textDirection="ltr"
+                        android:popupBackground="@android:drawable/spinner_background"
+
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:spinnerMode="dropdown"
+                        android:layout_height="35dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Semester"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="18dp"
+                    android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textColor="@color/my_color_rank_text"
+                    android:textStyle="normal|bold|italic"/>
+
+                <RelativeLayout
+                    android:layout_weight="0.1"
+                    android:background="@drawable/spinner_shape"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="25dp"
+
+                    android:layout_width="205dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:src="@drawable/spinner_icon_2"
+                        android:id="@+id/imageView2" />
+
+                    <Spinner
+                        android:id="@+id/spinner_sem"
+                        android:layout_width="205dp"
+                        android:minWidth="10dp"
+                        android:dropDownWidth="wrap_content"
+                        android:textDirection="ltr"
+                        android:popupBackground="@android:drawable/spinner_background"
+
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:spinnerMode="dropdown"
+                        android:layout_height="35dp"
+                        android:layout_alignBottom="@+id/imageView2"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="50dp"
+                >
+
+                <Button
+                    android:text="Start Servey"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/choose_start_but"
+                    android:background="@drawable/button_shape"
+                    android:textSize="@dimen/activity_vertical_margin"
+
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/choose_semster_but_list"
+                    android:layout_toEndOf="@+id/choose_semster_but_list"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="10dp" />
+
+                <Button
+                    android:text="Stop Servey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/choose_stop_but"
+                    android:background="@drawable/button_shape"
+                    android:textSize="@dimen/activity_vertical_margin"
+
+                    android:layout_alignBaseline="@+id/textView_Timetable"
+                    android:layout_alignBottom="@+id/textView_Timetable"
+                    android:layout_alignLeft="@+id/Academy_text2"
+                    android:layout_alignStart="@+id/Academy_text2"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp" />
+
+                <Button
+                    android:text="Watch Reviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/choose_watch_rev"
+                    android:background="@drawable/button_shape"
+                    android:textSize="@dimen/activity_vertical_margin"
+
+                    android:layout_alignBaseline="@+id/textView_Timetable"
+                    android:layout_alignBottom="@+id/textView_Timetable"
+                    android:layout_alignLeft="@+id/Academy_text2"
+                    android:layout_alignStart="@+id/Academy_text2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

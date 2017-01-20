@@ -30,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.io.IOException;
 
 public class NavigationFregmentProfile extends Fragment {
@@ -171,7 +172,8 @@ public static int getOrientation(int orient){
                      orientation = f.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
                      Matrix matrix = new Matrix();
                      matrix.postRotate(getOrientation(orientation));
-                     rotatedBitmap = Bitmap.createBitmap(BitmapFactory.decodeFile(picturePath), 0, 0, BitmapFactory.decodeFile(picturePath).getWidth(), BitmapFactory.decodeFile(picturePath).getHeight(), matrix, true);
+                     BitmapFactory.Options op = new BitmapFactory.Options();
+                     rotatedBitmap = Bitmap.createBitmap(BitmapFactory.decodeFile(picturePath,op), 0, 0, BitmapFactory.decodeFile(picturePath,op).getWidth(), BitmapFactory.decodeFile(picturePath,op).getHeight(), matrix, true);
                  } catch (IOException e) {
                      e.printStackTrace();
                  }

@@ -81,7 +81,7 @@
             android:textColor="@color/my_color_rank_text"
             android:textStyle="normal|bold|italic"
             android:layout_below="@id/Code_course_text1"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="25dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -94,7 +94,7 @@
             android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
             android:textColor="@android:color/background_light"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="25dp" />
 
         <TextView
             android:text="Time:"
@@ -107,7 +107,7 @@
             android:textColor="@color/my_color_rank_text"
             android:textStyle="normal|bold|italic"
             android:layout_below="@id/Credits_text1"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="25dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
             android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
             android:textColor="@android:color/background_light"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="25dp" />
 
         <TextView
             android:text="Room:"
@@ -133,7 +133,7 @@
             android:textColor="@color/my_color_rank_text"
             android:textStyle="normal|bold|italic"
             android:layout_below="@id/Time_text1"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="25dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -141,12 +141,13 @@
             android:text="@string/course_rank"
             android:textSize="19dp"
             android:id="@+id/Room_text2"
-            android:layout_toRightOf="@+id/Room_text1"
-            android:layout_below="@+id/Time_text2"
+
             android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
             android:textColor="@android:color/background_light"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="170dp"
+            android:layout_toEndOf="@+id/Credits_text1"
+            android:layout_toRightOf="@+id/Credits_text1"
+            android:layout_marginLeft="5dp" />
 
         <TextView
             android:text="Syllabus:"
@@ -159,7 +160,7 @@
             android:textColor="@color/my_color_rank_text"
             android:textStyle="normal|bold|italic"
             android:layout_below="@id/Room_text1"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="25dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -168,11 +169,11 @@
             android:textSize="19dp"
             android:id="@+id/Syllabus_text2"
             android:layout_toRightOf="@+id/Syllabus_text1"
-            android:layout_below="@+id/Room_text2"
+
             android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
             android:textColor="@android:color/background_light"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="220dp" />
 
 
     </RelativeLayout>
