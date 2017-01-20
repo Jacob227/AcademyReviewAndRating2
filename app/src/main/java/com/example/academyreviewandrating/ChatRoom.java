@@ -86,6 +86,9 @@ public class ChatRoom extends Fragment {
                 Intent intent1 = new Intent(my_activity, ChatMain.class);
                 intent1.putExtra("ReciveID",mMap.get(ReciverID));
                 intent1.putExtra("ReciveName",ReciverID);
+                if (NavigationStartActivity.UsernamesListUnRead.contains(ReciverID)== true) {
+                    NavigationStartActivity.UsernamesListUnRead.remove(ReciverID);
+                }
                 startActivity(intent1);
 
             }
