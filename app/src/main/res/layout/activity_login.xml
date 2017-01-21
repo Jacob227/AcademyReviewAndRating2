@@ -38,10 +38,12 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
         android:inputType="textPassword"
+        android:ellipsize="start"
+        android:gravity="left"
         android:ems="10"
         android:id="@+id/editTextPass"
+        android:hint="Password"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="30dp"

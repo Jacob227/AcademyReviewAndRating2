@@ -1,5 +1,7 @@
 package com.example.academyreviewandrating;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -9,6 +11,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -44,12 +47,14 @@ public class NavigationStartActivity extends AppCompatActivity
     public static ArrayList<String> UsernamesListUnRead =new ArrayList<String>();
     public static ArrayList<User> userList =new ArrayList<User>();
     static ProgressBar mPB;
+    private Activity myAct;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_start);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        myAct = this;
         mPB = (ProgressBar)findViewById(R.id.progressBar2);
         mPB.setVisibility(View.VISIBLE);
         mPB.getIndeterminateDrawable().setColorFilter(0x90000000, android.graphics.PorterDuff.Mode.MULTIPLY);
@@ -136,7 +141,39 @@ public class NavigationStartActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setTitle("Confirm");
+            builder.setMessage("Do you want to exit?");
+
+
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do nothing but close the dialog
+                    finish();
+                    if (firebaseAuth.getCurrentUser() != null){
+                        Toast.makeText(myAct,"Logout",Toast.LENGTH_SHORT).show();
+                        firebaseAuth.signOut();
+                    }
+                    dialog.dismiss();
+                }
+            });
+
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    // Do nothing
+                    dialog.dismiss();
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
         }
     }
 
@@ -215,10 +252,7 @@ public class NavigationStartActivity extends AppCompatActivity
     @Override
     public void onDestroy() {
         super.onDestroy();
-        finish();
-        if (firebaseAuth.getCurrentUser() != null){
-            Toast.makeText(this,"Logout",Toast.LENGTH_SHORT).show();
-            firebaseAuth.signOut();
-        }
+
+
     }
 }

@@ -50,8 +50,8 @@ public class LoginActivity extends AppCompatActivity {
             //User is already loged in
             Toast.makeText(LoginActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
             createUserInstance();
-            finish();
             startActivity(new Intent(getApplicationContext(),NavigationStartActivity.class));
+            finish();
         }
 
     }
@@ -112,8 +112,9 @@ public class LoginActivity extends AppCompatActivity {
                     firebaseAuth = FirebaseAuth.getInstance();
                     firebaseUser = firebaseAuth.getCurrentUser();
                     createUserInstance();
-                    finish();
+
                     startActivity(new Intent(getApplicationContext(),NavigationStartActivity.class));
+                    finish();
                 }
                 else{
                     Toast.makeText(LoginActivity.this,"Could login.. please try again or register",Toast.LENGTH_LONG).show();

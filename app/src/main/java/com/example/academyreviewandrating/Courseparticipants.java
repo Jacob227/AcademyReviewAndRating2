@@ -101,7 +101,23 @@ public class Courseparticipants extends AppCompatActivity {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        CourseParticipanceModel send;
+                        String user_pos = null;
+                       try {
+                           user_pos = userNames.get(position);
 
+                           for (String key: mListParticipant.keySet() ){
+                                if (user_pos.equals(mListParticipant.get(key).getUserName())){
+                                    Intent mIntent = new Intent(refAct, ChatMain.class);
+                                    mIntent.putExtra("ReciveID", mListParticipant.get(key).getUser_id());
+                                    mIntent.putExtra("ReciveName", mListParticipant.get(key).getUserName());
+                                    startActivity(mIntent);
+                                }
+                           }
+
+                        } catch ( IndexOutOfBoundsException e ) {
+                           Toast.makeText(refAct, "can't send a messege to this user", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
             }

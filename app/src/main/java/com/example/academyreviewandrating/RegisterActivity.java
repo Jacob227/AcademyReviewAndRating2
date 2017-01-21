@@ -256,8 +256,9 @@ public class RegisterActivity extends AppCompatActivity {
                     LoginActivity.user_ref = new User(userRef);
                     LoginActivity.user_created = true;
                     Toast.makeText(RegisterActivity.this,"Registrered Successfully",Toast.LENGTH_SHORT).show();
-                    finish();
                     startActivity(new Intent(getApplicationContext(),NavigationStartActivity.class));
+                    finish();
+
                 }
                 else{
                     Toast.makeText(RegisterActivity.this,"Could not register.. please try again.",Toast.LENGTH_LONG).show();
