@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.academyreviewandrating.Model.User;
@@ -88,6 +89,9 @@ public class ChatRoom extends Fragment {
                 intent1.putExtra("ReciveName",ReciverID);
                 if (NavigationStartActivity.UsernamesListUnRead.contains(ReciverID)== true) {
                     NavigationStartActivity.UsernamesListUnRead.remove(ReciverID);
+                    if (  NavigationStartActivity.UsernamesListUnRead.isEmpty() == true){
+                        NavigationStartActivity.unreadM.setVisibility(ImageView.INVISIBLE);
+                    }
                 }
                 startActivity(intent1);
 

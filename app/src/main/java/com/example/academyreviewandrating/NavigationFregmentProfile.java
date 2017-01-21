@@ -2,6 +2,7 @@ package com.example.academyreviewandrating;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,14 +23,12 @@ import com.bumptech.glide.Glide;
 import com.example.academyreviewandrating.Model.User;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class NavigationFregmentProfile extends Fragment {
@@ -45,6 +44,7 @@ public class NavigationFregmentProfile extends Fragment {
     private DatabaseReference mDatabase;
     private DatabaseReference mDatabaseImages;
     private String UID;
+    private int cnt_update = 0;
 
     @Nullable
     @Override
@@ -70,7 +70,7 @@ public class NavigationFregmentProfile extends Fragment {
         mStorage = FirebaseStorage.getInstance();
         imagesRef = mStorage.getReference();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Iprofile =  (ImageView)getActivity().findViewById(R.id.unreadDetail);
+        Iprofile =  (ImageView)getActivity().findViewById(R.id.ImageProfile);
         UserName = (TextView)getActivity().findViewById(R.id.username) ;
         UserDetail = (TextView)getView().findViewById(R.id.userdetail) ;
         Iprofile.setOnClickListener(new View.OnClickListener(){
@@ -83,33 +83,41 @@ public class NavigationFregmentProfile extends Fragment {
 if (LoginActivity.user_created == true){
     curruser = LoginActivity.user_ref;
     ShowDetail();
-
 }
-        else {
-        mDatabase.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot mDataSnapshot: dataSnapshot.getChildren()){
-                    User us =  mDataSnapshot.getValue(User.class);
-                    String KeyUid = mDataSnapshot.getKey();
-                    if (KeyUid.equals(UID)){
-                        curruser = us;
-                    }
-                }
-                ShowDetail();
+    //  else{
+    //      cnt_update=1;
+    //  }
+    //  mDatabase.child("Users").addValueEventListener(new ValueEventListener() {
+    //      @Override
+    //      public void onDataChange(DataSnapshot dataSnapshot) {
+    //          //            for(DataSnapshot mDataSnapshot: dataSnapshot.getChildren()){
+    //          //                User us =  mDataSnapshot.getValue(User.class);
+    //          //                String KeyUid = mDataSnapshot.getKey();
+    //          //                if (KeyUid.equals(UID)){
+    //          //                    curruser = us;
+    //          //                }
+    //          //            }
+    //          if (cnt_update > 0) {
+    //              cnt_update =1;
+    //              ShowDetail();
+    //          }
+    //      }
 
-            }
+    //      @Override
+    //      public void onCancelled(DatabaseError databaseError) {
 
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }});
-}
-
+    //      }
+    //  });
     }
 
-
+    private Bitmap getBitmap(Uri selectedimg) throws FileNotFoundException {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 3;
+        AssetFileDescriptor fileDescriptor = null;
+        fileDescriptor = getActivity().getContentResolver().openAssetFileDescriptor(selectedimg, "r");
+        Bitmap original = BitmapFactory.decodeFileDescriptor(fileDescriptor.getFileDescriptor(), null, options);
+        return original;
+    }
     public void ShowDetail(){
         UserName.setText(curruser.getFullName());
         UserDetail.setText("Study in "+curruser.getInstitution());
@@ -122,10 +130,10 @@ if (LoginActivity.user_created == true){
         UserDetail = (TextView)getView().findViewById(R.id.userdetail4) ;
         UserDetail.setText(curruser.getPhone());
         if(curruser.getImage_exist()==true) {
-            StorageReference ref = mStorage.getReference().child("UserImage").child(UID);
-            Glide.with(this).using(new FirebaseImageLoader()).load(ref).into(Iprofile);
-        }
-        }
+            StorageReference ref = mStorage.getReference().child("UserImages").child(UID).child("pic.jpeg");
+           Glide.with(this).using(new FirebaseImageLoader()).load(ref).into(Iprofile);
+
+        }}
 
 
 public static int getOrientation(int orient){
@@ -145,7 +153,7 @@ public static int getOrientation(int orient){
 
 
 
-
+public Uri Uparam;
     private static final int SELECT_PICTURE = 1;
  @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -180,11 +188,13 @@ public static int getOrientation(int orient){
                  }
 
                  Iprofile.setImageBitmap(rotatedBitmap);
+               //  Set the image in ImageView
+                        imagesRef.child("UserImages").child(UID).child("pic.jpeg").putFile(selectedImageUri);
 
-                // Set the image in ImageView
-                  imagesRef.child("UserImage").child(UID).putFile(selectedImageUri);
+                         mDatabase.child("Users").child(UID).child("image_exist").setValue(true);
 
-                 mDatabase.child("Users").child(UID).child("image_exist").setValue(true);
+
+
              }}
          }
      }

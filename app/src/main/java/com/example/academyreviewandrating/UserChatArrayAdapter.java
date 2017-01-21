@@ -51,7 +51,7 @@ public class UserChatArrayAdapter extends ArrayAdapter<String> {
             if (NavigationStartActivity.userList.get(i).getUserName().equals(userName)==true){
                 if(NavigationStartActivity.userList.get(i).getImage_exist() == true) {
                     String useIDpic = ChatRoom.mMap.get(userName);
-                    StorageReference ref = mStorage.getReference().child("UserImage").child(useIDpic);
+                    StorageReference ref = mStorage.getReference().child("UserImages").child(useIDpic).child("pic.jpeg");
                     Glide.with(contextThis).using(new FirebaseImageLoader()).load(ref).into(Iprofile);
                 }
                 }
