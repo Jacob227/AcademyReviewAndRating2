@@ -93,7 +93,7 @@ public class NavigationStartActivity extends AppCompatActivity
                     }
                 }
             }
-
+            NavigationStartActivity.mPB.setVisibility(View.INVISIBLE);
         }
 
         @Override

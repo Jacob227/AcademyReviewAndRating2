@@ -101,7 +101,6 @@ public class NavigationFregmentRankAndReview extends Fragment {
                     academy_selected = LoginActivity.user_ref.getInstitution();
                     fillSpinnerData(R.id.spinner_faculty,
                             "Academy/" + academy_selected + "/Faculty", spinnerEnum.FACULTY);
-                    NavigationStartActivity.mPB.setVisibility(View.INVISIBLE);
                 }
                 else {
                     Toast.makeText(getActivity(),"Timeout has accured",Toast.LENGTH_LONG).show();
