@@ -60,6 +60,17 @@ public class ChatRoom extends Fragment {
         listOfUsers = (ListView)getView().findViewById(R.id.users_list);
         my_activity = getActivity();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Messeges").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                FilterNameAndDisplay();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mDatabase.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -87,12 +98,14 @@ public class ChatRoom extends Fragment {
                 Intent intent1 = new Intent(my_activity, ChatMain.class);
                 intent1.putExtra("ReciveID",mMap.get(ReciverID));
                 intent1.putExtra("ReciveName",ReciverID);
+
                 if (NavigationStartActivity.UsernamesListUnRead.contains(ReciverID)== true) {
                     NavigationStartActivity.UsernamesListUnRead.remove(ReciverID);
                     if (  NavigationStartActivity.UsernamesListUnRead.isEmpty() == true){
                         NavigationStartActivity.unreadM.setVisibility(ImageView.INVISIBLE);
                     }
                 }
+                FilterNameAndDisplay();
                 startActivity(intent1);
 
             }
