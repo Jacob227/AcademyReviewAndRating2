@@ -64,7 +64,9 @@ import com.google.firebase.database.ValueEventListener;
                                         .child(keyMessege)
                                         .child("read").setValue(true);
                             }
-
+                            if(NavigationStartActivity.UsernamesListUnRead.contains(ReciverName) == true){
+                                NavigationStartActivity.UsernamesListUnRead.remove(ReciverName);
+                            }
                         }
 
                 }

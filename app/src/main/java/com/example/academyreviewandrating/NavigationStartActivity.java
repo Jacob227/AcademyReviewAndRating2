@@ -74,11 +74,11 @@ public class NavigationStartActivity extends AppCompatActivity
     mListenDatabase.addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            Toast.makeText(NavigationStartActivity.this,"hiiiiiiii",Toast.LENGTH_LONG).show();
             for(DataSnapshot mDataSnapshot: dataSnapshot.getChildren()){
                 for(DataSnapshot mDataSnapshot1: mDataSnapshot.getChildren()){
                     ChatMessage unreadMessege = mDataSnapshot1.getValue(ChatMessage.class);
                     if (unreadMessege.getread() == false){
+                        Toast.makeText(NavigationStartActivity.this,"You have got a message!!!",Toast.LENGTH_LONG).show();
                         unreadM.setVisibility(ImageView.VISIBLE);
                         UsernamesListUnRead.add(unreadMessege.getMessageUser());
                     }
