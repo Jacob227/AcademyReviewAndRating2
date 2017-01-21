@@ -30,7 +30,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
 import java.io.IOException;
 
 public class NavigationFregmentProfile extends Fragment {
@@ -165,6 +164,8 @@ public static int getOrientation(int orient){
                  String picturePath = cursor.getString(columnIndex);
                  cursor.close();
 
+
+
                  int orientation ;
                  Bitmap rotatedBitmap=null;
                  try {
@@ -183,8 +184,7 @@ public static int getOrientation(int orient){
                 // Set the image in ImageView
                   imagesRef.child("UserImage").child(UID).putFile(selectedImageUri);
 
-              //   mDatabaseImages.child(UID).push().setValue(Integer.toString(orientation));//selectedImageUri.getLastPathSegment());
-//
+                 mDatabase.child("Users").child(UID).child("image_exist").setValue(true);
              }}
          }
      }
