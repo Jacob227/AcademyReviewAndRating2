@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -66,6 +67,9 @@ import com.google.firebase.database.ValueEventListener;
                             }
                             if(NavigationStartActivity.UsernamesListUnRead.contains(ReciverName) == true){
                                 NavigationStartActivity.UsernamesListUnRead.remove(ReciverName);
+                                if (  NavigationStartActivity.UsernamesListUnRead.isEmpty() == true){
+                                    NavigationStartActivity.unreadM.setVisibility(ImageView.INVISIBLE);
+                                }
                             }
                         }
 
