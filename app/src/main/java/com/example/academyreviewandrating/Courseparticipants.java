@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -96,6 +97,13 @@ public class Courseparticipants extends AppCompatActivity {
                 }
                 adapter = new ParticipantsAdapter(mActRef,userNames,ParticipantsBool);
                 listView.setAdapter(adapter);
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    }
+                });
             }
 
             @Override

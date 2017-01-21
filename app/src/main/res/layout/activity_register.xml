@@ -37,7 +37,7 @@
         android:layout_marginTop="15dp"
         android:background="@android:drawable/editbox_background"
         android:padding="7dp"
-        android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
+        android:textColorHint="@color/common_google_signin_btn_text_light_default"
         android:textColor="@color/common_google_signin_btn_text_light_pressed" />
 
     <EditText
@@ -51,25 +51,25 @@
         android:layout_marginTop="15dp"
         android:background="@android:drawable/editbox_background"
         android:padding="7dp"
-        android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
+        android:textColorHint="@color/common_google_signin_btn_text_light_default"
         android:textColor="@color/common_google_signin_btn_text_light_pressed" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email *"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:id="@+id/editTextRegEmail"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="15dp"
-        android:background="@android:drawable/editbox_background"
-        android:padding="7dp"
-        android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
-        android:textColor="@color/common_google_signin_btn_text_light_pressed" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email *"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:id="@+id/editTextRegEmail"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            android:background="@android:drawable/editbox_background"
+            android:padding="7dp"
+            android:textColorHint="@color/common_google_signin_btn_text_light_default"
+            android:textColor="@color/common_google_signin_btn_text_light_pressed" />
 
-    <EditText
+        <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password *"
@@ -81,26 +81,26 @@
         android:layout_marginTop="15dp"
         android:background="@android:drawable/editbox_background"
         android:padding="7dp"
-        android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
+        android:textColorHint="@color/common_google_signin_btn_text_light_default"
         android:textColor="@color/common_google_signin_btn_text_light_pressed" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Phone"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/editTextRegPhone"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="15dp"
-        android:background="@android:drawable/editbox_background"
-        android:padding="7dp"
-        android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
-        android:textColor="@color/common_google_signin_btn_text_light_pressed" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/editTextRegPhone"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            android:background="@android:drawable/editbox_background"
+            android:padding="7dp"
+            android:textColorHint="@color/common_google_signin_btn_text_light_default"
+            android:textColor="@color/common_google_signin_btn_text_light_pressed" />
 
 
-    <RelativeLayout
+        <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView

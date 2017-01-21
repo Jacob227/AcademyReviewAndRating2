@@ -28,6 +28,7 @@ import java.util.StringTokenizer;
 public class WatchReviews extends AppCompatActivity {
 
     private ArrayList<rating_lecterer_model> ratingDet;
+    private String classSurvey = null;
     private String[] intendMes;
     private Toolbar myActionBar;
     private List<String> List_spinner;
@@ -45,49 +46,52 @@ public class WatchReviews extends AppCompatActivity {
         Intent intent = getIntent();
         ratingDet = (ArrayList<rating_lecterer_model>)intent.getSerializableExtra("Rating");
         intendMes = intent.getStringArrayExtra("values");
+        classSurvey = intent.getStringExtra("classSurvey");
 
         map_lecrurer = new HashMap<String, ArrayList<rating_lecterer_model>>();
+        if (classSurvey == null) {
 
-        mDatebase = FirebaseDatabase.getInstance().getReference("Academy/" +
-                intendMes[1] + "/Faculty/" + intendMes[0] + "/Course/"
-                + intendMes[2]);
+            mDatebase = FirebaseDatabase.getInstance().getReference("Academy/" +
+                    intendMes[1] + "/Faculty/" + intendMes[0] + "/Course/"
+                    + intendMes[2]);
 
-        mDatebase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                List_spinner = new ArrayList<String>();
-                Log.d("In onItemSelected", "All semester selected");
-                boolean first = false;
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    if(!first) { //take the first Course details onlt once
-                        DataSnapshot courseDet = child.child("Course Details");
-                        courseDetailsModel = courseDet.getValue(CourseDetailsModel.class);
-                        first = true;
-                    }
+            mDatebase.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    List_spinner = new ArrayList<String>();
+                    Log.d("In onItemSelected", "All semester selected");
+                    boolean first = false;
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        if (!first) { //take the first Course details onlt once
+                            DataSnapshot courseDet = child.child("Course Details");
+                            courseDetailsModel = courseDet.getValue(CourseDetailsModel.class);
+                            first = true;
+                        }
 
-                    DataSnapshot lecData = child.child("Lecturer");
-                    for (DataSnapshot childLec : lecData.getChildren()) { //lecturer
-                        Log.d("Lecterer", childLec.getKey());
-                        DataSnapshot rating_data = childLec.child("Rating");
-                        for (DataSnapshot childRating : rating_data.getChildren()) { //rating
-                            Log.d("Rank", childRating.getKey());
-                            if (map_lecrurer.get(childLec.getKey()) == null) {
-                                map_lecrurer.put(childLec.getKey(), new ArrayList<rating_lecterer_model>());
+                        DataSnapshot lecData = child.child("Lecturer");
+                        for (DataSnapshot childLec : lecData.getChildren()) { //lecturer
+                            Log.d("Lecterer", childLec.getKey());
+                            DataSnapshot rating_data = childLec.child("Rating");
+                            for (DataSnapshot childRating : rating_data.getChildren()) { //rating
+                                Log.d("Rank", childRating.getKey());
+                                if (map_lecrurer.get(childLec.getKey()) == null) {
+                                    map_lecrurer.put(childLec.getKey(), new ArrayList<rating_lecterer_model>());
+                                }
+                                rating_lecterer_model user_rating_data = childRating.getValue(rating_lecterer_model.class);
+                                user_rating_data.set_rank_name(childRating.getKey());
+                                map_lecrurer.get(childLec.getKey()).add(user_rating_data);
                             }
-                            rating_lecterer_model user_rating_data = childRating.getValue(rating_lecterer_model.class);
-                            user_rating_data.set_rank_name(childRating.getKey());
-                            map_lecrurer.get(childLec.getKey()).add(user_rating_data);
                         }
                     }
+
                 }
 
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+                }
+            });
+        }
 
         myActionBar = (Toolbar) findViewById(R.id.toolbar_review);
         myActionBar.setNavigationIcon(getResources().getDrawable(R.drawable.back_arrow_icon));

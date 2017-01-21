@@ -15,8 +15,9 @@
         android:transcriptMode="alwaysScroll"
         android:dividerHeight="4px"
         android:divider="@color/my_color_rank_text"
-        android:paddingLeft="16dp"
-        android:paddingTop="10dp" />
+        android:paddingLeft="12dp"
+        android:paddingTop="10dp"
+        android:paddingRight="12dp" />
 
     <LinearLayout
         android:orientation="horizontal"

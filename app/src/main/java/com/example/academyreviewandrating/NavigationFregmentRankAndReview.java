@@ -9,11 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -54,6 +56,8 @@ public class NavigationFregmentRankAndReview extends Fragment {
     private NavigationFregmentRankAndReview data;
     private HashMap<String, List<rating_lecterer_model>> map_lecrurer;
     private AlphaAnimation buttonClick = new AlphaAnimation(Animation.ZORDER_BOTTOM,Animation.ZORDER_NORMAL);
+
+
     View myView;
 
     public enum spinnerEnum {
@@ -77,6 +81,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         handler = new Handler();
 
+
         setAllListener();
         faculty_chosen = false;
         course_chosen = false;
@@ -96,6 +101,7 @@ public class NavigationFregmentRankAndReview extends Fragment {
                     academy_selected = LoginActivity.user_ref.getInstitution();
                     fillSpinnerData(R.id.spinner_faculty,
                             "Academy/" + academy_selected + "/Faculty", spinnerEnum.FACULTY);
+                    NavigationStartActivity.mPB.setVisibility(View.INVISIBLE);
                 }
                 else {
                     Toast.makeText(getActivity(),"Timeout has accured",Toast.LENGTH_LONG).show();

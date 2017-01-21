@@ -144,7 +144,7 @@ public class ListViewCourseDetails extends Activity {
                         } else {
                             String tmp = createNewEmailKey(firebaseUser.getEmail().split("\\."));
                             CourseParticipanceModel courseParticipanceModel = new CourseParticipanceModel(false,firebaseUser.getEmail(),
-                                    LoginActivity.user_ref.getUserName());
+                                    LoginActivity.user_ref.getUserName(), firebaseUser.getUid());
                             databaseReferenceDelAdd.child(tmp).
                                     setValue(courseParticipanceModel);
                             madapter.SetCahngeInItemList("Unsubscribe to course", 3, "Cancel your registration");

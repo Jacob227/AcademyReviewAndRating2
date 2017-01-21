@@ -81,7 +81,8 @@
                     android:textSize="17dp"
                     android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
                     android:textColor="@color/my_color_rank_text"
-                    android:textStyle="normal|bold|italic" />
+                    android:textStyle="normal|bold|italic"
+                    android:id="@+id/textView2" />
                 <RelativeLayout
                     android:background="@drawable/spinner_shape"
                     android:orientation="horizontal"
@@ -91,7 +92,8 @@
                     android:layout_width="214dp"
                     android:layout_height="35dp"
                     android:layout_marginLeft="100dp"
-                    android:layout_marginTop="30dp">
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/relativeLayout2">
 
                     <Spinner
                         android:id="@+id/spinner_faculty"
@@ -117,6 +119,7 @@
                         android:src="@drawable/spinner_icon_2" />
 
                 </RelativeLayout>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -166,6 +169,7 @@
                     android:layout_marginStart="17dp"
                     android:layout_marginTop="16dp"
                     android:textSize="18sp" />
+
             </RelativeLayout>
 
 
@@ -217,10 +221,8 @@
                         android:src="@drawable/spinner_icon_2" />
 
                 </RelativeLayout>
+
             </RelativeLayout>
-
-
-
 
 
             <RelativeLayout
@@ -269,6 +271,7 @@
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:src="@drawable/spinner_icon_2" />
+
 
                 </RelativeLayout>
             </RelativeLayout>

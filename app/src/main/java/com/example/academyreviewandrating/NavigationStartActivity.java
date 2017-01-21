@@ -1,6 +1,9 @@
 package com.example.academyreviewandrating;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,12 +43,17 @@ public class NavigationStartActivity extends AppCompatActivity
     public static ImageView unreadM = null;
     public static ArrayList<String> UsernamesListUnRead =new ArrayList<String>();
     public static ArrayList<User> userList =new ArrayList<User>();
-
+    static ProgressBar mPB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_start);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        mPB = (ProgressBar)findViewById(R.id.progressBar2);
+        mPB.setVisibility(View.VISIBLE);
+        mPB.getIndeterminateDrawable().setColorFilter(0x90000000, android.graphics.PorterDuff.Mode.MULTIPLY);
+
         unreadM = (ImageView) findViewById(R.id.unread);
         toolbar.setTitle("      Academy R & R");
         setSupportActionBar(toolbar);
