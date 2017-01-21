@@ -42,7 +42,7 @@ public class ChatRoom extends Fragment {
     public String Suser  = "";
     private Activity my_activity;
     static Map<String, String> mMap = new HashMap<String, String>();
-
+    private final Object lock = new Object();
 
     @Nullable
     @Override
@@ -60,17 +60,17 @@ public class ChatRoom extends Fragment {
         listOfUsers = (ListView)getView().findViewById(R.id.users_list);
         my_activity = getActivity();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-   //  mDatabase.child("Messeges").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-   //      @Override
-   //      public void onDataChange(DataSnapshot dataSnapshot) {
-   //          FilterNameAndDisplay();
-   //      }
+     mDatabase.child("Messeges").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+         @Override
+         public void onDataChange(DataSnapshot dataSnapshot) {
+             FilterNameAndDisplay();
+         }
 
-   //      @Override
-   //      public void onCancelled(DatabaseError databaseError) {
+         @Override
+         public void onCancelled(DatabaseError databaseError) {
 
-   //      }
-   //  });
+         }
+     });
         mDatabase.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -133,6 +133,7 @@ public class ChatRoom extends Fragment {
 
     private void FilterNameAndDisplay()
     {
+        synchronized (lock) {
         String CurrUID =  mAuth.getCurrentUser().getUid();
         Set set = mMap.entrySet();
         Iterator i = set.iterator();
@@ -158,5 +159,5 @@ public class ChatRoom extends Fragment {
         mArrayAdapter = new UserChatArrayAdapter(my_activity,ListFilter,NavigationStartActivity.UsernamesListUnRead);
         listOfUsers.setAdapter(mArrayAdapter);
         adapter = mArrayAdapter;
-    }
+    }}
 }
