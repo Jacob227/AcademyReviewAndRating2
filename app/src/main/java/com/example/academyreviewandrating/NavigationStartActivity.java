@@ -3,9 +3,6 @@ package com.example.academyreviewandrating;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -33,10 +30,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NavigationStartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    static Map<String, String> mMap = new HashMap<String, String>();
+    private static int oneTimeInitHashMapUser = 0;
     private FirebaseAuth mAuth;
     private DatabaseReference mListenDatabase;
     private FirebaseAuth firebaseAuth;
@@ -83,18 +84,45 @@ public class NavigationStartActivity extends AppCompatActivity
         fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame,new NavigationFregmentRankAndReview()).commit();
 
+
     mAuth = FirebaseAuth.getInstance();
     mListenDatabase = FirebaseDatabase.getInstance().getReference("Messeges").child(mAuth.getCurrentUser().getUid());
     mListenDatabase.addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
+            int on=0,counnt = 0;
             for(DataSnapshot mDataSnapshot: dataSnapshot.getChildren()){
+                String Se = "",Re = "";
                 for(DataSnapshot mDataSnapshot1: mDataSnapshot.getChildren()){
                     ChatMessage unreadMessege = mDataSnapshot1.getValue(ChatMessage.class);
+                    if (Se.isEmpty() == true){
+                        Se = unreadMessege.getMessageUser();
+                    }
+                    if((Se.equals(unreadMessege.getMessageUser())==false) &&( Re.isEmpty() ==true)){
+                        Re = unreadMessege.getMessageUser();
+                    }
                     if (unreadMessege.getread() == false){
+                        counnt++;
                         Toast.makeText(NavigationStartActivity.this,"You have got a message!!!",Toast.LENGTH_LONG).show();
+                        unreadM.clearAnimation();
+                        unreadM.requestFocus();
                         unreadM.setVisibility(ImageView.VISIBLE);
-                        UsernamesListUnRead.add(unreadMessege.getMessageUser());
+                      //   unreadM.setImageResource(R.drawable.ic_unread_message);
+                        if(UsernamesListUnRead.contains(unreadMessege.getMessageUser()) == false) {
+                            UsernamesListUnRead.add(unreadMessege.getMessageUser());
+                        }
+                    }
+                    if (counnt==0 && UsernamesListUnRead.isEmpty() == false){
+                        if (UsernamesListUnRead.contains(Re)== true){
+                            UsernamesListUnRead.remove(Re);
+                        }
+                        if (UsernamesListUnRead.contains(Se)== true){
+                            UsernamesListUnRead.remove(Se);
+                        }
+                    }
+                    if(counnt== 0 && UsernamesListUnRead.isEmpty() ==true && on==0){
+                        unreadM.setVisibility(ImageView.INVISIBLE);
+                        on=1;
                     }
                 }
             }
@@ -116,6 +144,14 @@ public class NavigationStartActivity extends AppCompatActivity
                             userList.add(UserS1);
                         }
                     }
+                if (oneTimeInitHashMapUser == 0)
+                {
+                    for(DataSnapshot mDataSnapshot: dataSnapshot.getChildren()){
+                        String us =  mDataSnapshot.getValue(User.class).getUserName();
+                        String KeyUid = mDataSnapshot.getKey();
+                        mMap.put(us,KeyUid);
+                    }
+                }
             }
 
             @Override

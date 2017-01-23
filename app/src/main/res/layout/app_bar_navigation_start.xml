@@ -36,7 +36,7 @@
     <include layout="@layout/content_navigation_start"
         android:id="@+id/include" />
 
-    <ProgressBar
+  <ProgressBar
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="149dp"
         android:layout_height="113dp"

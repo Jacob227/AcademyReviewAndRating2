@@ -45,12 +45,17 @@ public class UserChatArrayAdapter extends ArrayAdapter<String> {
         ImageView Iprofile = (ImageView) convertView.findViewById(R.id.pic);
         USER_NAME.setText(userName);
             if(UnreadUser.contains(userName)){
+                NewOne.clearAnimation();
                 NewOne.setVisibility(View.VISIBLE);
+            }
+        else{
+                NewOne.clearAnimation();
+                NewOne.setVisibility(View.INVISIBLE);
             }
         for (int i = 0;i<NavigationStartActivity.userList.size();i++){
             if (NavigationStartActivity.userList.get(i).getUserName().equals(userName)==true){
                 if(NavigationStartActivity.userList.get(i).getImage_exist() == true) {
-                    String useIDpic = ChatRoom.mMap.get(userName);
+                    String useIDpic = NavigationStartActivity.mMap.get(userName);
                     StorageReference ref = mStorage.getReference().child("UserImages").child(useIDpic).child("pic.jpeg");
                     Glide.with(contextThis).using(new FirebaseImageLoader()).load(ref).into(Iprofile);
                 }

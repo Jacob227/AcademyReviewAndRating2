@@ -55,7 +55,7 @@ public class NavigationFregmentProfile extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        UID = mAuth.getCurrentUser().getUid();
+
 
         mDatabaseImages = FirebaseDatabase.getInstance().getReference("Images");
 
@@ -69,6 +69,7 @@ public class NavigationFregmentProfile extends Fragment {
         super.onCreate(savedInstanceState);
         mStorage = FirebaseStorage.getInstance();
         imagesRef = mStorage.getReference();
+        UID = mAuth.getCurrentUser().getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Iprofile =  (ImageView)getActivity().findViewById(R.id.ImageProfile);
         UserName = (TextView)getActivity().findViewById(R.id.username) ;
@@ -130,8 +131,9 @@ if (LoginActivity.user_created == true){
         UserDetail = (TextView)getView().findViewById(R.id.userdetail4) ;
         UserDetail.setText(curruser.getPhone());
         if(curruser.getImage_exist()==true) {
+            Iprofile.clearAnimation();
             StorageReference ref = mStorage.getReference().child("UserImages").child(UID).child("pic.jpeg");
-           Glide.with(this).using(new FirebaseImageLoader()).load(ref).into(Iprofile);
+            Glide.with(getActivity()).using(new FirebaseImageLoader()).load(ref).into(Iprofile);
 
         }}
 
@@ -186,7 +188,7 @@ public Uri Uparam;
                  } catch (IOException e) {
                      e.printStackTrace();
                  }
-
+                 Iprofile.clearAnimation();
                  Iprofile.setImageBitmap(rotatedBitmap);
                //  Set the image in ImageView
                         imagesRef.child("UserImages").child(UID).child("pic.jpeg").putFile(selectedImageUri);

@@ -14,10 +14,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.example.academyreviewandrating.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -41,7 +38,7 @@ public class ChatRoom extends Fragment {
     static String ReciverID;
     public String Suser  = "";
     private Activity my_activity;
-    static Map<String, String> mMap = new HashMap<String, String>();
+   // static Map<String, String> mMap = new HashMap<String, String>();
     private final Object lock = new Object();
 
     @Nullable
@@ -60,35 +57,18 @@ public class ChatRoom extends Fragment {
         listOfUsers = (ListView)getView().findViewById(R.id.users_list);
         my_activity = getActivity();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-  //  mDatabase.child("Messeges").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-  //      @Override
-  //      public void onDataChange(DataSnapshot dataSnapshot) {
-  //
-  //          FilterNameAndDisplay();
-  //      }
+        mDatabase.child("Messeges").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            FilterNameAndDisplay();
+        }
 
-  //      @Override
-  //      public void onCancelled(DatabaseError databaseError) {
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
 
-  //      }
-  //  });
-        mDatabase.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot mDataSnapshot: dataSnapshot.getChildren()){
-                    String us =  mDataSnapshot.getValue(User.class).getUserName();
-                    String KeyUid = mDataSnapshot.getKey();
-                    mMap.put(us,KeyUid);
+        }
+    });
 
-                }
-                FilterNameAndDisplay();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         //final Activity my_activity = getActivity();
         listOfUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,16 +77,8 @@ public class ChatRoom extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ReciverID = adapter.getItem(position);
                 Intent intent1 = new Intent(my_activity, ChatMain.class);
-                intent1.putExtra("ReciveID",mMap.get(ReciverID));
+                intent1.putExtra("ReciveID",NavigationStartActivity.mMap.get(ReciverID));
                 intent1.putExtra("ReciveName",ReciverID);
-
-                if (NavigationStartActivity.UsernamesListUnRead.contains(ReciverID)== true) {
-                    NavigationStartActivity.UsernamesListUnRead.remove(ReciverID);
-                    if (  NavigationStartActivity.UsernamesListUnRead.isEmpty() == true){
-                        NavigationStartActivity.unreadM.setVisibility(ImageView.INVISIBLE);
-                    }
-                }
-                FilterNameAndDisplay();
                 startActivity(intent1);
 
             }
@@ -134,9 +106,9 @@ public class ChatRoom extends Fragment {
 
     private void FilterNameAndDisplay()
     {
-        synchronized (lock) {
+
         String CurrUID =  mAuth.getCurrentUser().getUid();
-        Set set = mMap.entrySet();
+        Set set = NavigationStartActivity.mMap.entrySet();
         Iterator i = set.iterator();
         UserChatArrayAdapter mArrayAdapter;
         ArrayList<String> ListFilter = new ArrayList<String>();
@@ -146,12 +118,12 @@ public class ChatRoom extends Fragment {
             String preFix = (String)me.getKey();
             if(Suser.isEmpty()==true)
             {
-                if( CurrUID.equals(mMap.get(preFix)) == false) {
+                if( CurrUID.equals(NavigationStartActivity.mMap.get(preFix)) == false) {
                     ListFilter.add(preFix);
                 }
             }
             else if(preFix.startsWith(Suser) == true){
-                if ( CurrUID.equals(mMap.get(preFix)) == false)
+                if ( CurrUID.equals(NavigationStartActivity.mMap.get(preFix)) == false)
                       ListFilter.add(preFix);
             }
 
@@ -160,5 +132,5 @@ public class ChatRoom extends Fragment {
         mArrayAdapter = new UserChatArrayAdapter(my_activity,ListFilter,NavigationStartActivity.UsernamesListUnRead);
         listOfUsers.setAdapter(mArrayAdapter);
         adapter = mArrayAdapter;
-    }}
+    }
 }

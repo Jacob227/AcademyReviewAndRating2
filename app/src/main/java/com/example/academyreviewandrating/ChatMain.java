@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
     public class ChatMain extends AppCompatActivity {
+    private ValueEventListener RemoveListenerValue;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private DatabaseReference mDatabaseuser;
@@ -51,7 +51,7 @@ import com.google.firebase.database.ValueEventListener;
 
         mDatabaReadMesseges = FirebaseDatabase.getInstance().getReference();
         mDatabaseuser =  FirebaseDatabase.getInstance().getReference().child("Messeges").child(CurrentUID).child(ReciverID);
-        mDatabaseuser.addValueEventListener(new ValueEventListener() {
+        RemoveListenerValue = mDatabaseuser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 displayChatMessage();
@@ -65,12 +65,7 @@ import com.google.firebase.database.ValueEventListener;
                                         .child(keyMessege)
                                         .child("read").setValue(true);
                             }
-                            if(NavigationStartActivity.UsernamesListUnRead.contains(ReciverName) == true){
-                                NavigationStartActivity.UsernamesListUnRead.remove(ReciverName);
-                                if (  NavigationStartActivity.UsernamesListUnRead.isEmpty() == true){
-                                    NavigationStartActivity.unreadM.setVisibility(ImageView.INVISIBLE);
-                                }
-                            }
+
                         }
 
                 }
@@ -94,7 +89,6 @@ import com.google.firebase.database.ValueEventListener;
 
         messegeText.setText("");
         messegeText.requestFocus();
-    //    displayChatMessage();
     }
 
 
@@ -136,6 +130,14 @@ import com.google.firebase.database.ValueEventListener;
      listOfMessage.setAdapter(adapter);
      listOfMessage.setSelection(adapter.getCount() - 1);
  }
+
+        @Override
+        public void onBackPressed(){
+            super.onBackPressed();
+            mDatabaseuser.removeEventListener(RemoveListenerValue);
+            this.finish();
+         }
+
 
 
 }

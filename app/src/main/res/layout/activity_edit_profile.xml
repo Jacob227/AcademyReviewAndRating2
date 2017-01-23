@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit profile"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/textRegRegist"
+                android:textSize="40dp"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="1dp" />
+            <EditText
+                android:layout_width="236dp"
+                android:layout_height="wrap_content"
+                android:hint="Full name"
+                android:ems="10"
+                android:id="@+id/editTextRegFullName"
+                android:layout_marginLeft="130dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="40dp"
+                android:background="@android:drawable/editbox_background"
+                android:padding="7dp"
+                android:textColorHint="@color/common_google_signin_btn_text_light_default"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed" />
+
+
+            <EditText
+                android:layout_width="233dp"
+                android:layout_height="wrap_content"
+                android:hint="Phone"
+                android:inputType="phone"
+                android:ems="10"
+                android:id="@+id/editTextRegPhone"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/editbox_background"
+                android:padding="7dp"
+                android:textColorHint="@color/common_google_signin_btn_text_light_default"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed" />
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Academy"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="17dp"
+                    android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textColor="@color/my_color_rank_text"
+                    android:textStyle="normal|bold|italic"/>
+                <RelativeLayout
+                    android:layout_weight="0.1"
+                    android:background="@drawable/spinner_shape"
+                    android:orientation="horizontal"
+                    android:layout_alignBottom="@+id/textView_Choose_semester"
+                    android:layout_alignLeft="@+id/choose_semster_but_list"
+                    android:layout_alignStart="@+id/choose_semster_but_list"
+                    android:layout_width="205dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="120dp"
+                    android:layout_marginTop="15dp">
+
+                    <Spinner
+                        android:id="@+id/editTextRegInst"
+                        android:layout_width="205dp"
+                        android:minWidth="10dp"
+                        android:dropDownWidth="wrap_content"
+                        android:textDirection="ltr"
+                        android:popupBackground="@android:drawable/spinner_background"
+
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:spinnerMode="dropdown"
+                        android:layout_height="35dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:src="@drawable/spinner_icon_2" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Faculty"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="17dp"
+                    android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textColor="@color/my_color_rank_text"
+                    android:textStyle="normal|bold|italic"/>
+                <RelativeLayout
+                    android:layout_weight="0.1"
+                    android:background="@drawable/spinner_shape"
+                    android:orientation="horizontal"
+                    android:layout_alignBottom="@+id/textView_Choose_semester"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignLeft="@+id/choose_semster_but_list"
+                    android:layout_alignStart="@+id/choose_semster_but_list"
+                    android:layout_width="205dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="120dp">
+
+                    <Spinner
+                        android:id="@+id/editTextRegFacl"
+                        android:layout_width="205dp"
+                        android:minWidth="10dp"
+                        android:dropDownWidth="wrap_content"
+                        android:textDirection="ltr"
+                        android:popupBackground="@android:drawable/spinner_background"
+
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:spinnerMode="dropdown"
+                        android:layout_height="35dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:src="@drawable/spinner_icon_2" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Started\nSemester"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="17dp"
+                    android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textColor="@color/my_color_rank_text"
+                    android:textStyle="normal|bold|italic"/>
+                <RelativeLayout
+                    android:layout_weight="0.1"
+                    android:background="@drawable/spinner_shape"
+                    android:orientation="horizontal"
+                    android:layout_alignBottom="@+id/textView_Choose_semester"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignLeft="@+id/choose_semster_but_list"
+                    android:layout_alignStart="@+id/choose_semster_but_list"
+                    android:layout_width="205dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="120dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:src="@drawable/spinner_icon_2"
+                        android:id="@+id/imageView5" />
+
+                    <Spinner
+                        android:id="@+id/editTextSemester"
+                        android:layout_width="205dp"
+                        android:minWidth="10dp"
+                        android:dropDownWidth="wrap_content"
+                        android:textDirection="ltr"
+                        android:popupBackground="@android:drawable/spinner_background"
+
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:spinnerMode="dropdown"
+                        android:layout_height="35dp"
+                        android:layout_alignBottom="@+id/imageView5"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+            </RelativeLayout>
+            <Button
+                android:text="save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonRegRegister"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
+                android:elevation="4dp"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textStyle="normal|italic"
+                style="@style/Base.TextAppearance.AppCompat.Widget.Button"
+                android:textSize="18sp"
+                android:alpha="80"
+                android:layout_marginTop="20dp"
+                android:onClick="RegisterClick"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
