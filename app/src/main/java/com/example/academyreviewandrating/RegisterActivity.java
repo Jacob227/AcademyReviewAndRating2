@@ -1,6 +1,8 @@
 package com.example.academyreviewandrating;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -32,18 +35,26 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
+    private final String[] our_emails = {"jacob22788@gmail.com", "pitry123@gmail.com"};
     private DatabaseReference mDatabaseFac;
+    private DatabaseReference mDatabaseEmail;
     private DatabaseReference mDatabaseLec;
     private String textUserName,textInstitution,textFaculty,textEmail,textPhone,textFullName,textPassword;
     private Spinner faculty_spinner, academy_spinner,semester_spinner,lec_spinner;
-    private EditText et_userName;
+    private EditText et_userName, et_code;
     private Boolean textPrivilage;    //TODO
     private FirebaseAuth firebaseAuth;
     private boolean flag_academy,flag_faculty;
+    private Random randCode;
+    private TextView tv_code;
+    private Button bt_reg;
+    private Activity myRef;
+    private int sizeTop = 20;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         Log.d("OnCreate"," RegisterActivity before firebase.getInstance()");
         mDatabase = FirebaseDatabase.getInstance().getReference("Academy");
         firebaseAuth = FirebaseAuth.getInstance();
+        myRef = this;
         final AutoCompleteTextView ACTextView;
         final RegisterActivity ref_activity = this;
         flag_academy = flag_faculty = false;
@@ -60,7 +72,12 @@ public class RegisterActivity extends AppCompatActivity {
         academy_spinner = (Spinner) findViewById(R.id.editTextRegInst);
         semester_spinner = (Spinner) findViewById(R.id.editTextSemester);
         lec_spinner = (Spinner) findViewById(R.id.editTextLecName);
-
+        et_code = (EditText) findViewById(R.id.editTextRegCode);
+        tv_code = (TextView) findViewById(R.id.Code_text);
+        bt_reg = (Button) findViewById(R.id.buttonRegRegister) ;
+        //tv_code.setVisibility(View.GONE);
+        //et_code.setVisibility(View.GONE);
+        //bt_reg.setTop(sizeTop);
         //ACTextView = (AutoCompleteTextView) findViewById(R.id.editTextRegInst);
         //ACTextView.setDropDownBackgroundResource(R.color.my_color_butt);
         //ACTextView.setThreshold(1);
@@ -184,6 +201,15 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    public String createNewEmailKey(String[] emailSplit)
+    {
+        String newEmail = "";
+        for (int i = 0; i < emailSplit.length; i++ )
+            newEmail += emailSplit[i];
+        return  newEmail;
+    }
+
+    //clicked on Sign up
     public void RegisterClick(View view) {
 
         EditText editText;
@@ -214,7 +240,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (textRadio.equals("Student")) {
             User user = new User(textUserName, textInstitution, textFaculty, textEmail, textPhone, textFullName, textRadio);
             user.setStarted_semester(semester_spinner.getSelectedItem().toString());
-            boolean res = checkAllRegisterDetails(user);
+            boolean res = firebaseSignUp(user, true);
         }
         else { //teacher
             LecturerUser user = new LecturerUser(textUserName, textInstitution, textFaculty, textEmail, textPhone, textFullName, textRadio);
@@ -223,26 +249,77 @@ public class RegisterActivity extends AppCompatActivity {
                 user.setUserName(lec_spinner.getSelectedItem().toString());
                 user.setLec_in_system(true);
             }
-            boolean res = checkAllRegisterDetails(user);
+
+            if (et_code.getText().toString().equals("")){
+                // send a mail
+                if (CheckUserDetails(user)) {
+                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                    emailIntent.setData(Uri.parse("mailto:"));
+                    emailIntent.setType("text/plain");
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, our_emails);
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Verify request from " + user.getUserName());
+                    emailIntent.putExtra(Intent.EXTRA_TEXT, "Name: " + user.getFullName() + "\n"
+                            + "Email: " + user.getEmail() + "\nAcademy: " + user.getInstitution() +
+                            "\nFaculty: " + user.getFaculty());
+                    startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"));
+
+                    mDatabaseEmail = FirebaseDatabase.getInstance().getReference("Lecturer_verify");
+                    randCode = new Random(); //code number
+                    mDatabaseEmail.child(String.valueOf(randCode.nextInt(500000) + 1))
+                            .setValue(user);
+                } else {
+                    return;
+                }
+            }
+            else { //need to verify the code from db
+                mDatabaseEmail = FirebaseDatabase.getInstance().getReference("Lecturer_verify");
+                final String code_str = et_code.getText().toString();
+                mDatabaseEmail.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChild(code_str)){ //verify code is correct
+                            LecturerUser user1 =  dataSnapshot.child(code_str).getValue(LecturerUser.class);
+                            firebaseSignUp(user1, false);
+                        } else {
+                            Toast.makeText(myRef,"Verify code is incorrect", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+               // boolean res = firebaseSignUp(user);
+            }
         }
 
     }
 
-    public boolean checkAllRegisterDetails(User user){
+
+    public boolean CheckUserDetails(User user) {
         //Need to check user name, password, Email.
-        if (TextUtils.isEmpty(user.getEmail()) ){
-            Toast.makeText(this,"Please enter mail",Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(user.getEmail())) {
+            Toast.makeText(this, "Please enter mail", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if (TextUtils.isEmpty(textPassword)){
-            Toast.makeText(this,"Please enter password",Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(textPassword)) {
+            Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (TextUtils.isEmpty(user.getUserName())) {
             Toast.makeText(this, "Please enter User name", Toast.LENGTH_SHORT).show();
             return false;
+        }
+        return true;
+
+    }
+    public boolean firebaseSignUp(User user, boolean checkDetails){
+
+        if (checkDetails) {
+            CheckUserDetails(user);
         }
 
         final User userRef = user;
@@ -270,4 +347,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         return true;
     }
+
+
 }

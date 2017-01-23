@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -350,6 +351,44 @@
 
             </RelativeLayout>
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Verify\n code"
+                android:id="@+id/Code_text"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="17dp"
+                android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                android:textColor="@color/my_color_rank_text"
+                android:textStyle="normal|bold|italic"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="After sign up you get code"
+                android:ems="10"
+                android:id="@+id/editTextRegCode"
+                android:background="@android:drawable/editbox_background"
+                android:padding="7dp"
+                android:textColorHint="@color/common_google_signin_btn_text_light_default"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                android:inputType="text"
+                android:layout_marginLeft="35dp"
+                android:layout_alignTop="@+id/Code_text"
+                android:layout_toRightOf="@+id/Code_text"
+                android:layout_toEndOf="@+id/Code_text"
+                android:layout_marginStart="26dp"
+                android:layout_marginRight="25dp" />
+
+
+        </RelativeLayout>
+
     <Button
         android:text="Sign up"
         android:layout_width="match_parent"
@@ -363,8 +402,9 @@
         style="@style/Base.TextAppearance.AppCompat.Widget.Button"
         android:textSize="18sp"
         android:alpha="80"
-        android:layout_marginTop="20dp"
-        android:onClick="RegisterClick"/>
+        android:layout_marginTop="10dp"
+        android:onClick="RegisterClick"
+        android:layout_marginBottom="15dp" />
 
     </LinearLayout>
 </ScrollView>

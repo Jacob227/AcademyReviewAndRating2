@@ -32,7 +32,7 @@
         android:layout_marginTop="50dp"
         android:background="@android:drawable/editbox_background"
         android:padding="10dp"
-        android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
+        android:textColorHint="@color/common_google_signin_btn_text_light_default"
         android:textColor="@color/common_google_signin_btn_text_light_pressed" />
 
     <EditText
@@ -48,7 +48,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginTop="30dp"
         android:background="@android:drawable/editbox_background"
-        android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
+        android:textColorHint="@color/common_google_signin_btn_text_light_default"
         android:padding="10dp"
         android:textColor="@color/common_google_signin_btn_text_light_pressed" />
 
