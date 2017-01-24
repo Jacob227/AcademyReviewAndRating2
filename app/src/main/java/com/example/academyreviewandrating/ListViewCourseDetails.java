@@ -26,7 +26,9 @@ import java.util.HashMap;
 
 public class ListViewCourseDetails extends Activity {
 
+    static boolean hasRanked = false;
     private ListView listView;
+    static rating_lecterer_model addRaiting = null;
     private DatabaseReference databaseReference;
     private DatabaseReference databaseReferenceCoursePart;
     private DatabaseReference databaseReferenceUserCourse;
@@ -53,6 +55,9 @@ public class ListViewCourseDetails extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view_course_details);
+
+        addRaiting = null;
+        hasRanked = false;
 
         final Intent intent = getIntent();
         intendMes = intent.getStringArrayExtra("values");
@@ -88,11 +93,15 @@ public class ListViewCourseDetails extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0){ //Watch reviews
                     ArrayList<rating_lecterer_model> rating = hashMap_rating.get(intendMes[3]);
-                    if (rating == null) {
+                    if (rating == null && !hasRanked) {
                         Toast.makeText(getApplicationContext(),"No one rank this course/lecturer, be the first one",
                                 Toast.LENGTH_LONG).show();
                     }
                     else {
+                        if (hasRanked && addRaiting != null){
+                            rating = new ArrayList<rating_lecterer_model>();
+                            rating.add(addRaiting);
+                        }
                         Intent intentWatchRev = new Intent(myrefAct, WatchReviews.class);
                         intentWatchRev.putExtra("Rating", rating);
                         intentWatchRev.putExtra("values", intendMes);

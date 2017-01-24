@@ -102,6 +102,10 @@ public class Course_Lacturer_rank extends AppCompatActivity {
                 else {
                     mDB_ref.child(LoginActivity.user_ref.getUserName()).setValue(rl_model);
                     Toast.makeText(Course_Lacturer_rank.this,"Thank you for rating",Toast.LENGTH_SHORT).show();
+                    if (!ListViewCourseDetails.hasRanked) {
+                        ListViewCourseDetails.hasRanked = true;
+                        ListViewCourseDetails.addRaiting = rl_model;
+                    }
                     finish();
                 }
             }
