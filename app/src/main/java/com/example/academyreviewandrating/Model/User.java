@@ -1,10 +1,12 @@
 package com.example.academyreviewandrating.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by יעקב on 03/12/2016.
  */
 
-public class User {
+public class User implements Serializable {
     private String userName;
     private String Institution;
     private String Faculty;

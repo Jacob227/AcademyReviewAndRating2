@@ -248,7 +248,12 @@ public class NavigationStartActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_frame,new NavigationFregmentRankAndReview()).commit();
         } else if (id == R.id.nav_Profile) {
             Log.d("NavigationItemSelected ","going to open NavigationFregmentProfile");
-            fragmentManager.beginTransaction().replace(R.id.content_frame,new NavigationFregmentProfile()).commit();
+            Bundle bundle = new Bundle();
+            bundle.putString("uid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+            bundle.putSerializable("userClass",LoginActivity.user_ref);
+            NavigationFregmentProfile FragmentProfileInstance = new NavigationFregmentProfile();
+            FragmentProfileInstance.setArguments(bundle);
+            fragmentManager.beginTransaction().replace(R.id.content_frame,FragmentProfileInstance).commit();
         } else if (id == R.id.nav_Send_messege) {
             Log.d("NavigationItemSelected ","going to open NavigationFregmentChat");
             fragmentManager.beginTransaction().replace(R.id.content_frame,new ChatRoom()).commit();

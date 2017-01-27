@@ -18,7 +18,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="218dp">
+            android:layout_height="188dp">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
@@ -32,10 +32,19 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="22dp"
-                        android:onClick="loadimage"
                         android:id="@+id/ImageProfile"
                     android:layout_marginStart="110dp"
                     android:layout_marginLeft="110dp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/edit_icon_19"
+                android:id="@+id/Editprofile"
+                android:visibility="gone"
+                android:layout_alignTop="@+id/ImageProfile"
+                android:layout_alignRight="@+id/ImageProfile"
+                android:layout_alignEnd="@+id/ImageProfile" />
         </RelativeLayout>
 
         <TextView
@@ -48,9 +57,9 @@
                 android:layout_below="@+id/unreadDetail"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="0dp"
                 android:textColor="@color/light"
-            android:layout_marginLeft="16dp" />
+            android:layout_marginLeft="85dp" />
         <TextView
             android:text="User Name: Pitry123"
             android:layout_width="wrap_content"
@@ -62,7 +71,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:paddingStart="15dp"
-            android:paddingLeft="24dp" />
+            android:paddingLeft="120dp" />
         <TextView
             android:text="Student in Braude college"
             android:layout_width="wrap_content"
@@ -74,19 +83,21 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:paddingLeft="16dp"
-            android:paddingTop="10dp" />
-            <TextView
-                android:text="Faculty: Industrial Engennerr"
-                android:layout_width="wrap_content"
-                android:textSize="17dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/userdetail"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="13dp"
-                android:textColor="@color/light"
-                android:id="@+id/userdetail1"
-                android:paddingLeft="16dp" />
+            android:paddingTop="10dp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:text="Faculty: Industrial Engennerr"
+            android:layout_width="wrap_content"
+            android:textSize="17dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userdetail"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="22dp"
+            android:textColor="@color/light"
+            android:id="@+id/userdetail1"
+            android:paddingLeft="16dp" />
 
 
         <RelativeLayout
@@ -141,7 +152,7 @@
                 android:paddingStart="33dp"
                 android:paddingLeft="33dp"
                 android:paddingTop="70dp"
-                android:layout_alignParentBottom="true"
+                android:layout_alignTop="@+id/emailcont"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
         </RelativeLayout>

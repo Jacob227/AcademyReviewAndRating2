@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,34 +28,89 @@
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="1dp" />
-            <EditText
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <com.example.academyreviewandrating.CircleImageView
+                    android:layout_width="160dp"
+                    android:src="@drawable/click_for_change_friday"
+                    app:civ_border_width="2dp"
+                    android:id="@+id/ImageProfile1"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="100dp" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
                 android:layout_width="236dp"
                 android:layout_height="wrap_content"
-                android:hint="Full name"
                 android:ems="10"
                 android:id="@+id/editTextRegFullName"
-                android:layout_marginLeft="130dp"
-                android:layout_marginRight="0dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginTop="40dp"
                 android:background="@android:drawable/editbox_background"
                 android:padding="7dp"
                 android:textColorHint="@color/common_google_signin_btn_text_light_default"
                 android:textColor="@color/common_google_signin_btn_text_light_pressed" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Full Name"
+                    android:layout_marginLeft="22dp"
+                    android:textSize="17dp"
+                    android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textColor="@color/my_color_rank_text"
+                    android:textStyle="normal|bold|italic"
+                    android:layout_alignBaseline="@+id/editTextRegFullName"
+                    android:layout_alignBottom="@+id/editTextRegFullName"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="22dp"
+                    android:id="@+id/textView9" />
+            </RelativeLayout>
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-            <EditText
+    <EditText
                 android:layout_width="233dp"
                 android:layout_height="wrap_content"
-                android:hint="Phone"
                 android:inputType="phone"
                 android:ems="10"
                 android:id="@+id/editTextRegPhone"
-                android:layout_marginLeft="130dp"
+                android:layout_marginLeft="140dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:drawable/editbox_background"
                 android:padding="7dp"
                 android:textColorHint="@color/common_google_signin_btn_text_light_default"
-                android:textColor="@color/common_google_signin_btn_text_light_pressed" />
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+        android:layout_marginRight="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"
+        android:layout_marginLeft="19dp"
+        android:textSize="17dp"
+        android:textColorLink="?android:attr/textColorPrimaryInverseNoDisable"
+        android:textColor="@color/my_color_rank_text"
+        android:textStyle="normal|bold|italic"
+        android:layout_marginStart="19dp"
+        android:id="@+id/textView10"
+        android:layout_alignBaseline="@+id/editTextRegPhone"
+        android:layout_alignBottom="@+id/editTextRegPhone"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
 
 
             <RelativeLayout
@@ -135,6 +191,15 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="120dp">
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:src="@drawable/spinner_icon_2"
+                        android:id="@+id/imageView6" />
+
                     <Spinner
                         android:id="@+id/editTextRegFacl"
                         android:layout_width="205dp"
@@ -143,21 +208,14 @@
                         android:textDirection="ltr"
                         android:popupBackground="@android:drawable/spinner_background"
 
-                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:gravity="center"
-                        android:layout_marginLeft="5dp"
                         android:spinnerMode="dropdown"
-                        android:layout_height="35dp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/spinner_icon_2" />
+                        android:layout_height="35dp"
+                        android:layout_alignBottom="@+id/imageView6"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
 
                 </RelativeLayout>
             </RelativeLayout>
@@ -226,12 +284,12 @@
                 android:layout_height="wrap_content">
 
 
-            </RelativeLayout>
+
             <Button
                 android:text="save"
-                android:layout_width="match_parent"
+                android:layout_width="111dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/buttonRegRegister"
+                android:id="@+id/buttonSave"
                 android:layout_marginRight="50dp"
                 android:layout_marginLeft="50dp"
                 android:elevation="4dp"
@@ -241,8 +299,23 @@
                 android:textSize="18sp"
                 android:alpha="80"
                 android:layout_marginTop="20dp"
-                android:onClick="RegisterClick"/>
-
+                android:onClick="SaveDetail"/>
+                <Button
+                    android:text="cancel"
+                    android:layout_width="111dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonCancel"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="200dp"
+                    android:elevation="4dp"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
+                    android:textStyle="normal|italic"
+                    style="@style/Base.TextAppearance.AppCompat.Widget.Button"
+                    android:textSize="18sp"
+                    android:alpha="80"
+                    android:layout_marginTop="20dp"
+                    android:onClick="CancelDetail"/>
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 
