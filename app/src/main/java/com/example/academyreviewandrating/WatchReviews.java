@@ -68,12 +68,10 @@ public class WatchReviews extends AppCompatActivity {
                             first = true;
                         }
 
-                        DataSnapshot lecData = child.child("Lecturer");
+                        DataSnapshot lecData = child.child("Lecturer").child(intendMes[3]);
                         for (DataSnapshot childLec : lecData.getChildren()) { //lecturer
-                            Log.d("Lecterer", childLec.getKey());
                             DataSnapshot rating_data = childLec.child("Rating");
                             for (DataSnapshot childRating : rating_data.getChildren()) { //rating
-                                Log.d("Rank", childRating.getKey());
                                 if (map_lecrurer.get(childLec.getKey()) == null) {
                                     map_lecrurer.put(childLec.getKey(), new ArrayList<rating_lecterer_model>());
                                 }

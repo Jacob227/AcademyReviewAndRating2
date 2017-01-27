@@ -28,6 +28,7 @@ public class ListViewCourseDetails extends Activity {
 
     static boolean hasRanked = false;
     private ListView listView;
+    private boolean alreadyAdded = false;
     static rating_lecterer_model addRaiting = null;
     private DatabaseReference databaseReference;
     private DatabaseReference databaseReferenceCoursePart;
@@ -92,15 +93,30 @@ public class ListViewCourseDetails extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0){ //Watch reviews
-                    ArrayList<rating_lecterer_model> rating = hashMap_rating.get(intendMes[3]);
+                    ArrayList<rating_lecterer_model> rating = new ArrayList<rating_lecterer_model>();
+                    rating = hashMap_rating.get(intendMes[3]);
                     if (rating == null && !hasRanked) {
                         Toast.makeText(getApplicationContext(),"No one rank this course/lecturer, be the first one",
                                 Toast.LENGTH_LONG).show();
                     }
                     else {
-                        if (hasRanked && addRaiting != null){
+                        if (hasRanked && addRaiting != null && rating == null && !alreadyAdded){
                             rating = new ArrayList<rating_lecterer_model>();
-                            rating.add(addRaiting);
+                            alreadyAdded = true;
+                            rating_lecterer_model newRef = new rating_lecterer_model(addRaiting.getAbility_to_teach(),addRaiting.getAttitude_lecturer_student()
+                                    ,addRaiting.getCourse_level(),addRaiting.getTeacher_interesting(),addRaiting.getFew_words(),
+                                    addRaiting.getDate(),addRaiting.getAnonymous());
+                            newRef.set_rank_name(LoginActivity.user_ref.getUserName());
+                            rating.add(newRef);
+                        } else {
+                            if (hasRanked && addRaiting != null && rating != null && !alreadyAdded){ //already ranked and add the new rank
+                                rating_lecterer_model newRef = new rating_lecterer_model(addRaiting.getAbility_to_teach(),addRaiting.getAttitude_lecturer_student()
+                                        ,addRaiting.getCourse_level(),addRaiting.getTeacher_interesting(),addRaiting.getFew_words(),
+                                        addRaiting.getDate(),addRaiting.getAnonymous());
+                                newRef.set_rank_name(LoginActivity.user_ref.getUserName());
+                                rating.add(newRef);
+                                alreadyAdded = true;
+                            }
                         }
                         Intent intentWatchRev = new Intent(myrefAct, WatchReviews.class);
                         intentWatchRev.putExtra("Rating", rating);
