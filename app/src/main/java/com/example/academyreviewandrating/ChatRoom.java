@@ -79,6 +79,12 @@ public class ChatRoom extends Fragment {
                 Intent intent1 = new Intent(my_activity, ChatMain.class);
                 intent1.putExtra("ReciveID",NavigationStartActivity.mMap.get(ReciverID));
                 intent1.putExtra("ReciveName",ReciverID);
+                for(int I =0;I < NavigationStartActivity.userList.size();I++){
+                    if(NavigationStartActivity.userList.get(I).getUserName().equals(ReciverID)){
+                            intent1.putExtra("Image_exist",NavigationStartActivity.userList.get(I).getImage_exist());
+                        }
+
+                }
                 startActivity(intent1);
 
             }

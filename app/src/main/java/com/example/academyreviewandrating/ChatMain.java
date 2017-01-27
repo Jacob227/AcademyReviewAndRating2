@@ -6,20 +6,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.academyreviewandrating.Model.ChatMessage;
+import com.example.academyreviewandrating.Model.User;
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
-    public class ChatMain extends AppCompatActivity {
+public class ChatMain extends AppCompatActivity {
     private ValueEventListener RemoveListenerValue;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -31,7 +38,10 @@ import com.google.firebase.database.ValueEventListener;
     private String ReciverName;
     private String ReciverID;
     private String SenderName;
+    private ImageView profilepic;
     private  String CurrentUID ;
+    private  FirebaseStorage mStorage;
+    private  ChatMain here;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +52,35 @@ import com.google.firebase.database.ValueEventListener;
         Intent intentChatRoom = getIntent();
         Bundle bd = intentChatRoom.getExtras();
         CurrentUID = mAuth.getCurrentUser().getUid();
+        profilepic = (ImageView)findViewById(R.id.pic);
+        TextView UserNameRecive = (TextView)findViewById(R.id.user_item) ;
+
         if(bd != null)
         {
             ReciverID = (String)bd.get("ReciveID");
             ReciverName = (String)bd.get("ReciveName");
+            mStorage = FirebaseStorage.getInstance();
+            UserNameRecive.setText(ReciverName);
+            here = this;
+            UserNameRecive.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent1 = new Intent(here, ProfileFriendChat.class);
+                    User frienduser = null;
+                    for(int I =0;I < NavigationStartActivity.userList.size();I++){
+                        if(NavigationStartActivity.userList.get(I).getUserName().equals(ReciverName)){
+                            frienduser = NavigationStartActivity.userList.get(I);
+                        }
+                }
+                    intent1.putExtra("uid",ReciverID);
+                    intent1.putExtra("friend User",frienduser);
+                    startActivity(intent1);
+            }});
+            boolean imageProfExist = (boolean)bd.get("Image_exist");
+            if (imageProfExist) {
+                StorageReference ref = mStorage.getReference().child("UserImages").child(ReciverID).child("pic.jpeg");
+                Glide.with(this).using(new FirebaseImageLoader()).load(ref).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(profilepic);
+            }
         }
         SenderName = LoginActivity.user_ref.getUserName();
 
@@ -138,6 +173,9 @@ import com.google.firebase.database.ValueEventListener;
             this.finish();
          }
 
-
+public void BackBack(View view){
+    mDatabaseuser.removeEventListener(RemoveListenerValue);
+    this.finish();
+}
 
 }

@@ -39,14 +39,16 @@
         <activity android:name=".WatchReviews" />
         <activity android:name=".ReviewTable" />
         <activity android:name=".CorseDetails" />
-        <activity android:name=".ChatMain"
-                  android:noHistory="true"/>
+        <activity
+            android:name=".ChatMain"
+            android:noHistory="true" />
         <activity android:name=".Courseparticipants" />
         <activity android:name=".ScheduleTable" />
         <activity android:name=".ReviewTableFaculty" />
         <activity android:name=".listViewCourseList" />
         <activity android:name=".AddLecturer" />
-        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".EditProfile" />
+        <activity android:name=".ProfileFriendChat"></activity>
     </application>
 
 </manifest>

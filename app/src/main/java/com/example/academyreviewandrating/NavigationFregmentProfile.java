@@ -129,7 +129,7 @@ public class NavigationFregmentProfile extends Fragment {
         UserDetail.setText(curruser.getPhone());
         if(curruser.getImage_exist()==true) {
             Iprofile.clearAnimation();
-            StorageReference ref = mStorage.getReference().child("UserImages").child(UID).child("pic.jpeg");
+            StorageReference ref = mStorage.getReference().child("UserImages").child(UserIDProfile).child("pic.jpeg");
            // Glide.with(getActivity()).using(new FirebaseImageLoader()).load(ref).into(Iprofile);
                Glide.with(getActivity()).using(new FirebaseImageLoader()).load(ref).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(Iprofile);
 
