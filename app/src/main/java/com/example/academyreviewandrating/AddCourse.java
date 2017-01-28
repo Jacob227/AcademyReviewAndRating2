@@ -31,6 +31,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/**
+ * Add course to the system (only Lecturer permission)
+ */
 public class AddCourse extends Fragment {
 
     private Activity myAct;
@@ -56,6 +59,13 @@ public class AddCourse extends Fragment {
         return myView;
     }
 
+    /**
+     * Initialize all the components including
+     * the DB reference.
+     * Initialize button listener.
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

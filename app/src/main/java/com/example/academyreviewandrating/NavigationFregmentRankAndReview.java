@@ -103,10 +103,10 @@ public class NavigationFregmentRankAndReview extends Fragment {
                             "Academy/" + academy_selected + "/Faculty", spinnerEnum.FACULTY);
                 }
                 else {
-                    Toast.makeText(getActivity(),"Timeout has accured",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"There is low internet connection",Toast.LENGTH_LONG).show();
                 }
             }
-        }, 3500);
+        }, 4500);
 
 
 

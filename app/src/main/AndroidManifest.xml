@@ -46,7 +46,6 @@
         <activity android:name=".ScheduleTable" />
         <activity android:name=".ReviewTableFaculty" />
         <activity android:name=".listViewCourseList" />
-        <activity android:name=".AddLecturer" />
         <activity android:name=".EditProfile" />
         <activity android:name=".ProfileFriendChat"></activity>
     </application>

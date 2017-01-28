@@ -26,6 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+/**
+ * Chat class - chat screen between 2 users.
+ */
 public class ChatMain extends AppCompatActivity {
     private ValueEventListener RemoveListenerValue;
     private FirebaseAuth mAuth;
@@ -113,6 +116,10 @@ public class ChatMain extends AppCompatActivity {
 
     }
 
+    /**
+     * function that implement the send button between 2 users
+     * @param view
+     */
     public void sendMessege(View view){
         final String st1 = messegeText.getText().toString();
 
@@ -126,8 +133,10 @@ public class ChatMain extends AppCompatActivity {
         messegeText.requestFocus();
     }
 
-
- private void displayChatMessage() {
+    /**
+     * Display the chat message on screen.
+     */
+    private void displayChatMessage() {
 
      ListView listOfMessage = (ListView)findViewById(R.id.messages_list);
      mDatabase = FirebaseDatabase.getInstance().getReference("Messeges").child(mAuth.getCurrentUser().getUid()).child(ReciverID);
@@ -173,7 +182,11 @@ public class ChatMain extends AppCompatActivity {
             this.finish();
          }
 
-public void BackBack(View view){
+    /**
+     * back to previous screen.
+     * @param view
+     */
+    public void BackBack(View view){
     mDatabaseuser.removeEventListener(RemoveListenerValue);
     this.finish();
 }
