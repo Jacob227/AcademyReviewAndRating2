@@ -60,7 +60,12 @@ public class ProfileFriendChat extends AppCompatActivity {
     public void ShowDetail(){
         UserName.setText(curruser.getFullName());
         UserDetail = (TextView)findViewById(R.id.userdetail) ;
-        UserDetail.setText("Study in "+curruser.getInstitution());
+        if(curruser.isPrivilage().equals("Student")) {
+            UserDetail.setText("Study in " + curruser.getInstitution());
+        }
+        else{
+            UserDetail.setText("Lecturer in " + curruser.getInstitution());
+        }
         UserDetail = (TextView)findViewById(R.id.userdetail1) ;
         UserDetail.setText("Faculty: "+curruser.getFaculty());
         UserDetail = (TextView)findViewById(R.id.userdetail2) ;
