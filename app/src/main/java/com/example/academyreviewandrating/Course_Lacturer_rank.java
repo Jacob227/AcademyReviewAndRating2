@@ -85,6 +85,10 @@ public class Course_Lacturer_rank extends AppCompatActivity {
                 Math.round(lecterer_atitude_rb.getRating()), Math.round(course_level_rb.getRating()),
                 Math.round(lecterer_intr_rb.getRating()), fewWords_et.getText().toString(),
                 new SimpleDateFormat("dd-MM-yyyy").format(new Date()),cb_an);
+        if (rl_model.getAnonymous())
+            rl_model.set_rank_name("-");
+        else
+            rl_model.set_rank_name(LoginActivity.user_ref.getUserName());
 
         if (QuerySurvey != null){
             mDB_ref = FirebaseDatabase.getInstance().getReference(QuerySurvey);

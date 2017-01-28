@@ -272,10 +272,11 @@ public class ListViewCourseDetails extends Activity {
                     addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot mDataSnapshot: dataSnapshot.getChildren()){
-                                if (mDataSnapshot.getKey().equals(userEmail)){ //User already signed up
+                           // for (DataSnapshot mDataSnapshot: dataSnapshot.getChildren()){
+                                if (dataSnapshot.hasChild(userEmail)){ //User already signed up
                                     mAdapder.SetCahngeInItemList("Unsubscribe to course", 3, "Cancel your registration");
                                     registeredToCourse = true;
+                                    DataSnapshot mDataSnapshot = dataSnapshot.child(userEmail);
                                     CourseParticipanceModel courseParticipanceModel = mDataSnapshot.getValue(CourseParticipanceModel.class);
                                     if (courseParticipanceModel.getCourse_part()){
                                         mAdapder.SetCahngeInItemList("No longer looking for a partner?", 4,
@@ -290,7 +291,7 @@ public class ListViewCourseDetails extends Activity {
                                     mAdapder.SetCahngeInItemList(items[3], 3, item_desc[3]);
                                     registeredToCourse = false;
                                 }
-                            }
+                           // }
                             mAdapder.notifyDataSetChanged();
                         }
                         @Override
