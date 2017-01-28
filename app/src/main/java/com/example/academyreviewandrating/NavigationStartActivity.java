@@ -95,23 +95,27 @@ public class NavigationStartActivity extends AppCompatActivity
                 String Se = "",Re = "";
                 for(DataSnapshot mDataSnapshot1: mDataSnapshot.getChildren()){
                     ChatMessage unreadMessege = mDataSnapshot1.getValue(ChatMessage.class);
+                    //save the sender UserName
                     if (Se.isEmpty() == true){
                         Se = unreadMessege.getMessageUser();
                     }
+                    //save the Reciver UserName
                     if((Se.equals(unreadMessege.getMessageUser())==false) &&( Re.isEmpty() ==true)){
                         Re = unreadMessege.getMessageUser();
                     }
+                    //check if all the messages were readed
                     if (unreadMessege.getread() == false){
                         counnt++;
                         Toast.makeText(NavigationStartActivity.this,"You have got a message!!!",Toast.LENGTH_LONG).show();
                         unreadM.clearAnimation();
                         unreadM.requestFocus();
                         unreadM.setVisibility(ImageView.VISIBLE);
-                      //   unreadM.setImageResource(R.drawable.ic_unread_message);
+                      // if found message that not readed add to arraylist this user name
                         if(UsernamesListUnRead.contains(unreadMessege.getMessageUser()) == false) {
                             UsernamesListUnRead.add(unreadMessege.getMessageUser());
                         }
                     }
+                    //check if the message is already readed
                     if (counnt==0 && UsernamesListUnRead.isEmpty() == false){
                         if (UsernamesListUnRead.contains(Re)== true){
                             UsernamesListUnRead.remove(Re);
@@ -120,6 +124,7 @@ public class NavigationStartActivity extends AppCompatActivity
                             UsernamesListUnRead.remove(Se);
                         }
                     }
+                    //check if all the messages were readed
                     if(counnt== 0 && UsernamesListUnRead.isEmpty() ==true && on==0){
                         unreadM.setVisibility(ImageView.INVISIBLE);
                         on=1;

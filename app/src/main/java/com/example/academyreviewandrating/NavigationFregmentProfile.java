@@ -118,7 +118,12 @@ public class NavigationFregmentProfile extends Fragment {
     public void ShowDetail(){
         UserName.setText(curruser.getFullName());
         UserDetail = (TextView)getView().findViewById(R.id.userdetail) ;
-        UserDetail.setText("Study in "+curruser.getInstitution());
+        if(curruser.isPrivilage().equals("Student")) {
+            UserDetail.setText("Study in " + curruser.getInstitution());
+        }
+        else{
+            UserDetail.setText("Lecturer in " + curruser.getInstitution());
+        }
         UserDetail = (TextView)getView().findViewById(R.id.userdetail1) ;
         UserDetail.setText("Faculty: "+curruser.getFaculty());
         UserDetail = (TextView)getView().findViewById(R.id.userdetail2) ;

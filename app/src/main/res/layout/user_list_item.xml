@@ -42,7 +42,7 @@
             android:visibility="invisible"
             android:id="@+id/unreadDetail"
             android:layout_marginStart="210dp"
-            android:layout_marginLeft="210dp" />
+            android:layout_marginLeft="180dp" />
 
     </LinearLayout>
 
