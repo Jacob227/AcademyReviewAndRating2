@@ -37,7 +37,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
+/**
+ * Registration class for sign up to app
+ * including user name, full name, pass, faculty, academy, phone, email and more
+ */
 public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private final String[] our_emails = {"jacob22788@gmail.com", "pitry123@gmail.com"};
@@ -55,6 +58,13 @@ public class RegisterActivity extends AppCompatActivity {
     private Button bt_reg;
     private Activity myRef;
     private int sizeTop = 20;
+
+    /**
+     * Init all registration view components,
+     * Init DB reference
+     * getting data on faculty, academy and semsters from firebase DB
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,12 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
         et_code = (EditText) findViewById(R.id.editTextRegCode);
         tv_code = (TextView) findViewById(R.id.Code_text);
         bt_reg = (Button) findViewById(R.id.buttonRegRegister) ;
-        //tv_code.setVisibility(View.GONE);
-        //et_code.setVisibility(View.GONE);
-        //bt_reg.setTop(sizeTop);
-        //ACTextView = (AutoCompleteTextView) findViewById(R.id.editTextRegInst);
-        //ACTextView.setDropDownBackgroundResource(R.color.my_color_butt);
-        //ACTextView.setThreshold(1);
+
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -197,19 +202,15 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
-    public String createNewEmailKey(String[] emailSplit)
-    {
-        String newEmail = "";
-        for (int i = 0; i < emailSplit.length; i++ )
-            newEmail += emailSplit[i];
-        return  newEmail;
-    }
-
-    //clicked on Sign up
+    /**
+     * clicked on Sign up button
+     * getting what user typed
+     * create email intent if lecturer clicked, for sending lecturer data
+     * to app owner for Confirmation.
+     * @param view
+     */
     public void RegisterClick(View view) {
 
         EditText editText;
@@ -296,7 +297,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Check if all registration data are correct
+     * @param user
+     * @return
+     */
     public boolean CheckUserDetails(User user) {
         //Need to check user name, password, Email.
         if (TextUtils.isEmpty(user.getEmail())) {
@@ -316,6 +321,13 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
 
     }
+
+    /**
+     * Sign up the user after all checking, using firebaseAuth API
+     * @param user
+     * @param checkDetails
+     * @return
+     */
     public boolean firebaseSignUp(User user, boolean checkDetails){
 
         if (checkDetails) {

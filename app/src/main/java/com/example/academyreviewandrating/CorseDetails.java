@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import com.example.academyreviewandrating.Model.CourseDetailsModel;
 
+/**
+ * Show course details like:
+ * Syllabus, room, hours and more
+ */
 public class CorseDetails extends AppCompatActivity {
 
     private CourseDetailsModel courseDetailsModel;

@@ -36,6 +36,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Navigation Start Activity calls after login activity
+ * Control the Drawer navigation
+ */
 public class NavigationStartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -52,6 +56,11 @@ public class NavigationStartActivity extends AppCompatActivity
     public static ArrayList<User> userList =new ArrayList<User>();
     static ProgressBar mPB;
     private Activity myAct;
+
+    /**
+     * Init firebase and navigationView instances
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -177,6 +186,10 @@ public class NavigationStartActivity extends AppCompatActivity
     }
 
     private Boolean setUser = false;
+
+    /**
+     * Override onBackPressed show dialog bar when you press on back button
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -250,6 +263,11 @@ public class NavigationStartActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Navigate to user selection on drawer navigation bar
+     * @param item
+     * @return
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

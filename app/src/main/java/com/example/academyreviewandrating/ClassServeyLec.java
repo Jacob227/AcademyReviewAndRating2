@@ -29,6 +29,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class Lecturer survey
+ * lecturer can open a new survey for his courses
+ */
 public class ClassServeyLec extends Fragment {
 
     View myView;
@@ -51,6 +55,13 @@ public class ClassServeyLec extends Fragment {
         return myView;
     }
 
+    /**
+     * Init all View components
+     * Init firebase instance to get survey details
+     * set All buttons listeners
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

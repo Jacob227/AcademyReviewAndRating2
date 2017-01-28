@@ -13,6 +13,9 @@ import android.widget.TextView;
  * Created by יעקב on 03/01/2017.
  */
 
+/**
+ * Custom List Adapter with text and image for course details class
+ */
 public class CustomListAdapter extends ArrayAdapter<String> {
     private final Activity context;
     private final String[] itemname;

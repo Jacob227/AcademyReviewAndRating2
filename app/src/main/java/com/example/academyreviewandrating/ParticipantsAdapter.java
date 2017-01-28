@@ -19,6 +19,9 @@ import java.util.Arrays;
  * Created by יעקב on 09/01/2017.
  */
 
+/**
+ * Adapter class for Course participants users
+ */
 public class ParticipantsAdapter extends ArrayAdapter<String> {
 
     private  Activity context;
@@ -37,6 +40,14 @@ public class ParticipantsAdapter extends ArrayAdapter<String> {
         this.imgid=imgid;
         this.setAllView = imgid.length;
     }
+
+    /**
+     * get view that user has chosen
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -56,6 +67,10 @@ public class ParticipantsAdapter extends ArrayAdapter<String> {
         return rowView;
     }
 
+    /**
+     * Set image Boolean if user filter the participants
+     * @param iBoolItem
+     */
     public void setBool(Boolean[] iBoolItem){
         imgid = new Boolean[iBoolItem.length];
         System.arraycopy(iBoolItem, 0, imgid, 0, imgid.length);

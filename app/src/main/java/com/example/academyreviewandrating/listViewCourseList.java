@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * List view with all course Data
+ * Using ExpandableListAdapter
+ */
 public class listViewCourseList extends AppCompatActivity {
 
     private Toolbar myActionBar;
@@ -24,6 +28,11 @@ public class listViewCourseList extends AppCompatActivity {
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
 
+    /**
+     * Init all View components
+     * including ExpandableListView
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +58,9 @@ public class listViewCourseList extends AppCompatActivity {
 
     }
 
+    /**
+     * insert to Arraylist all the course information
+     */
     public void prepareData(){
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();

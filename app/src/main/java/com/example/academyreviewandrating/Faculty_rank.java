@@ -25,6 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Rank class
+ * Ranking the Faculty/Academy view
+ */
 public class Faculty_rank extends AppCompatActivity {
 
     private String[] mDataIntend;
@@ -36,6 +40,12 @@ public class Faculty_rank extends AppCompatActivity {
     private Toolbar myActionBar;
     private AlphaAnimation buttonClick = new AlphaAnimation(Animation.ZORDER_BOTTOM,Animation.ZORDER_NORMAL);
     private Button button_send_feedback;
+
+    /**
+     * Init all the view components
+     * get Prev intent details
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +83,11 @@ public class Faculty_rank extends AppCompatActivity {
 
     }
 
+    /**
+     * Check all the feedback that user chose
+     * Insert to DB all the user rating.
+     * @param view
+     */
     public void sendFeedbackOnClick(View view) {
         view.startAnimation(buttonClick);
         //collect all the data and insert it to DB

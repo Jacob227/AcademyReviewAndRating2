@@ -35,6 +35,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Choose what timetable to display:
+ * list or table
+ */
 public class ChooseScheduleFragment extends Fragment {
 
     private DatabaseReference databaseReference;
@@ -63,6 +67,13 @@ public class ChooseScheduleFragment extends Fragment {
         return myView;
     }
 
+    /**
+     * Init all spinners and buttons View
+     * implementation of all view listeners
+     * Getting user sign up courses
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

@@ -25,6 +25,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * start activity class, main class that load when
+ * the app load, can sign in to app, also can register to app
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private EditText email;
@@ -56,6 +60,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Create a user static reference to avoid delay on app
+     * when we want to get user details from app
+     */
     public void createUserInstance() {
         static_db_ref = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
         Log.d("In createUserInstance","before addValueEventListener");
@@ -92,6 +100,12 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * When user clicked on login button.
+     * check if password and email are filled.
+     * Using firebaseAuth for sign into app
+     * @param view
+     */
     public void LoginClick(View view){
 
         if (TextUtils.isEmpty(email.getText().toString()) ){
@@ -122,6 +136,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * When user clicked on Register
+     * open a new register activity
+     * @param view
+     */
     public void RegisterClick(View view){
         Log.d("RegisterClick","In Register click");
         Intent intent = new Intent(this,RegisterActivity.class);

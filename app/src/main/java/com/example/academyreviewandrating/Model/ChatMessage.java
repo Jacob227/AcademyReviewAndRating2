@@ -5,12 +5,22 @@ import java.util.Date;
  * Created by reale on 18/11/2016.
  */
 
+/**
+ * Chat class model
+ * data on chat message
+ */
 public class ChatMessage {
     private String messageText;
     private String messageUser;
     private long messageTime;
     private Boolean read = true;
 
+    /**
+     * Constructor
+     * @param messageText
+     * @param messageUser
+     * @param R
+     */
     public ChatMessage(String messageText, String messageUser,Boolean R) {
         this.messageText = messageText;
         this.messageUser = messageUser;

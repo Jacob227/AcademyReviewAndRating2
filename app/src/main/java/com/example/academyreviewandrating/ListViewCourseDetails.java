@@ -24,6 +24,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Display list view of course details:
+ * Course Information, sign up to course, looking for HW partner
+ * display course participants, rank the course/lecturer
+ */
 public class ListViewCourseDetails extends Activity {
 
     static boolean hasRanked = false;
@@ -52,6 +57,11 @@ public class ListViewCourseDetails extends Activity {
     Integer[] imageId = {R.drawable.rank_icon,R.drawable.star_icon, R.drawable.info_icon,R.drawable.sign_up_icon,R.drawable.look_for_partner_icon,
             R.drawable.review_icon};
 
+    /**
+     * Init all the View params
+     * Add listener on listView for checking what has chosen
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,9 +93,6 @@ public class ListViewCourseDetails extends Activity {
 
         listView = (ListView)findViewById(R.id.list_view);
         listView.setAdapter(adapter);
-
-        //adapter.SetCahngeInItemList("Hi man", 3);
-        //adapter.notifyDataSetChanged();
 
         final Activity myrefAct = this;
         final CustomListAdapter madapter = adapter;
@@ -250,6 +257,12 @@ public class ListViewCourseDetails extends Activity {
         });
     }
 
+    /**
+     * create a new email key for inserting to DB key without dots
+     * or any char that can't accepted as a key in firebase DB
+     * @param emailSplit
+     * @return
+     */
     public String createNewEmailKey(String[] emailSplit)
     {
         String newEmail = "";
@@ -258,7 +271,10 @@ public class ListViewCourseDetails extends Activity {
         return  newEmail;
     }
 
-
+    /**
+     * Check if User signed up before to specific course.
+     * @param adapter
+     */
     public void cheackIfUserSignedUp(CustomListAdapter adapter){
 
         final CustomListAdapter mAdapder  = adapter;

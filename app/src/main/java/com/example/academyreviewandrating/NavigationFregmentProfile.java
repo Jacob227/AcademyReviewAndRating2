@@ -24,6 +24,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+/**
+ * Profile fragment
+ * Watch all student/lecturer profile
+ * Can edit some details
+ */
 public class NavigationFregmentProfile extends Fragment {
     private FirebaseAuth mAuth;
     private static int RESULT_LOAD_IMAGE = 1;
@@ -42,6 +47,14 @@ public class NavigationFregmentProfile extends Fragment {
     public static boolean ProfileEdited = false;
     public String UserIDProfile = "";
 
+    /**
+     * Init Firebase reference to get an access to DB
+     * for getting an image and user information
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,7 +67,12 @@ public class NavigationFregmentProfile extends Fragment {
     }
 
 
-
+    /**
+     * Init all View components
+     * get user details from DB
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,10 +129,9 @@ public class NavigationFregmentProfile extends Fragment {
 
     }
 
-
-
-
-
+    /**
+     * Show all DB details on screen
+     */
     public void ShowDetail(){
         UserName.setText(curruser.getFullName());
         UserDetail = (TextView)getView().findViewById(R.id.userdetail) ;
@@ -141,69 +158,6 @@ public class NavigationFregmentProfile extends Fragment {
         }
     }
 
-
-//public static int getOrientation(int orient){
-//
-//    if (orient == 8){
-//        return -90;
-//    }
-//    if (orient == 3){
-//        return 180;
-//    }
-//    if (orient == 6){
-//        return 90;
-//    }
-//    return 0;
-//}
-//
-//
-//
-//
-//public Uri Uparam;
-//    private static final int SELECT_PICTURE = 1;
-// //@Override
- // public void onActivityResult(int requestCode, int resultCode, Intent data) {
- //    if (resultCode == RESULT_OK) {
- //        if (requestCode == SELECT_PICTURE) {
- //            // Get the url from data
- //            Uri selectedImageUri = data.getData();
- //            String[] filePathColumn = { MediaStore.Images.Media.DATA };
- //            if (null != selectedImageUri) {
-//
- //                Cursor cursor = getActivity().getContentResolver().query(selectedImageUri,
- //                        filePathColumn, null, null, null);
- //                cursor.moveToFirst();
-//
- //                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
- //                String picturePath = cursor.getString(columnIndex);
- //                cursor.close();
-//
-//
-//
- //                int orientation ;
- //                Bitmap rotatedBitmap=null;
- //                try {
- //                    ExifInterface f = new ExifInterface(picturePath);
- //                    orientation = f.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
- //                    Matrix matrix = new Matrix();
- //                    matrix.postRotate(getOrientation(orientation));
- //                    BitmapFactory.Options op = new BitmapFactory.Options();
- //                    rotatedBitmap = Bitmap.createBitmap(BitmapFactory.decodeFile(picturePath,op), 0, 0, BitmapFactory.decodeFile(picturePath,op).getWidth(), BitmapFactory.decodeFile(picturePath,op).getHeight(), matrix, true);
- //                } catch (IOException e) {
- //                    e.printStackTrace();
- //                }
- //                Iprofile.clearAnimation();
- //                Iprofile.setImageBitmap(rotatedBitmap);
- //              //  Set the image in ImageView
- //                       imagesRef.child("UserImages").child(UID).child("pic.jpeg").putFile(selectedImageUri);
-//
- //                        mDatabase.child("Users").child(UID).child("image_exist").setValue(true);
-//
-//
-//
- //            }}
- //        }
- //    }
  }
 
 

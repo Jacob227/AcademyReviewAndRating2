@@ -6,12 +6,20 @@ import java.util.ArrayList;
  * Created by יעקב on 19/01/2017.
  */
 
+/**
+ * Lecturer class model
+ * Information on lecturer
+ */
 public class LecturerUser extends User {
 
     public LecturerUser() {
 
     }
 
+    /**
+     * Constructor
+     * @param mCourses
+     */
     public LecturerUser(ArrayList<CourseDetailsModel> mCourses) {
         mCourses = new ArrayList<CourseDetailsModel>();
     }

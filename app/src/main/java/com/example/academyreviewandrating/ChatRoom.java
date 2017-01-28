@@ -28,6 +28,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Show all the app users with option to filter them
+ */
 public class ChatRoom extends Fragment {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
@@ -50,6 +53,12 @@ public class ChatRoom extends Fragment {
         return myView;
     }
 
+    /**
+     * Initialize components parameters
+     * implementation of setOnItemClickListener of list of users
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
@@ -109,7 +118,9 @@ public class ChatRoom extends Fragment {
 
     }
 
-
+    /**
+     * Filter the names of users
+     */
     private void FilterNameAndDisplay()
     {
 

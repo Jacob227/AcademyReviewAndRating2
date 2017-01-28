@@ -27,6 +27,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The user can start to rank the lecturer
+ * that open a new survey (Lecturer must open survey before)
+ */
 public class ClassServeyStud extends Fragment {
 
     private View myView;
@@ -48,6 +52,13 @@ public class ClassServeyStud extends Fragment {
         return myView;
     }
 
+    /**
+     * Init all View components
+     * Get academy, lecturer, semester data from DB
+     * init start ranking button listener
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

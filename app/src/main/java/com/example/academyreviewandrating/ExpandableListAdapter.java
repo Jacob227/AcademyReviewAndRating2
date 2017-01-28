@@ -15,6 +15,11 @@ import java.util.List;
  * Created by יעקב on 18/01/2017.
  */
 
+/**
+ * Used for student list timetable
+ * Expandable List adapter - can expand the course that user sighed up
+ * Expandable data is the course information
+ */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context _context;

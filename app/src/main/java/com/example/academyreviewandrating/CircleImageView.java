@@ -37,6 +37,10 @@ import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+/**
+ * Part of profile
+ * Class that handle circle profile image
+ */
 
 public class CircleImageView extends ImageView {
 
@@ -77,16 +81,31 @@ public class CircleImageView extends ImageView {
     private boolean mBorderOverlay;
     private boolean mDisableCircularTransformation;
 
+    /**
+     * Initialize all param
+     * @param context
+     */
     public CircleImageView(Context context) {
         super(context);
 
         init();
     }
 
+    /**
+     *
+     * @param context
+     * @param attrs
+     */
     public CircleImageView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
+    /**
+     * Init image border
+     * @param context
+     * @param attrs
+     * @param defStyle
+     */
     public CircleImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
@@ -102,6 +121,9 @@ public class CircleImageView extends ImageView {
         init();
     }
 
+    /**
+     *init padding
+     */
     private void init() {
         super.setScaleType(SCALE_TYPE);
         mReady = true;
@@ -131,6 +153,10 @@ public class CircleImageView extends ImageView {
         }
     }
 
+    /**
+     * Draw the circle image with all Transformations
+     * @param canvas
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         if (mDisableCircularTransformation) {
@@ -169,6 +195,10 @@ public class CircleImageView extends ImageView {
         setup();
     }
 
+    /**
+     * get the color of image border
+     * @return
+     */
     public int getBorderColor() {
         return mBorderColor;
     }
@@ -236,10 +266,18 @@ public class CircleImageView extends ImageView {
         setFillColor(getContext().getResources().getColor(fillColorRes));
     }
 
+    /**
+     * get border width
+     * @return
+     */
     public int getBorderWidth() {
         return mBorderWidth;
     }
 
+    /**
+     * ser Border width
+     * @param borderWidth
+     */
     public void setBorderWidth(int borderWidth) {
         if (borderWidth == mBorderWidth) {
             return;
@@ -321,6 +359,11 @@ public class CircleImageView extends ImageView {
         }
     }
 
+    /**
+     * get canvas bitmap of image
+     * @param drawable
+     * @return
+     */
     private Bitmap getBitmapFromDrawable(Drawable drawable) {
         if (drawable == null) {
             return null;
@@ -349,6 +392,9 @@ public class CircleImageView extends ImageView {
         }
     }
 
+    /**
+     * initialize Bitmap param
+     */
     private void initializeBitmap() {
         if (mDisableCircularTransformation) {
             mBitmap = null;
@@ -358,6 +404,9 @@ public class CircleImageView extends ImageView {
         setup();
     }
 
+    /**
+     * Setup all BitmapShader of image
+     */
     private void setup() {
         if (!mReady) {
             mSetupPending = true;
@@ -416,6 +465,9 @@ public class CircleImageView extends ImageView {
         return new RectF(left, top, left + sideLength, top + sideLength);
     }
 
+    /**
+     * update all scales of image 
+     */
     private void updateShaderMatrix() {
         float scale;
         float dx = 0;

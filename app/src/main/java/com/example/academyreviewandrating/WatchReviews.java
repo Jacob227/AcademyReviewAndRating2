@@ -25,6 +25,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * View the lecturer / course students rating average
+ */
 public class WatchReviews extends AppCompatActivity {
 
     private ArrayList<rating_lecterer_model> ratingDet;
@@ -38,6 +41,13 @@ public class WatchReviews extends AppCompatActivity {
     private TextView textViewTitle,textViewFaculty, textViewLecturerName, textViewRevNumber;
     private TextView textViewCourseLevel, textViewLecAtt,textViewAbility, textViewLecInter;
     private AlphaAnimation buttonClick = new AlphaAnimation(Animation.ZORDER_BOTTOM,Animation.ZORDER_NORMAL);
+
+    /**
+     *  Init all view components
+     * get all students rating information from DB
+     * Calculate avg
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,6 +152,11 @@ public class WatchReviews extends AppCompatActivity {
 
     }
 
+    /**
+     * On click Watch Table button
+     * pass data to next intent to display all rating on table
+     * @param view
+     */
     public void OnClickWatchTable(View view){
         view.startAnimation(buttonClick);
         Intent intentTableRev = new Intent(this, ReviewTable.class);

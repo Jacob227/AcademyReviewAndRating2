@@ -36,6 +36,10 @@ import java.util.List;
  * Created by יעקב on 04/12/2016.
  */
 
+/**
+ * Main class when we getting into application
+ * can rating and review lecturer/course , faculty/academy
+ */
 public class NavigationFregmentRankAndReview extends Fragment {
 
     private FirebaseAuth mAuth;
@@ -76,6 +80,12 @@ public class NavigationFregmentRankAndReview extends Fragment {
         Log.d("onCreateView ","NavigationRankRev");
         return myView;
     }
+
+    /**
+     * Init fire base instance, also useful parameters
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -108,30 +118,12 @@ public class NavigationFregmentRankAndReview extends Fragment {
             }
         }, 4500);
 
-
-
-        //faculty_selected = LoginActivity.user_ref.getFaculty(); //user default faculty
-        ///111
     }
 
-    /*
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-
-       // outState.put("mAuth", mAuth);
-        //handler.removeCallbacksAndMessages(null);
-        super.onSaveInstanceState(outState);
-
-    }
-
-    public void setData(NavigationFregmentRankAndReview data) {
-        this.data = data;
-    }
-
-    public NavigationFregmentRankAndReview getData() {
-        return data;
-    }
-*/
+    /**
+     * Init all View components
+     * set all spinners and buttons listeners
+     */
     public void setAllListener(){
         final Activity my_activity = getActivity();
         faculty_rank_button = (Button) getView().findViewById(R.id.button_Rank_Faculty);
@@ -370,6 +362,13 @@ public class NavigationFregmentRankAndReview extends Fragment {
 
     }
 
+    /**
+     * Fill spinners data from DB
+     * spinners: academy, faculty, course, semester and lecturer
+     * @param id
+     * @param child_name
+     * @param defualt_spinner
+     */
     public void fillSpinnerData( int id, String child_name, spinnerEnum defualt_spinner ){
         final spinnerEnum index_spinn = defualt_spinner;
         final Spinner my_spinner = (Spinner) getView().findViewById(id);
@@ -446,19 +445,16 @@ public class NavigationFregmentRankAndReview extends Fragment {
 
     public void spinnerAcademyOnClick (View view){
         String itemSel = academy_spinner.getSelectedItem().toString();
-        Log.d("hi", itemSel);
     }
 
+    /**
+     *onDestroy Override for remiving all CallbacksAndMessages
+     */
     @Override
     public void onDestroy(){
         super.onDestroy();
         Log.d("In RankAndReview","onDestroy");
-        //FirebaseAuth firebaseAuth;
-        //firebaseAuth = FirebaseAuth.getInstance();
-        //firebaseAuth.signOut();
         handler.removeCallbacksAndMessages(null);
-        //Intent intent = new Intent(getActivity(),LoginActivity.class);
-        //startActivity(intent);
 
     }
 }

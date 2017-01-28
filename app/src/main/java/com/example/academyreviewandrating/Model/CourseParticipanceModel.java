@@ -4,6 +4,11 @@ package com.example.academyreviewandrating.Model;
  * Created by יעקב on 08/01/2017.
  */
 
+/**
+ * Course participants class model
+ * data on course participants
+ * Email, user name, user id, course_part
+ */
 public class CourseParticipanceModel {
 
     private boolean course_part;
@@ -15,6 +20,13 @@ public class CourseParticipanceModel {
 
     }
 
+    /**
+     * Constructor
+     * @param course_part
+     * @param email
+     * @param userName
+     * @param Uid
+     */
     public CourseParticipanceModel(boolean course_part, String email, String userName, String Uid) {
         this.course_part = course_part;
         this.email = email;

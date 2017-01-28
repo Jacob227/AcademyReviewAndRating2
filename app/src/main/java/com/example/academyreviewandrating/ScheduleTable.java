@@ -16,6 +16,9 @@ import com.example.academyreviewandrating.Model.rating_lecterer_model;
 
 import java.util.ArrayList;
 
+/**
+ * Create Student timetable of his courses that he signed up
+ */
 public class ScheduleTable extends AppCompatActivity {
 
     private TableLayout tableLayout;
@@ -25,6 +28,10 @@ public class ScheduleTable extends AppCompatActivity {
     private String semesterStr;
     private String[][] timeTable = new String[12][6];
 
+    /**
+     * Init all view components
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +100,12 @@ public class ScheduleTable extends AppCompatActivity {
 
     }
 
+    /**
+     * inerts details to timetable
+     * @param ignoreIndex
+     * @param j
+     * @param tableR
+     */
     public void setTheRestOfrow(int ignoreIndex,int j,TableRow tableR){
         ((TextView) tableR.findViewById(R.id.hours_col1)).setText(String.valueOf(j) + ":00\n");
         for (int i = 0; i < 6; i++){
@@ -102,6 +115,12 @@ public class ScheduleTable extends AppCompatActivity {
         }
     }
 
+    /**
+     * check which column to insert the course
+     * @param index
+     * @param tableR
+     * @param value
+     */
     public void checkWhatCol(int index, TableRow tableR,String value){
         switch (index){
             case (0): ((TextView) tableRow.findViewById(R.id.Sun_col2)).setText(value);
@@ -119,6 +138,11 @@ public class ScheduleTable extends AppCompatActivity {
         }
     }
 
+    /**
+     * check which day the user register to course
+     * @param day
+     * @return
+     */
     public int checkDayIndex(String day)
     {
         switch (day){

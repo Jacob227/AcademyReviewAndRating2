@@ -6,6 +6,10 @@ import java.io.Serializable;
  * Created by יעקב on 06/01/2017.
  */
 
+/**
+ * Course class model
+ * data on course
+ */
 public class CourseDetailsModel implements Serializable {
 
     private String room;
@@ -19,6 +23,14 @@ public class CourseDetailsModel implements Serializable {
 
     }
 
+    /**
+     * Constructor
+     * @param room
+     * @param syllabus
+     * @param time
+     * @param credits
+     * @param code_course
+     */
     public CourseDetailsModel(String room, String syllabus, String time, float credits, float code_course) {
         this.room = room;
         this.syllabus = syllabus;

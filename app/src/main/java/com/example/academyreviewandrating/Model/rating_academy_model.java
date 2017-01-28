@@ -8,6 +8,10 @@ import java.io.Serializable;
  * Created by יעקב on 15/01/2017.
  */
 
+/**
+ * Rating academy class model
+ * data on Rating academy
+ */
 public class rating_academy_model implements Serializable {
 
     private int academy_difficulty, students_char, social_life, faculty_secretary, student_union;
@@ -18,6 +22,17 @@ public class rating_academy_model implements Serializable {
 
     }
 
+    /**
+     * Constructor
+     * @param academy_diff
+     * @param students_char
+     * @param social_life
+     * @param faculty_secretary
+     * @param stud_union
+     * @param few_words
+     * @param anonymous
+     * @param date
+     */
     public rating_academy_model(int academy_diff, int students_char, int social_life,
                                 int faculty_secretary, int stud_union, String few_words,
                                 Boolean anonymous, String date )

@@ -6,6 +6,10 @@ import java.io.Serializable;
  * Created by יעקב on 03/12/2016.
  */
 
+/**
+ * User class model
+ * Information on User
+ */
 public class User implements Serializable {
     private String userName;
     private String Institution;
@@ -23,6 +27,16 @@ public class User implements Serializable {
 
     }
 
+    /**
+     * Constructor
+     * @param userName
+     * @param Institution
+     * @param Faculty
+     * @param Email
+     * @param Phone
+     * @param fullName
+     * @param privilage
+     */
     public User(String userName,String Institution,String Faculty,String Email,String Phone,String fullName,String privilage ){
         this.userName = userName;
         this.Institution = Institution;

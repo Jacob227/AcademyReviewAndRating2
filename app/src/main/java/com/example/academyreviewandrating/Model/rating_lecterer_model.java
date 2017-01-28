@@ -5,7 +5,10 @@ import java.io.Serializable;
 /**
  * Created by יעקב on 31/12/2016.
  */
-
+/**
+ * Rating lecturer class model
+ * data on Rating lecturer
+ */
 public class rating_lecterer_model implements Serializable {
 
     private int Ability_to_teach,Attitude_lecturer_student, Course_level, Teacher_interesting;
@@ -16,6 +19,16 @@ public class rating_lecterer_model implements Serializable {
 
     }
 
+    /**
+     * Constructor
+     * @param ability_to_teach
+     * @param attitude_lecturer_student
+     * @param course_level
+     * @param teacher_interesting
+     * @param few_words
+     * @param date
+     * @param anonymous
+     */
     public rating_lecterer_model(int ability_to_teach, int attitude_lecturer_student, int course_level, int teacher_interesting, String few_words, String date, Boolean anonymous) { //String semester) {
         Ability_to_teach = ability_to_teach;
         Attitude_lecturer_student = attitude_lecturer_student;

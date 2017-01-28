@@ -14,8 +14,11 @@ import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+/**
+ * Show profile when user clicked on image from chat
+ * without options to add profile
+ */
 public class ProfileFriendChat extends AppCompatActivity {
-
 
     private FirebaseStorage mStorage;
     private TextView UserDetail;
@@ -25,6 +28,13 @@ public class ProfileFriendChat extends AppCompatActivity {
     private ImageView backbotton;
     private String UserIDProfile;
     private StorageReference imagesRef;
+
+    /**
+     * Init View params
+     * Init firebase instance
+     * getting user details
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +61,9 @@ public class ProfileFriendChat extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
+    /**
+     *show all user details on screen
+     */
     public void ShowDetail(){
         UserName.setText(curruser.getFullName());
         UserDetail = (TextView)findViewById(R.id.userdetail) ;
@@ -82,9 +89,5 @@ public class ProfileFriendChat extends AppCompatActivity {
 
         }
     }
-
-
-
-
 
 }

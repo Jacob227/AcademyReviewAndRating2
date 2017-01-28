@@ -15,6 +15,9 @@ import com.example.academyreviewandrating.Model.rating_lecterer_model;
 
 import java.util.ArrayList;
 
+/**
+ * Create a table with all rating of lecturer/ course
+ */
 public class ReviewTable extends AppCompatActivity {
 
     private ArrayList<rating_lecterer_model> ratingDet;
@@ -24,6 +27,11 @@ public class ReviewTable extends AppCompatActivity {
     private TableLayout tableLayout;
     private TableRow tableRow;
     private Toolbar myActionBar;
+
+    /**
+     * Init all View component and create table with all students rating
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -19,6 +19,9 @@ import java.util.ArrayList;
  * Created by PC on 19/01/2017.
  */
 
+/**
+ * Custom Array adapter of chat participants
+ */
 public class UserChatArrayAdapter extends ArrayAdapter<String> {
     private  FirebaseStorage mStorage;
     private ArrayList<String> UnreadUser;
@@ -31,6 +34,13 @@ public class UserChatArrayAdapter extends ArrayAdapter<String> {
         mStorage = FirebaseStorage.getInstance();
     }
 
+    /**
+     * Get view of specific user that include image and textView (user name)
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position

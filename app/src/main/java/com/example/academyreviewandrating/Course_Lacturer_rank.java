@@ -23,6 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Rank class
+ * Ranking the Course/Lecturer view
+ */
 public class Course_Lacturer_rank extends AppCompatActivity {
 
     private AlphaAnimation buttonClick = new AlphaAnimation(Animation.ZORDER_BOTTOM,Animation.ZORDER_NORMAL);
@@ -35,6 +39,11 @@ public class Course_Lacturer_rank extends AppCompatActivity {
     private Toolbar myActionBar;
     private CheckBox cb_anonymous;
 
+    /**
+     * Init all view component
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +82,11 @@ public class Course_Lacturer_rank extends AppCompatActivity {
             semester_text.setText(message[4]);
     }
 
+    /**
+     * Check all the feedback that user chose
+     * Insert to DB all the user rating.
+     * @param view
+     */
     public void sendFeedbackOnClick(View view) {
         view.startAnimation(buttonClick);
         //collect all the data and insert it to DB

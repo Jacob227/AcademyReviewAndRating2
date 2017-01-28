@@ -34,6 +34,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * Communicate with other students that participants on course.
+ */
 public class Courseparticipants extends AppCompatActivity {
 
     private Toolbar myActionBar;
@@ -52,6 +55,12 @@ public class Courseparticipants extends AppCompatActivity {
     private Activity mActRef = this;
     private Activity refAct;
 
+    /**
+     * Init View components
+     * Init Firebase instance
+     * Get user participants from DB
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

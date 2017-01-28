@@ -31,6 +31,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Edit user profile:
+ * Username, faculty, academy, phone, semester
+ */
 public class EditProfile extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private DatabaseReference mDatabaseInsert;
@@ -46,6 +50,11 @@ public class EditProfile extends AppCompatActivity {
     private  Uri selectedImageUri;
     private  FirebaseStorage mStorage;
 
+    /**
+     * Init all View components
+     * get all user details from DB
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,6 +153,10 @@ public class EditProfile extends AppCompatActivity {
 
     private static int RESULT_LOAD_IMAGE = 1;
 
+    /**
+     * Save the changes in DB
+     * @param view
+     */
     public void SaveDetail(View view){
         int somethingChange = 0;
         mDatabaseInsert = FirebaseDatabase.getInstance().getReference("Users").child(UID);
@@ -203,6 +216,11 @@ public class EditProfile extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * get profile image Orientation
+     * @param orient
+     * @return
+     */
     public static int getOrientation(int orient){
 
         if (orient == 8){
@@ -221,6 +239,13 @@ public class EditProfile extends AppCompatActivity {
    public Bitmap SS;
     private static final int SELECT_PICTURE = 1;
 
+    /**
+     * Set the new image on circle image View
+     * check all the image orientation, BitmapFactory..
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
