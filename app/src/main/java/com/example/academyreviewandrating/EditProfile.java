@@ -176,7 +176,7 @@ public class EditProfile extends AppCompatActivity {
         }
         if(ImageChanged == true) {
             imagesRef.child("UserImages").child(UID).child("pic.jpeg").putFile(selectedImageUri);
-            mDatabase.child("Users").child(UID).child("image_exist").setValue(true);
+            mDatabaseInsert.child("Users").child(UID).child("image_exist").setValue(true);
             NavigationFregmentProfile.Iprofile.setImageBitmap(SS);
             somethingChange++;
         }
