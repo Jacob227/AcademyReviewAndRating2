@@ -3,6 +3,9 @@ package com.example.academyreviewandrating;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -110,6 +113,13 @@ public class NavigationStartActivity extends AppCompatActivity
                         unreadM.clearAnimation();
                         unreadM.requestFocus();
                         unreadM.setVisibility(ImageView.VISIBLE);
+                        try {
+                            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+                            r.play();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                       // if found message that not readed add to arraylist this user name
                         if(UsernamesListUnRead.contains(unreadMessege.getMessageUser()) == false) {
                             UsernamesListUnRead.add(unreadMessege.getMessageUser());
