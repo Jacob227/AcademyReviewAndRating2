@@ -64,6 +64,7 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<String> List_inst = new ArrayList<String>();
+                List_inst.add("");
                 for (DataSnapshot child: dataSnapshot.getChildren()){
                     List_inst.add(child.getKey());
                     Log.d("In OnData Register", child.getKey().toString());
@@ -91,7 +92,9 @@ public class EditProfile extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //mparent.getSelectedItem().toString();
                         List<String> List_inst = new ArrayList<String>();
+                        List_inst.add("");
                         List<String> List_Semester = new ArrayList<String>();
+                        List_Semester.add("");
                         DataSnapshot mDataSnap = dataSnapshot.child(mparent.getSelectedItem().toString()).child("/Faculty");
                         for (DataSnapshot child: mDataSnap.getChildren()){
                             List_inst.add(child.getKey());
@@ -149,9 +152,16 @@ public class EditProfile extends AppCompatActivity {
             textInstitution = academy_spinner.getSelectedItem().toString();
             textFaculty = faculty_spinner.getSelectedItem().toString();
 
-            mDatabaseInsert.child("faculty").setValue(textFaculty);
-            mDatabaseInsert.child("institution").setValue(textInstitution);
-            somethingChange++;
+            if (textInstitution.isEmpty() == false) {
+
+                mDatabaseInsert.child("institution").setValue(textInstitution);
+                somethingChange++;
+            }
+            if (textFaculty.isEmpty() == false) {
+                mDatabaseInsert.child("faculty").setValue(textFaculty);
+                somethingChange++;
+            }
+
         }
 
         editText = (EditText)findViewById(R.id.editTextRegFullName);
