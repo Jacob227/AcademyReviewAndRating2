@@ -128,7 +128,7 @@
                 android:id="@+id/choose_semster_but_list"
                 android:background="@drawable/button_shape"
                 android:textSize="@dimen/activity_vertical_margin"
-
+                android:layout_alignParentBottom="true"
                 android:layout_alignBaseline="@+id/textView_Timetable"
                 android:layout_alignBottom="@+id/textView_Timetable"
                 android:layout_alignLeft="@+id/Academy_text2"
