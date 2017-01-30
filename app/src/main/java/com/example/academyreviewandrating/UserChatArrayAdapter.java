@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -67,8 +68,8 @@ public class UserChatArrayAdapter extends ArrayAdapter<String> {
                 if(NavigationStartActivity.userList.get(i).getImage_exist() == true) {
                     String useIDpic = NavigationStartActivity.mMap.get(userName);
                     StorageReference ref = mStorage.getReference().child("UserImages").child(useIDpic).child("pic.jpeg");
-                    Glide.with(contextThis).using(new FirebaseImageLoader()).load(ref).into(Iprofile);
-                }
+             //       Glide.with(contextThis).using(new FirebaseImageLoader()).load(ref).into(Iprofile);
+                    Glide.with(contextThis).using(new FirebaseImageLoader()).load(ref).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(Iprofile);                }
                 }
         }
 
