@@ -114,13 +114,24 @@ public class Courseparticipants extends AppCompatActivity {
                         String user_pos = null;
                        try {
                            user_pos = userNames.get(position);
-
+                            boolean flagImage = true;
                            for (String key: mListParticipant.keySet() ){
                                 if (user_pos.equals(mListParticipant.get(key).getUserName())){
                                     Intent mIntent = new Intent(refAct, ChatMain.class);
                                     mIntent.putExtra("ReciveID", mListParticipant.get(key).getUser_id());
                                     mIntent.putExtra("ReciveName", mListParticipant.get(key).getUserName());
+                                    for(int I =0;I < NavigationStartActivity.userList.size();I++){
+                                        if(NavigationStartActivity.userList.get(I).getUserName().equals(mListParticipant.get(key).getUserName())){
+                                            mIntent.putExtra("Image_exist",NavigationStartActivity.userList.get(I).getImage_exist());
+                                            flagImage = false;
+                                        }
+
+                                    }
+                                    if (flagImage){
+                                        mIntent.putExtra("Image_exist",true);
+                                    }
                                     startActivity(mIntent);
+                                    finish();
                                 }
                            }
 
